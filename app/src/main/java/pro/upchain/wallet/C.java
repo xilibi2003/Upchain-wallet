@@ -10,7 +10,6 @@ public abstract class C {
     // 获取实时价格（行情 Ticker ） URL
     public static final String TICKER_API_URL = "http://47.93.151.65:8000";
 
-//    https://api.trustwalletapp.com/transactions?address=0x33923a7888c0b885768b3ed578f4d243b17182ee
 
     public static final int IMPORT_REQUEST_CODE = 1001;
     public static final int EXPORT_REQUEST_CODE = 1002;

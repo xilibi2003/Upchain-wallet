@@ -13,7 +13,7 @@
 * [功能介绍](#功能介绍)
 * [效果演示](#效果演示)
 * [参考的开源项目](#参考的开源项目)
-* [关于我] (#关于我)
+* [关于我](#关于我)
 
 
 ## 功能介绍
@@ -32,9 +32,7 @@
 
 ## 效果演示
 
-<p align="center">
-  <img src="https://wiki.learnblockchain.cn/images/upchainwallet.gif" width="450">
-</p>
+![image](https://github.com/xilibi2003/Upchain-wallet/blob/master/img/wallet.gif)
 
 安装包下载[地址](https://wiki.learnblockchain.cn/images/upchain_wallet.apk)。
 
