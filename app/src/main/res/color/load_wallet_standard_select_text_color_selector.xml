@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/transfer_advanced_setting_help_text_color" android:state_selected="true" />
+    <item android:color="@color/property_ico_worth_color" android:state_selected="false" />
+</selector>

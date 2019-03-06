@@ -1,0 +1,123 @@
+package pro.upchain.wallet.ui.fragment;
+
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseFragment;
+import pro.upchain.wallet.domain.ETHWallet;
+import pro.upchain.wallet.interact.CreateWalletInteract;
+import pro.upchain.wallet.repository.WalletRepository;
+import pro.upchain.wallet.ui.activity.ImportWalletActivity;
+import pro.upchain.wallet.ui.activity.MainActivity;
+import pro.upchain.wallet.utils.ToastUtils;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+/**
+ * Created by Tiny 熊 @ Upchain.pro
+ * WeiXin: xlbxiong
+ */
+
+public class ImportKeystoreFragment extends BaseFragment {
+
+    @BindView(R.id.et_keystore)
+    EditText etKeystore;
+    @BindView(R.id.et_wallet_pwd)
+    EditText etWalletPwd;
+    @BindView(R.id.cb_agreement)
+    CheckBox cbAgreement;
+    @BindView(R.id.btn_load_wallet)
+    TextView btnLoadWallet;
+
+    CreateWalletInteract createWalletInteract;
+
+
+    @Override
+    public int getLayoutResId() {
+        return R.layout.fragment_load_wallet_by_official_wallet;
+    }
+
+    @Override
+    public void attachView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+        createWalletInteract = new CreateWalletInteract(WalletRepository.sSelf);
+
+    }
+
+    @Override
+    public void configViews() {
+        cbAgreement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    if (verifyInfo()) {
+                        btnLoadWallet.setEnabled(true);
+                    }
+                } else {
+                    btnLoadWallet.setEnabled(false);
+                }
+            }
+        });
+    }
+
+    @OnClick({R.id.btn_load_wallet})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load_wallet:
+
+                String walletPwd = etWalletPwd.getText().toString().trim();
+                String keystore = etKeystore.getText().toString().trim();
+
+                if (verifyInfo()) {
+                    showDialog(getString(R.string.loading_wallet_tip));
+                    createWalletInteract.loadWalletByKeystore(keystore, walletPwd).subscribe(this::loadSuccess, this::onError);
+                }
+                break;
+        }
+    }
+
+    private boolean verifyInfo() {
+
+        String walletPwd = etWalletPwd.getText().toString().trim();
+        String keystore = etKeystore.getText().toString().trim();
+
+        if (TextUtils.isEmpty(keystore)) {
+            ToastUtils.showToast(R.string.load_wallet_by_official_wallet_keystore_input_tip);
+            return false;
+        }
+        // 导入时，可以为空
+//        else if (TextUtils.isEmpty(walletPwd)) {
+//            ToastUtils.showToast(R.string.create_wallet_pwd_input_tips);
+//            // 同时判断强弱
+//            return false;
+//        }
+        return true;
+    }
+
+    public void loadSuccess(ETHWallet wallet) {
+        ToastUtils.showToast("导入钱包成功");
+        dismissDialog();
+
+        getActivity().finish();
+
+
+    }
+
+    public void onError(Throwable e) {
+        ToastUtils.showToast("导入钱包失败");
+        dismissDialog();
+    }
+
+}

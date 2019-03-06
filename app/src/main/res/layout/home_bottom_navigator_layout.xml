@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:weightSum="2">
+
+
+    <LinearLayout
+        android:id="@+id/lly_mall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_mall"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/home_bottom_tab_mall_selector" />
+
+        <TextView
+            android:id="@+id/tv_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3.5dp"
+            android:gravity="center"
+            android:text="@string/homepage_tab_text_mall"
+            android:textColor="@drawable/home_bottom_tab_text_color_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lly_mine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_mine"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/home_bottom_tab_mine_selector" />
+
+        <TextView
+            android:id="@+id/tv_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3.5dp"
+            android:gravity="center"
+            android:text="@string/homepage_tab_text_mine"
+            android:textColor="@drawable/home_bottom_tab_text_color_selector"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

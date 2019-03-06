@@ -1,0 +1,127 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "pro.upchain.ethwallet"
+        minSdkVersion 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
+dependencies {
+
+    //    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.android.support:multidex:1.0.2"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+//    implementation 'android.arch.lifecycle:runtime:1.0.3'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+//    implementation 'android.arch.core:runtime:1.1.1'
+
+    // Annotation
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    // leakcanary 可以迅速定位内存泄漏
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    // Rx ReactiveX
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+
+    // Gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+
+    // Okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+
+    // 沉浸式状态栏
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+
+    // 圆形图片
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+
+    // 圆点Indicator
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    implementation 'com.romandanylyk:pageindicatorview:1.0.0'
+
+    // glide 图片加载库
+    implementation('com.github.bumptech.glide:glide:4.6.1') {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+
+    // greenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
+
+    // ViewPagerIndicator
+    implementation 'com.shizhefei:ViewPagerIndicator:1.1.6'
+
+    // FlexboxLayoutManager
+    implementation 'com.google.android:flexbox:1.0.0'
+
+    // 以太坊开发库
+    implementation 'org.web3j:core:4.1.0-android'
+
+    //    compile 'com.google.guava:guava:24.1-jre'
+
+    // or, for Android:
+    implementation 'com.google.guava:guava:27.0.1-android'
+
+    // bitcoinj
+    implementation 'org.bitcoinj:bitcoinj-core:0.14.7'
+
+
+    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.3.6'
+
+    implementation 'pub.devrel:easypermissions:1.0.1'
+
+}
+
+greendao {
+    schemaVersion 1
+}

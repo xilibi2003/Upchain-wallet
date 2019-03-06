@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="300dp"
+	android:orientation="vertical"
+
+	android:padding="16dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="@string/transfer_title_confirm"
+		android:layout_gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+		android:id="@+id/text_value"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:textAppearanceLarge"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+
+
+		<TextView
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/subtitle_from" />
+
+		<TextView
+			android:id="@+id/text_from"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/normal_margin"
+			android:layout_marginTop="@dimen/small_margin"
+			android:textIsSelectable="true"
+			android:textSize="12sp"
+			android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+		<TextView
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/subtitle_to" />
+
+		<TextView
+			android:id="@+id/text_to"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/normal_margin"
+			android:layout_marginTop="@dimen/small_margin"
+			android:textIsSelectable="true"
+			android:textSize="12sp"
+			android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+		<TextView
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/subtitle_gas_fee" />
+
+		<TextView
+			android:id="@+id/text_network_fee"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/normal_margin"
+			android:layout_marginTop="@dimen/small_margin"
+			android:textIsSelectable="true"
+			android:textSize="12sp"
+			android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+	<LinearLayout
+		android:id="@+id/ll"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintTop_toBottomOf="@+id/text_value">
+        <TextView
+            android:id="@+id/text_gas_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+        <TextView
+            android:id="@+id/text_gas_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+    </LinearLayout>
+
+	<Button
+		android:id="@+id/confirm_button"
+		style="@style/Widget.AppCompat.Button.Colored"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/btn_confirm"
+		app:layout_constraintTop_toBottomOf="@+id/ll"
+		/>
+
+
+</LinearLayout>

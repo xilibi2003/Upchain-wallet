@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lly_wallet"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    android:background="@color/property_drawer_wallet_item_bg_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_ico_logo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/wallet_logo_demo" />
+
+        <TextView
+            android:id="@+id/tv_wallet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/civ_ico_logo"
+            android:layout_toRightOf="@+id/civ_ico_logo"
+            android:text="MyFirstWallet"
+            android:textColor="@color/property_ico_name_color"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

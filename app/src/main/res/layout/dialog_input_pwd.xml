@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/input_pwd_dialog_tip"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_delete_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/input_pwd_delete_tip"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/etc_transfer_hex_data_et_shape"
+        android:inputType="textPassword"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:text="@string/search_toolbar_cancel"
+            android:textColor="@color/search_ico_upload_token"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/input_pwd_dialog_confirm"
+            android:textColor="@color/transfer_advanced_setting_help_text_color"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

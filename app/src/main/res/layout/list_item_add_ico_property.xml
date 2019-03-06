@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lly_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/add_property_gray_bg_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_ico_logo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/wallet_logo_demo" />
+
+        <TextView
+            android:id="@+id/tv_ico_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/civ_ico_logo"
+            android:layout_toRightOf="@+id/civ_ico_logo"
+            android:text="ETC"
+            android:textColor="@color/property_ico_name_color"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/add_switch"
+            android:layout_width="43dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:textOff="  "
+            android:textOn="  " />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

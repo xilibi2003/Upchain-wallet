@@ -1,0 +1,262 @@
+<resources>
+    <string name="app_name">登链钱包</string>
+
+    <string name="exit_tips">再按一次退出程序</string>
+
+    <string name="homepage_tab_text_mall">钱包</string>
+    <string name="homepage_tab_text_mine">我</string>
+    <string name="mine_title">我</string>
+    <string name="property_drawer_qrcode_scanner">扫一扫</string>
+    <string name="property_drawer_create_wallet">创建钱包</string>
+
+    <string name="create_wallet_name_hint">钱包名称</string>
+    <string name="create_wallet_pwd_hint">密码</string>
+    <string name="create_wallet_pwd_again_hint">重复密码</string>
+    <string name="create_wallet_pwd_reminder_info_hint">密码提示信息(可不填)</string>
+    <string name="create_wallet_agreement_reminder">我已经仔细阅读并同意</string>
+    <string name="create_wallet_agreement">服务及隐私条款</string>
+    <string name="create_wallet_name_repeat_tips">钱包名称重复</string>
+    <string name="create_wallet_name_input_tips">请输入钱包名称</string>
+    <string name="create_wallet_pwd_input_tips">密码不能为空</string>
+    <string name="create_wallet_pwd_confirm_input_tips">密码不一致，请重新输入</string>
+    <string name="create_wallet_alert1">* 密码用于隐私保护和交易授权，强度非常重要</string>
+    <string name="create_wallet_alert2">* 登链钱包不存储密码秘钥，也无法帮您找回，请务必牢记</string>
+
+    <string name="property_total_assets_cny">总资产(¥)</string>
+    <string name="property_total_assets_usd">总资产($)</string>
+    <string name="property_approximate">≈</string>
+
+    <string name="mine_wallet_manage">钱包管理</string>
+    <string name="mine_trade_record">交易记录</string>
+    <string name="mine_msg_center">消息中心</string>
+    <string name="mine_contracts">联系人</string>
+    <string name="mine_system_setting">系统设置</string>
+    <string name="mine_personal_center">个人中心</string>
+    <string name="mine_help_center">技术交流与帮助</string>
+    <string name="mine_about_us">关于我们</string>
+
+    <string name="add_new_property_title">添加新资产</string>
+    <string name="search_toolbar_cancel">取消</string>
+
+    <string name="gathering_qrcode_title">收款码</string>
+    <string name="gathering_qrcode_share">分享</string>
+    <string name="gathering_qrcode_gathering_money">收款金额</string>
+    <string name="gathering_qrcode_copy_gathering_address">复制收款地址</string>
+    <string name="gathering_qrcode_copy_success">已复制</string>
+
+    <string name="contact_no_data">暂时没有联系人</string>
+
+    <string name="transfer_title_confirm">转账详情</string>
+    <string name="transfer_title">转账</string>
+    <string name="transfer_address">收款人钱包地址</string>
+    <string name="transfer_money">转账金额</string>
+    <string name="transfer_remark">备注</string>
+    <string name="transfer_gas_cost">矿工费用</string>
+    <string name="transfer_gas_price">自定义 Gas Price</string>
+    <string name="transfer_gas">自定义 Gas</string>
+    <string name="transfer_advanced_setting">高级选项</string>
+    <string name="transfer_hex_data">十六进制数据</string>
+    <string name="transfer_next">下一步</string>
+    <string name="transfer_gas_slow">慢</string>
+    <string name="transfer_gas_quick">快</string>
+    <string name="transfer_ether_unit">&#160;ether</string>
+
+    <string name="property_detail_title">ETC</string>
+    <string name="property_detail_transfer">转账</string>
+    <string name="property_detail_gathering">收款</string>
+
+    <string name="wallet_manager_create_wallet">创建钱包</string>
+    <string name="wallet_manager_load_wallet">导入钱包</string>
+
+    <string name="news_center_all_read">全部已读</string>
+    <string name="news_center_title">消息中心</string>
+
+    <string name="system_setting_title">系统设置</string>
+    <string name="system_setting_language">多语言</string>
+    <string name="system_setting_currency">货币单位</string>
+    <string name="system_setting_net">网络设置</string>
+    <string name="system_setting_gesture">手势密码</string>
+
+    <string name="language_setting_chinese">简体中文</string>
+    <string name="language_setting_English">English</string>
+    <string name="language_setting_save">保存</string>
+
+    <string name="net_setting_main">Mainnet（主网）</string>
+    <string name="net_setting_kovan">Kovan 测试网络</string>
+    <string name="net_setting_ropsten">Ropsten 测试网络</string>
+    <string name="net_setting_local_dev"> 本地测试网络</string>
+
+    <string name="currency_unit_setting_cny">CNY</string>
+    <string name="currency_unit_setting_usd">USD</string>
+
+    <string name="web3_setting_wallet_service_url">WALLET SERVICE URL</string>
+    <string name="web3_setting_wallet_service_url_hint">https://web3.token.im</string>
+    <string name="web3_setting_reset_url">设置为默认的URL</string>
+    <string name="trading_record_title">交易记录</string>
+    <string name="switch_wallet_title">切换账户</string>
+
+    <string name="wallet_backup_tips1">最后一步：立即备份你的钱包！</string>
+    <string name="wallet_backup_tips2">备份钱包：导出「助记词」并抄写到安全的地方，千万不要保存到网络上，然后尝试转入、转出小额资产开始使用.</string>
+    <string name="wallet_backup_backup_btn">备份钱包</string>
+    <string name="wallet_backup_skip_btn">跳过</string>
+    <string name="wallet_backup_backup_help">查看备份详细教程</string>
+
+
+    <string name="input_pwd_dialog_tip">请输入密码</string>
+    <string name="input_pwd_delete_tip">请慎重，此操作无法撤销</string>
+    <string name="input_pwd_dialog_confirm">确认</string>
+
+    <string name="mnemonic_backup_title">备份助记词</string>
+    <string name="mnemonic_backup_tips1">抄写下你的钱包助记词</string>
+    <string name="mnemonic_backup_tips2">助记词用于回复钱包或重置钱包密码，降它准确的抄写到纸上，并存放在只有你知道的安全的地方。</string>
+
+    <string name="mnemonic_backup_alert_tips">如果有人获取你的助记词将直接获取你的资产！请抄写下助记词并存放在安全的地方。</string>
+    <string name="mnemonic_backup_alert_btn">知道了</string>
+    <string name="mnemonic_backup_alert_title">请勿截图</string>
+
+    <string name="verify_backup_tip1">确认你的钱包助记词</string>
+    <string name="verify_backup_tip2">请按顺序点击助记词，以确认你的备份助记词正确。</string>
+    <string name="verify_backup_failed">备份失败，请检查你的助记词</string>
+
+    <string name="load_wallet_title">导入钱包</string>
+    <string name="load_wallet_btn">开始导入</string>
+
+
+
+    <string name="load_wallet_indicator_mnemonic">助记词</string>
+    <string name="load_wallet_indicator_official">官方钱包</string>
+
+    <string name="load_wallet_indicator_private_key">私钥</string>
+    <string name="load_wallet_indicator_observer">观察</string>
+
+    <string name="load_wallet_by_mnemonic_hint">助记词，按空格分隔</string>
+    <string name="load_wallet_by_mnemonic_input_tip">请检查您的助记词</string>
+    <string name="load_wallet_by_mnemonic_standard">m/44\'/60\'/0\'/0/0</string>
+    <string name="load_wallet_by_mnemonic_standard_ledger">m/44\'/60\'/0\'/0</string>
+    <string name="load_wallet_by_mnemonic_standard_custom">m/44\'/60\'/1\'/0/0</string>
+    <string name="load_wallet_by_mnemonic_standard_jaxx_option">m/44\'/60\'/0\'/0/0 Jaxx,Metamask(ETH)</string>
+    <string name="load_wallet_by_mnemonic_standard_ledger_option">m/44\'/60\'/0\'/0 Ledger (ETH)</string>
+    <string name="load_wallet_by_mnemonic_standard_custom_option">m/44\'/60\'/1\'/0/0 自定义路径</string>
+    <string name="load_wallet_by_mnemonic_help">什么是助记词？</string>
+    <string name="load_wallet_already_exist">钱包以存在</string>
+
+    <string name="load_wallet_by_official_wallet_keystore_hint">keystore 文本内容</string>
+    <string name="load_wallet_by_official_wallet_keystore_tip">直接复制粘贴以太坊官方钱包keystore文件内容至输入框。或者通过生成keystore内容的二维码，扫描录入。</string>
+    <string name="load_wallet_by_official_wallet_help">什么是keystore？</string>
+    <string name="load_wallet_by_official_wallet_keystore_input_tip">keystore文件无效</string>
+
+    <string name="load_wallet_by_private_key_input_tip">无效的私钥</string>
+    <string name="load_wallet_by_private_key_hint">明文私钥</string>
+    <string name="load_wallet_by_private_key_help">什么是私钥？</string>
+
+    <string name="wallet_detail_wallet_name">钱包名</string>
+    <string name="wallet_detail_modify_pwd">修改密码</string>
+    <string name="wallet_detail_derive_private_key">导出私钥</string>
+    <string name="wallet_detail_derive_keystore">导出keystore</string>
+
+
+    <string name="derive_with_keystore">Keystore</string>
+    <string name="derive_with_qrcode">二维码</string>
+
+    <string name="wallet_detail_delete_wallet">删除钱包</string>
+    <string name="wallet_detail_save_success">保存成功</string>
+    <string name="wallet_detail_wrong_pwd">密码错误</string>
+
+    <string name="modify_password_title">更改密码</string>
+    <string name="modify_password_old_pwd">当前密码</string>
+    <string name="modify_password_new_pwd">新密码</string>
+    <string name="modify_password_old_pwd_again">重复新密码</string>
+    <string name="modify_password_tip">忘记密码？导入助记词或私钥可重置密码。</string>
+    <string name="modify_password_import">马上导入</string>
+    <string name="modify_password_complete">完成</string>
+    <string name="modify_password_alert4">原密码错误</string>
+    <string name="modify_password_alert5">新密码两次输入不一致</string>
+    <string name="modify_password_success">修改密码成功</string>
+
+    <string name="derive_private_key_alert">安全警告：私钥未经加密，导出存在风险，建议使用助记词和keystore进行备份</string>
+    <string name="derive_private_key_copy_btn">复制</string>
+    <string name="derive_private_key_already_copy_btn">已复制</string>
+
+    <string name="derive_keystore_title">导出Keystore</string>
+    <string name="derive_keystore_tip_title">离线保存</string>
+    <string name="derive_keystore_tip">请复制粘贴Keystore文件到安全、离线的地方保存。切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险</string>
+    <string name="derive_keystore_tip3">如需在线保存，则建议使用安全等级更高的 1Password 等密码保管软件保存 Keystore。</string>
+    <string name="derive_keystore_tip4">二维码禁止保存、截图、以及拍照、仅供用户在安全环境下直接扫描来方便的导入钱包。</string>
+    <string name="derive_keystore_tip5">请在确保四周无人及无摄像头的情况下使用。二维码一旦被人获取将造成不可挽回的资产损失。</string>
+    <string name="derive_keystore_tip_title2">请勿使用网络传输</string>
+    <string name="derive_keystore_tip_title3">密码保险箱保存</string>
+    <string name="derive_keystore_tip_title4">仅供直接扫描</string>
+    <string name="derive_keystore_tip_title5">在安全环境下使用</string>
+    <string name="derive_keystore_copy">复制 Keystore</string>
+
+    <string name="deriving_wallet_tip">导出钱包中…</string>
+    <string name="loading_wallet_tip">导入钱包中…</string>
+    <string name="deleting_wallet_tip">删除钱包中…</string>
+    <string name="creating_wallet_tip">创建钱包中…</string>
+    <string name="saving_wallet_tip">保存钱包中…</string>
+
+    <string name="sent">转出</string>
+    <string name="create">创建合约</string>
+    <string name="received">转入</string>
+    <string name="btn_confirm">确认</string>
+
+
+    <string name="subject_transaction_detail">交易详情</string>
+
+    <!-- Subtitles -->
+    <string name="subtitle_from">付款地址</string>
+    <string name="subtitle_to">收款地址</string>
+    <string name="subtitle_gas_fee">矿工费</string>
+    <string name="subtitle_transaction_num">交易号 #</string>
+    <string name="subtitle_transaction_time">交易时间</string>
+    <string name="subtitle_block_num">区块 #</string>
+    <string name="action_more_details">在区块浏览器中参看详细信息</string>
+
+    <string name="addr_error_tips">地址填写不正确</string>
+    <string name="amount_error_tips">金额填写不正确</string>
+
+
+    <string name="hint_contract_address">合约地址</string>
+    <string name="hint_contract_symbol">代币符号</string>
+    <string name="hint_contract_decimals">Decimals</string>
+    <string name="action_save">保存</string>
+
+    <string name="error_field_required">必填项</string>
+    <string name="error_invalid_address">无效地址</string>
+    <string name="error_must_numeric">必须是数字</string>
+
+    <string name="button_ok">知道了</string>
+    <string name="title_dialog_sending">发送...</string>
+    <string name="transaction_succeeded">交易成功</string>
+    <string name="error_transaction_failed">交易出错</string>
+    <string name="copy">复制</string>
+
+
+    <string name="title_dialog_add_account">Add wallet</string>
+
+    <string name="action_create_new_account">创建新钱包</string>
+
+    <string name="action_import">导入</string>
+    <string name="already_have_account">已有钱包账号?</string>
+
+    <string name="empty" />
+
+    <!-- Intro resources-->
+    <string name="intro_title_first_page"><![CDATA[Private & Secure]]></string>
+    <string name="intro_title_second_page">Fully Transparent</string>
+    <string name="intro_title_third_page">Ultra reliable</string>
+    <string name="intro_message_first_page">Private keys never leave your device.</string>
+    <string name="intro_message_second_page">Code is open sourced (GPL-3.0 license) and fully audited.</string>
+    <string name="intro_message_third_page">The fastest Ethereum wallet experience on mobile.</string>
+
+    <string name="welcome_erc20_label_title">兼容 ERC20 </string>
+    <string name="welcome_erc20_label_description">支持所有的ERC20 代币</string>
+
+    <string name="ask_help_desc_1">登链钱包是一款免费开源的功能全面的以太坊钱包，希望对你有帮助。 \n\n欢迎大家一起来交流技术QQ群：245251041， 个人微信：xlbxiong （下方是二维码）
+        \n\n如果你需要寻求进一步的帮助，我们提供的实惠的有偿技术服务，如：
+        \n1. 专业团队提供钱包定制开发；
+        \n2. 关注"登链学院"同名公众号全面学习区块链开发课程；
+        \n3. 解答问题，加入知识星球： 深入浅出区块链问答社区。 </string>
+
+
+</resources>

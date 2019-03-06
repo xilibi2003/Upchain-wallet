@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="202dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@drawable/mine_header_bg_shape"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="23dp">
+
+                <LinearLayout
+                    android:id="@+id/lly_back"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="9dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_back_white" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/gathering_qrcode_title"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/rl_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="@string/gathering_qrcode_share"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_wallet_logo"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/head2" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_wallet_address"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:maxLines="2"
+                android:textColor="@color/discovery_application_item_name_color"
+                android:textSize="12sp" />
+
+
+            <EditText
+                android:id="@+id/et_gathering_money"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@null"
+                android:hint="@string/gathering_qrcode_gathering_money"
+                android:inputType="numberDecimal"
+                android:textColor="@color/discovery_application_item_name_color"
+                android:textColorHint="@color/property_ico_worth_color"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="245dp"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/discovery_application_item_name_color" />
+
+
+            <ImageView
+                android:id="@+id/iv_gathering_qrcode"
+                android:layout_width="241dp"
+                android:layout_height="241dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:id="@+id/btn_copy_address"
+                android:layout_width="241dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/item_divider_bg_color"
+                android:text="@string/gathering_qrcode_copy_gathering_address"
+                android:textColor="@color/discovery_application_item_name_color" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

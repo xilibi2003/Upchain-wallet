@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/mnemonic_backup_tips1"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/mnemonic_backup_tips2"
+        android:textColor="@color/property_ico_worth_color"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_mnemonic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mnemonic_backup_bg"
+        android:padding="15dp"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/btn_next"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/transfer_advanced_setting_help_text_color"
+        android:gravity="center"
+        android:text="@string/transfer_next"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+
+</LinearLayout>

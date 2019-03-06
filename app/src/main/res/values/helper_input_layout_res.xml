@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="HelperTextInputLayout">
+		<attr name="helperText" format="string"/>
+		<attr name="helperTextColor" format="color|reference"/>
+	</declare-styleable>
+
+</resources>

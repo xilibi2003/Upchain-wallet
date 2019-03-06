@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/item_divider_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:overScrollMode="never"
+            android:id="@+id/lv_trading_record"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/item_divider_bg_color"
+            android:dividerHeight="0.5dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</LinearLayout>

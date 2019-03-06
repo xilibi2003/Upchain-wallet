@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="278dp"
+    android:layout_height="210dp"
+    android:layout_gravity="center"
+    android:background="@drawable/mnemonic_backup_alert_dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/ic_no_screenshot" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/mnemonic_backup_alert_title"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        android:text="@string/mnemonic_backup_alert_tips"
+        android:textColor="@color/property_ico_worth_color"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/dialog_know_btn_bg_color"
+        android:gravity="center"
+        android:text="@string/mnemonic_backup_alert_btn"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

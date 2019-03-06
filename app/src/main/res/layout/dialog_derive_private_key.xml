@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="278dp"
+    android:layout_height="230dp"
+    android:layout_gravity="center"
+    android:background="@drawable/mnemonic_backup_alert_dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/lly_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/ic_close" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="@string/mnemonic_backup_alert_title"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_derive_tip"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_alert"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/derive_private_key_alert_bg"
+        android:paddingBottom="6dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:paddingTop="6dp"
+        android:text="@string/derive_private_key_alert"
+        android:textColor="@color/dialog_know_btn_bg_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_private_key"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_derive_tip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/mnemonic_backup_bg"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:lines="2"
+        android:paddingTop="8dp"
+        android:textColor="@color/discovery_application_text_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/btn_copy"
+        android:layout_width="239dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_private_key"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/create_wallet_btn_bg_selector"
+        android:gravity="center"
+        android:text="@string/derive_private_key_copy_btn"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+
+
+</RelativeLayout>

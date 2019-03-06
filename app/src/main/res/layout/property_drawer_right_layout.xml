@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <pro.upchain.wallet.view.ListViewForScrollView
+            android:id="@+id/lv_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="33dp"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="@color/item_divider_bg_color" />
+
+        <LinearLayout
+            android:id="@+id/lly_qrcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="23dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_drawer_scanner" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/property_drawer_qrcode_scanner"
+                android:textColor="@color/property_ico_name_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lly_create_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="23dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_drawer_wallet" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/property_drawer_create_wallet"
+                android:textColor="@color/property_ico_name_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

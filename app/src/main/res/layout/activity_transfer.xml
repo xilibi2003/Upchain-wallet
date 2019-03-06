@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<FrameLayout     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp">
+
+        <EditText
+            android:id="@+id/et_transfer_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="@color/discovery_application_item_name_color"
+            android:hint="@string/transfer_address"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:id="@+id/lly_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_transfer_contact" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/mine_menu_divider_color" />
+
+    <EditText
+        android:id="@+id/send_amount"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:background="@null"
+        android:textColor="@color/discovery_application_item_name_color"
+        android:hint="@string/transfer_money"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/mine_menu_divider_color" />
+
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:background="@null"
+        android:hint="@string/transfer_remark"
+        android:textColor="@color/discovery_application_item_name_color"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/mine_menu_divider_color" />
+
+    <LinearLayout
+        android:layout_marginTop="21dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/transfer_gas_cost"
+            android:textColor="@color/discovery_application_item_name_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_gas_cost"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="0.00021 ether"
+            android:textColor="@color/property_ico_worth_color"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lly_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="330dp"
+            android:layout_height="24dp"
+            android:progress="10"
+            android:layout_marginTop="12dp" />
+
+        <RelativeLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="@string/transfer_gas_slow"
+                android:textColor="@color/property_ico_worth_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/gas_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/property_ico_worth_color"
+                android:text="10gwei"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:text="@string/transfer_gas_quick"
+                android:textColor="@color/property_ico_worth_color"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lly_advance_param"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:layout_marginTop="21dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/custom_gas_price"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/discovery_application_item_name_color"
+                android:background="@null"
+                android:inputType="numberDecimal"
+                android:hint="@string/transfer_gas_price"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/property_ico_worth_color"
+                android:text="gwei"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="330dp"
+            android:layout_height="0.75dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/mine_menu_divider_color" />
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/custom_gas_limit"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textColor="@color/discovery_application_item_name_color"
+                android:hint="@string/transfer_gas"
+                android:inputType="number"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/property_ico_worth_color"
+                android:text="gas"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="330dp"
+            android:layout_height="0.75dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/mine_menu_divider_color" />
+
+        <EditText
+            android:id="@+id/et_hex_data"
+            android:layout_width="330dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/etc_transfer_hex_data_et_shape"
+            android:gravity="start"
+            android:hint="@string/transfer_hex_data"
+            android:textColor="@color/discovery_application_item_name_color"
+            android:padding="10dp"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="21dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/advanced_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textOff="  "
+            android:textOn="  " />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/add_switch"
+            android:layout_toStartOf="@+id/add_switch"
+            android:text="@string/transfer_advanced_setting"
+            android:textColor="@color/property_ico_worth_color"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/btn_next"
+        android:layout_width="330dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity=" bottom |center_horizontal"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/mine_header_bg_shape"
+        android:gravity="center"
+        android:text="@string/transfer_next"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</FrameLayout>

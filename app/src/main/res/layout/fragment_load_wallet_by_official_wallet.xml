@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/load_wallet_by_official_wallet_keystore_tip"
+        android:textColor="@color/load_wallet_tip_text_color"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/et_keystore"
+        android:layout_width="330dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/etc_transfer_hex_data_et_shape"
+        android:gravity="start"
+        android:hint="@string/load_wallet_by_official_wallet_keystore_hint"
+        android:padding="10dp"
+        android:textColor="@color/discovery_application_item_name_color"
+        android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/et_wallet_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="21dp"
+        android:background="@null"
+        android:hint="@string/create_wallet_pwd_hint"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:textColor="@color/discovery_application_item_name_color"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="0.75dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/mine_menu_divider_color" />
+
+    <LinearLayout
+        android:id="@+id/lly_wallet_agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/agreement_circle_cb_selector"
+            android:checked="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/create_wallet_agreement_reminder"
+            android:textColor="@color/base_text_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_wallet_agreement"
+            android:textColor="@color/transfer_advanced_setting_help_text_color"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/create_wallet_btn_bg_selector"
+        android:enabled="false"
+        android:gravity="center"
+        android:id="@+id/btn_load_wallet"
+        android:text="@string/load_wallet_btn"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/btn_help"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/load_wallet_by_official_wallet_help"
+        android:textColor="@color/transfer_advanced_setting_help_text_color"
+        android:textSize="12sp" />
+
+</LinearLayout>

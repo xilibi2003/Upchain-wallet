@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/logo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wallet_logo_demo" />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/logo"
+            android:layout_toRightOf="@+id/logo"
+            android:text="ETC"
+            android:textColor="@color/property_ico_name_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="0.0000"
+            android:textColor="@color/property_ico_name_color"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/balance"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/property_approximate"
+                android:textColor="@color/property_ico_worth_color"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/tv_property_cny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0(￥)"
+                android:textColor="@color/property_ico_worth_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.75dp"
+        android:background="@color/mine_menu_divider_color" />
+
+</LinearLayout>

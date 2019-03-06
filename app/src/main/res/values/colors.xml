@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#19b6ed</color>
+    <color name="colorPrimaryDark">#19b6ed</color>
+    <color name="colorAccent">#19b6ed</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="property_drawer_scrim_bg_color">#55ffffff</color>
+
+    <!--通用背景色-->
+    <color name="common_bg">@color/white</color>
+    <!--通用触摸背景色-->
+    <color name="common_touch_bg">#E3E3E3</color>
+    <!--通用背景色-->
+    <!--通用一级标题的颜色-->
+    <color name="common_h1">#212121</color>
+    <!--通用二级标题的颜色-->
+    <!--通用三级标题的颜色-->
+    <!--通用分割线细-->
+    <color name="common_divider_narrow">#E3E3E3</color>
+    <!--通用分割线粗-->
+
+    <color name="item_divider_bg_color">#F0F0F0</color>
+    <color name="home_tab_text_selected_color">#53d2d5</color>
+    <color name="home_tab_text_unselected_color">#d9d9d9</color>
+    <color name="base_text_color">#323232</color>
+    <color name="property_ico_name_color">#393a3a</color>
+    <color name="property_ico_worth_color">#999999</color>
+    <color name="mine_menu_text_color">#1c314a</color>
+    <color name="mine_menu_divider_color">#eaeaea</color>
+    <color name="discovery_application_text_color">#292929</color>
+    <color name="discovery_application_item_name_color">#2b4869</color>
+
+    <color name="add_property_gray_bg_color">#f8fafc</color>
+    <color name="search_ico_upload_token">#33c2e2</color>
+    <color name="property_drawer_wallet_item_bg_color">#f4f4f4</color>
+    <color name="transfer_advanced_setting_help_text_color">#36c4e1</color>
+
+    <color name="create_wallet_alert_bg">#1663c2</color>
+    <color name="dialog_know_btn_bg_color">#fa6a74</color>
+    <color name="load_wallet_tip_text_color">#666666</color>
+
+    <color name="derive_private_key_bg_color">#f2f3f5</color>
+    <color name="derive_keystore_tip_text_color">#00a6d8</color>
+
+
+    <color name="bottom_dialog_title">#89000000</color>
+    <color name="bottom_dialog_item">#dd000000</color>
+
+    <color name="green">#2fbb4f</color>
+    <color name="red">#f7506c</color>
+
+</resources>
