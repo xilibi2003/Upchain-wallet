@@ -53,7 +53,10 @@
 本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
 [登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf)， Android钱包课程也即将退出。
 
-欢迎大家一起来交流技术 个人微信：xlbxiong , QQ群：245251041， 各位不要在微信里问我问题， 因时间有限，请理解，仅为付费学员解答问题，欢迎加入[深入浅出区块链问答社区](https://t.xiaomiquan.com/RfAu7uj)
+欢迎大家一起来交流技术 QQ群：245251041， 个人微信：xlbxiong，二维码如下：
+![](https://github.com/xilibi2003/Upchain-wallet/blob/master/img/tiny_qrcode.jpeg)
+
+各位不要在微信里问我问题， 因时间有限，请理解，仅为付费学员解答问题，欢迎加入[深入浅出区块链问答社区](https://t.xiaomiquan.com/RfAu7uj)
 
 另我们提供专业的钱包定制开发, 提供专业的钱包定制开发,提供专业的钱包定制开发（其实交易所也做）。
 
@@ -61,7 +64,7 @@
 您的支持将鼓励我继续提供更好的作品给大家:octocat:
 
 <p align="center">
-  <img src="https://learnblockchain.cn/images/qrcode.jpg" width="450">
+  <img src="https://learnblockchain.cn/images/qr_pay.jpg" width="450">
 </p>
 
 
