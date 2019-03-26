@@ -6,19 +6,20 @@ import android.support.annotation.NonNull;
 
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.interact.AddTokenInteract;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.RepositoryFactory;
 
 public class AddTokenViewModelFactory implements ViewModelProvider.Factory {
 
     private final AddTokenInteract addTokenInteract;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
 
     public AddTokenViewModelFactory() {
         RepositoryFactory rf = UpChainWalletApp.repositoryFactory();
 
-        this.addTokenInteract = new AddTokenInteract(rf.walletRepository, rf.tokenRepository);;
-        this.findDefaultWalletInteract = new FindDefaultWalletInteract(rf.walletRepository);
+        this.findDefaultWalletInteract = new FetchWalletInteract();
+        this.addTokenInteract = new AddTokenInteract(findDefaultWalletInteract, rf.tokenRepository);;
+
     }
 
     @NonNull

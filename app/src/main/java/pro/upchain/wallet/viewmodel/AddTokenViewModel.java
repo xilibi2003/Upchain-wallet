@@ -5,18 +5,18 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 
 import pro.upchain.wallet.interact.AddTokenInteract;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 
 public class AddTokenViewModel extends BaseViewModel {
 
     private final AddTokenInteract addTokenInteract;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
 
     private final MutableLiveData<Boolean> result = new MutableLiveData<>();
 
     AddTokenViewModel(
             AddTokenInteract addTokenInteract,
-            FindDefaultWalletInteract findDefaultWalletInteract
+            FetchWalletInteract findDefaultWalletInteract
             ) {
         this.addTokenInteract = addTokenInteract;
         this.findDefaultWalletInteract = findDefaultWalletInteract;

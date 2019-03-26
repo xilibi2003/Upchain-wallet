@@ -12,7 +12,7 @@ import pro.upchain.wallet.R;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -26,7 +26,7 @@ public class TransactionDetailViewModel extends BaseViewModel {
 
     TransactionDetailViewModel(
             EthereumNetworkRepository ethereumNetworkRepository,
-            FindDefaultWalletInteract findDefaultWalletInteract) {
+            FetchWalletInteract findDefaultWalletInteract) {
         this.ethereumNetworkRepository = ethereumNetworkRepository;
 
         ethereumNetworkRepository
@@ -35,7 +35,7 @@ public class TransactionDetailViewModel extends BaseViewModel {
                 .subscribe(defaultNetwork::postValue);
 
         disposable = findDefaultWalletInteract
-                .find()
+                .findDefault()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(defaultWallet::postValue);
     }

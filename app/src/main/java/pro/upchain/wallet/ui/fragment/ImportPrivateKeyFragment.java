@@ -12,7 +12,6 @@ import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.CreateWalletInteract;
-import pro.upchain.wallet.repository.WalletRepository;
 import pro.upchain.wallet.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -57,7 +56,7 @@ public class ImportPrivateKeyFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
-        createWalletInteract = new CreateWalletInteract(WalletRepository.sSelf);
+        createWalletInteract = new CreateWalletInteract();
     }
 
     @Override
