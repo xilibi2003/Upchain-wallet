@@ -9,15 +9,12 @@ import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Ticker;
 import pro.upchain.wallet.entity.Token;
 import pro.upchain.wallet.interact.FetchTokensInteract;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.service.TickerService;
 import pro.upchain.wallet.service.UpWalletTickerService;
 import pro.upchain.wallet.utils.LogUtils;
 import com.google.gson.Gson;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 import io.reactivex.Single;
 import pro.upchain.wallet.utils.WalletDaoUtils;
@@ -33,14 +30,14 @@ public class TokensViewModel extends BaseViewModel {
     private final MutableLiveData<Token[]> tokens = new MutableLiveData<>();
 
     private final EthereumNetworkRepository ethereumNetworkRepository;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
 
     private final FetchTokensInteract fetchTokensInteract;
     private final TickerService tickerService;
 
     TokensViewModel(
             EthereumNetworkRepository ethereumNetworkRepository,
-            FindDefaultWalletInteract findDefaultWalletInteract,
+            FetchWalletInteract findDefaultWalletInteract,
             FetchTokensInteract fetchTokensInteract) {
         this.findDefaultWalletInteract = findDefaultWalletInteract;
         this.ethereumNetworkRepository  = ethereumNetworkRepository;
@@ -54,7 +51,7 @@ public class TokensViewModel extends BaseViewModel {
         progress.postValue(true);
 
         defaultNetwork.postValue(ethereumNetworkRepository.getDefaultNetwork());
-        disposable = findDefaultWalletInteract.find()
+        disposable = findDefaultWalletInteract.findDefault()
                 .subscribe(this::onDefaultWallet, this::onError);
 
     }

@@ -9,8 +9,7 @@ import android.widget.TextView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.interact.FetchWalletsInteract;
-import pro.upchain.wallet.repository.WalletRepository;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.ui.adapter.WalletManagerAdapter;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class WalletMangerActivity extends BaseActivity {
     TextView tvTitle;
     private List<ETHWallet> walletList;
     private WalletManagerAdapter walletManagerAdapter;
-    private FetchWalletsInteract fetchWalletsInteract;
+    private FetchWalletInteract fetchWalletInteract;
 
     @Override
     public int getLayoutId() {
@@ -52,9 +51,9 @@ public class WalletMangerActivity extends BaseActivity {
         lvWallet.setAdapter(walletManagerAdapter);
 
 
-        fetchWalletsInteract = new FetchWalletsInteract(WalletRepository.sSelf);
+        fetchWalletInteract = new FetchWalletInteract();
 
-        fetchWalletsInteract.fetch().subscribe(
+        fetchWalletInteract.fetch().subscribe(
                 this::showWalletList
         );
 
@@ -106,7 +105,7 @@ public class WalletMangerActivity extends BaseActivity {
             }
         } else if (requestCode == WALLET_DETAIL_REQUEST) {
             if (data != null) {
-                fetchWalletsInteract.fetch().subscribe(
+                fetchWalletInteract.fetch().subscribe(
                         this::showWalletList
                 );
             }

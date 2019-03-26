@@ -3,7 +3,6 @@ package pro.upchain.wallet.interact;
 import java.util.Arrays;
 
 import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.repository.WalletRepository;
 import pro.upchain.wallet.utils.ETHWalletUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 
@@ -13,10 +12,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CreateWalletInteract {
 
-    private final WalletRepository walletRepository;
 
-    public CreateWalletInteract(WalletRepository accountRepository) {
-        this.walletRepository = accountRepository;
+    public CreateWalletInteract() {
     }
 
     public Single<ETHWallet> create(final String name, final String pwd, String confirmPwd, String pwdReminder) {

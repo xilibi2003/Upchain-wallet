@@ -7,8 +7,8 @@ import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.GasSettings;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.interact.FetchGasSettingsInteract;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
 
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.repository.TokenRepository;
 
@@ -38,7 +38,7 @@ public class ConfirmationViewModel extends BaseViewModel {
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
 
     private final EthereumNetworkRepository ethereumNetworkRepository;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
     private final FetchGasSettingsInteract fetchGasSettingsInteract;
 
 
@@ -47,7 +47,7 @@ public class ConfirmationViewModel extends BaseViewModel {
 
     public ConfirmationViewModel(
             EthereumNetworkRepository ethereumNetworkRepository,
-            FindDefaultWalletInteract findDefaultWalletInteract,
+            FetchWalletInteract findDefaultWalletInteract,
             FetchGasSettingsInteract fetchGasSettingsInteract) {
         this.ethereumNetworkRepository = ethereumNetworkRepository;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
@@ -141,7 +141,7 @@ public class ConfirmationViewModel extends BaseViewModel {
     private void onDefaultNetwork(NetworkInfo networkInfo) {
         defaultNetwork.postValue(networkInfo);
         disposable = findDefaultWalletInteract
-                .find()
+                .findDefault()
                 .subscribe(this::onDefaultWallet, this::onError);
     }
 

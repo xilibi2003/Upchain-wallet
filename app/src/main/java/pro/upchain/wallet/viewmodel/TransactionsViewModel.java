@@ -9,7 +9,7 @@ import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
 import pro.upchain.wallet.interact.FetchTransactionsInteract;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.utils.LogUtils;
 
@@ -30,7 +30,7 @@ public class TransactionsViewModel extends BaseViewModel {
     private final MutableLiveData<Map<String, String>> defaultWalletBalance = new MutableLiveData<>();
 
     private final EthereumNetworkRepository ethereumNetworkRepository;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
     private final FetchTransactionsInteract fetchTransactionsInteract;
 
     private Disposable transactionDisposable;
@@ -39,7 +39,7 @@ public class TransactionsViewModel extends BaseViewModel {
 
     TransactionsViewModel(
             EthereumNetworkRepository ethereumNetworkRepository,
-            FindDefaultWalletInteract findDefaultWalletInteract,
+            FetchWalletInteract findDefaultWalletInteract,
             FetchTransactionsInteract fetchTransactionsInteract) {
         this.ethereumNetworkRepository = ethereumNetworkRepository;
         this.findDefaultWalletInteract = findDefaultWalletInteract;
@@ -99,7 +99,7 @@ public class TransactionsViewModel extends BaseViewModel {
     private void onDefaultNetwork(NetworkInfo networkInfo) {
         defaultNetwork.postValue(networkInfo);
         disposable = findDefaultWalletInteract
-                .find()
+                .findDefault()
                 .subscribe(this::onDefaultWallet, this::onError);
     }
 

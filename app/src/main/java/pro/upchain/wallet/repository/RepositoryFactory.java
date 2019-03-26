@@ -17,13 +17,11 @@ public class RepositoryFactory {
 
     public TokenRepository tokenRepository;
     public TransactionRepository transactionRepository;
-    public WalletRepository walletRepository;
     public EthereumNetworkRepository ethereumNetworkRepository;
 
     public static RepositoryFactory sSelf;
 
     private RepositoryFactory(SharedPreferenceRepository sp, OkHttpClient httpClient, Gson gson) {
-        walletRepository = WalletRepository.init(sp);
         ethereumNetworkRepository = EthereumNetworkRepository.init(sp);
 
         TokenLocalSource tokenLocalSource = new RealmTokenSource();

@@ -1,6 +1,5 @@
 package pro.upchain.wallet.ui.fragment;
 
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,7 +12,6 @@ import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.CreateWalletInteract;
-import pro.upchain.wallet.repository.WalletRepository;
 import pro.upchain.wallet.utils.ETHWalletUtils;
 import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.ToastUtils;
@@ -69,7 +67,7 @@ public class ImportMnemonicFragment extends BaseFragment {
     @Override
     public void initDatas() {
 
-        createWalletInteract = new CreateWalletInteract(WalletRepository.sSelf);
+        createWalletInteract = new CreateWalletInteract();
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import pro.upchain.wallet.UpChainWalletApp;
-import pro.upchain.wallet.interact.FindDefaultWalletInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.repository.RepositoryFactory;
 
@@ -13,13 +13,13 @@ import pro.upchain.wallet.repository.RepositoryFactory;
 public class TransactionDetailViewModelFactory implements ViewModelProvider.Factory {
 
     private final EthereumNetworkRepository EthereumNetworkRepository;
-    private final FindDefaultWalletInteract findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
 
     public TransactionDetailViewModelFactory() {
         RepositoryFactory rf = UpChainWalletApp.repositoryFactory();
 
         this.EthereumNetworkRepository = rf.ethereumNetworkRepository;
-        this.findDefaultWalletInteract = new FindDefaultWalletInteract(rf.walletRepository);
+        this.findDefaultWalletInteract = new FetchWalletInteract();
     }
 
     @NonNull

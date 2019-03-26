@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.repository.WalletRepository;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 
 
 /**
@@ -25,9 +25,10 @@ public class SplashActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        WalletRepository.sSelf.fetchWallets().observeOn(AndroidSchedulers.mainThread()).delay(2, TimeUnit.SECONDS).subscribe(
+        new FetchWalletInteract().fetch().observeOn(AndroidSchedulers.mainThread()).delay(2, TimeUnit.SECONDS).subscribe(
                 this::onWalltes, this::onError
         );
+
     }
 
     public void onWalltes(List<ETHWallet> ethWallets) {

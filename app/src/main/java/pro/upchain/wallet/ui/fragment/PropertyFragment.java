@@ -26,8 +26,7 @@ import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.Ticker;
 import pro.upchain.wallet.entity.Token;
-import pro.upchain.wallet.interact.FetchWalletsInteract;
-import pro.upchain.wallet.repository.WalletRepository;
+import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.ui.activity.AddTokenActivity;
 import pro.upchain.wallet.ui.activity.CreateWalletActivity;
 import pro.upchain.wallet.ui.activity.GatheringQRCodeActivity;
@@ -48,8 +47,6 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
-
-import org.web3j.utils.Convert;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -110,7 +107,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
 
     private DrawerWalletAdapter drawerWalletAdapter;
 
-    FetchWalletsInteract fetchWalletsInteract;
+    FetchWalletInteract fetchWalletInteract;
 
     private TextView tvWalletName;
     private TextView tvWalletAddress;
@@ -163,8 +160,8 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         });
 
 
-        fetchWalletsInteract = new FetchWalletsInteract(WalletRepository.sSelf);
-        fetchWalletsInteract.fetch().subscribe(this::showDrawerWallets);
+        fetchWalletInteract = new FetchWalletInteract();
+        fetchWalletInteract.fetch().subscribe(this::showDrawerWallets);
 
         tokensViewModelFactory = new TokensViewModelFactory();
         tokensViewModel = ViewModelProviders.of(this.getActivity(), tokensViewModelFactory)

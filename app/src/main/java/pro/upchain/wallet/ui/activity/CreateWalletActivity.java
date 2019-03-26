@@ -71,7 +71,7 @@ public class CreateWalletActivity extends BaseActivity {
 
     @Override
     public void initDatas() {
-        createWalletInteract = new CreateWalletInteract(UpChainWalletApp.repositoryFactory().walletRepository);
+        createWalletInteract = new CreateWalletInteract();
     }
 
     @Override
