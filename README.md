@@ -42,7 +42,7 @@
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/wallet.gif" width="450">
 </p>
 
-**DApp 浏览器** 功能， 目前暂为开源，请
+**DApp 浏览器** 功能， 目前暂未开源，有需要请联系作者购买。
 
 <p align="center">
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/dapp.gif" width="450">
@@ -69,12 +69,14 @@
 本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
 [登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf)， Android钱包课程也即将退出。
 
-加我的微信：xlbxiong，我拉你进钱包开发交流群， 微信二维码：
+我的微信：xlbxiong，我拉你进钱包开发交流群， 微信二维码：
 <p align="center">
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/tiny_qrcode.jpeg" width="300">
 </p>
 
 不要在微信里私聊问我问题，提问请到[深入浅出区块链问答社区](https://learnblockchain.cn/images/zsxq.png)，请理解。
+
+我的邮箱(Email): xlb@upchain.pro
 
 重要的事情说三遍：
 提供专业的钱包开发, 提供专业的DApp开发,提供专业交易所开发。
@@ -87,6 +89,8 @@
 <p align="center">
   <img src="https://learnblockchain.cn/images/qr_pay.jpg" width="300">
 </p>
+
+
 
 
 
