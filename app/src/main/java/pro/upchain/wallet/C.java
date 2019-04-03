@@ -30,6 +30,7 @@ public abstract class C {
     public static final String POA_SYMBOL = "POA";
     public static final String ETC_SYMBOL = "ETC";
 
+    public static final String GWEI_UNIT = "Gwei";
 
     public static final String EXTRA_ADDRESS = "ADDRESS";
     public static final String EXTRA_CONTRACT_ADDRESS = "CONTRACT_ADDRESS";
@@ -49,9 +50,14 @@ public abstract class C {
     public static final String DONATION_ADDRESS = "0x9f8284ce2cf0c8ce10685f537b1fff418104a317";
 
     public static final String DEFAULT_GAS_PRICE = "21000000000";
+
+    public static final String DEFAULT_GAS_LIMIT_FOR_ETH = "21000";
     public static final String DEFAULT_GAS_LIMIT = "90000";
     public static final String DEFAULT_GAS_LIMIT_FOR_TOKENS = "144000";
+    public static final String DEFAULT_GAS_LIMIT_FOR_NONFUNGIBLE_TOKENS = "432000";
+
     public static final long GAS_LIMIT_MIN = 21000L;
+    public static final long GAS_PER_BYTE = 300;
     public static final long GAS_LIMIT_MAX = 300000L;
     public static final long GAS_PRICE_MIN = 1000000000L;
     public static final long NETWORK_FEE_MAX = 20000000000000000L;

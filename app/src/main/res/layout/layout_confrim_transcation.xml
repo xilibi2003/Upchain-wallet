@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="300dp"
+	android:layout_height="wrap_content"
 	android:orientation="vertical"
 
 	android:padding="16dp">
@@ -12,15 +12,22 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
         android:text="@string/transfer_title_confirm"
+        android:textColor="@color/text_black"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
 		android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 	<TextView
 		android:id="@+id/text_value"
+        android:fontFamily="@font/font_regular"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+        android:gravity="center"
 		android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/cancel_red"
         app:layout_constraintTop_toBottomOf="@+id/title"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
@@ -77,7 +84,22 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
 		app:layout_constraintTop_toBottomOf="@+id/text_value">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/label_gas_price"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text=":"
+            />
+
         <TextView
             android:id="@+id/text_gas_price"
             android:layout_width="wrap_content"
@@ -88,6 +110,26 @@
             android:textSize="12sp"
             android:textAppearance="?attr/textAppearanceListItemSmall" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text=" * "
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@string/label_gas_limit"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text=":"
+            />
         <TextView
             android:id="@+id/text_gas_limit"
             android:layout_width="wrap_content"
@@ -106,6 +148,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/btn_confirm"
+        android:textSize="20sp"
+        android:background="@drawable/mine_header_bg_shape"
 		app:layout_constraintTop_toBottomOf="@+id/ll"
 		/>
 

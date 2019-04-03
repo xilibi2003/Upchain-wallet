@@ -207,6 +207,8 @@
     <string name="subtitle_from">付款地址</string>
     <string name="subtitle_to">收款地址</string>
     <string name="subtitle_gas_fee">矿工费</string>
+    <string name="label_gas_limit">Gas Limit</string>
+    <string name="label_gas_price">Gas Price</string>
     <string name="subtitle_transaction_num">交易号 #</string>
     <string name="subtitle_transaction_time">交易时间</string>
     <string name="subtitle_block_num">区块 #</string>

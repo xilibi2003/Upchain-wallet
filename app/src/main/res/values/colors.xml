@@ -47,6 +47,9 @@
     <color name="bottom_dialog_title">#89000000</color>
     <color name="bottom_dialog_item">#dd000000</color>
 
+    <color name="text_black">#2f2f2f</color>
+    <color name="cancel_red">#db393a</color>
+
     <color name="green">#2fbb4f</color>
     <color name="red">#f7506c</color>
 

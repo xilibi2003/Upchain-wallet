@@ -3,8 +3,13 @@ package pro.upchain.wallet.repository;
 import android.text.TextUtils;
 
 
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
+
 import pro.upchain.wallet.entity.NetworkInfo;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -124,5 +129,14 @@ public class EthereumNetworkRepository  {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Single<BigInteger> getLastTransactionNonce(Web3j web3j, String walletAddress)
+    {
+        return Single.fromCallable(() -> {
+            EthGetTransactionCount ethGetTransactionCount = web3j
+                    .ethGetTransactionCount(walletAddress, DefaultBlockParameterName.PENDING)   // or DefaultBlockParameterName.LATEST
+                    .send();
+            return ethGetTransactionCount.getTransactionCount();
+        });
+    }
 
 }

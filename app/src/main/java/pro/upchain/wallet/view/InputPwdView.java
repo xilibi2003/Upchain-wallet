@@ -12,15 +12,26 @@ import pro.upchain.wallet.R;
 
 public class InputPwdView extends FrameLayout {
     private EditText password;
+    private onConfirmSend onConfirmSender;
 
-    public InputPwdView(@NonNull Context context, View.OnClickListener onClickListener) {
+    public interface onConfirmSend {
+        void sendTransaction(String pwd);
+    }
+
+    public InputPwdView(@NonNull Context context, onConfirmSend l) {
         super(context);
+        onConfirmSender = l;
 
         LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_input_password, this, true);
         password = (EditText)findViewById(R.id.password);
 
-        findViewById(R.id.send_button).setOnClickListener(onClickListener);
+        findViewById(R.id.send_button).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onConfirmSender.sendTransaction(getPassword());
+            }
+        });
     }
 
 

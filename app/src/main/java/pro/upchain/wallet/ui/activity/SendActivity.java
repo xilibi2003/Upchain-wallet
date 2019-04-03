@@ -27,7 +27,9 @@ import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.entity.Address;
+import pro.upchain.wallet.entity.ConfirmationType;
 import pro.upchain.wallet.entity.ErrorEnvelope;
+import pro.upchain.wallet.entity.GasSettings;
 import pro.upchain.wallet.utils.BalanceUtils;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.view.ConfirmTransactionView;
@@ -53,10 +55,6 @@ import butterknife.OnClick;
 
 
 public class SendActivity extends BaseActivity {
-
-    public static final BigInteger GAS_LIMIT = BigInteger.valueOf(21000);
-    private BigInteger gasPrice = BalanceUtils.gweiToWei(BigDecimal.valueOf(10)); // default 10 gwei
-    private BigInteger gasLimit;
 
     ConfirmationViewModelFactory confirmationViewModelFactory;
     ConfirmationViewModel viewModel;
@@ -111,13 +109,13 @@ public class SendActivity extends BaseActivity {
     private String symbol;
 
     private String netCost;
+    private  BigInteger gasPrice;
+    private BigInteger gasLimit;
 
 
     private boolean sendingTokens = false;
 
     private Dialog dialog;
-    private InputPwdView pwdView;
-
 
     private static final int QRCODE_SCANNER_REQUEST = 1100;
 
@@ -153,15 +151,6 @@ public class SendActivity extends BaseActivity {
 
         contractAddress = intent.getStringExtra(C.EXTRA_CONTRACT_ADDRESS);
 
-
-        if(TextUtils.isEmpty(contractAddress)) {
-            sendingTokens = false;
-            gasLimit = GAS_LIMIT;
-        } else {
-            sendingTokens = true;
-            gasLimit = BigInteger.valueOf(60000);
-        }
-
         decimals = intent.getIntExtra(C.EXTRA_DECIMALS, C.ETHER_DECIMALS);
         symbol = intent.getStringExtra(C.EXTRA_SYMBOL);
         symbol = symbol == null ? C.ETH_SYMBOL : symbol;
@@ -173,6 +162,7 @@ public class SendActivity extends BaseActivity {
                 .get(ConfirmationViewModel.class);
 
         viewModel.sendTransaction().observe(this, this::onTransaction);
+        viewModel.gasSettings().observe(this, this::onGasSettings);
         viewModel.progress().observe(this, this::onProgress);
         viewModel.error().observe(this, this::onError);
 
@@ -186,7 +176,7 @@ public class SendActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.prepare(sendingTokens);
+        viewModel.prepare(this, sendingTokens? ConfirmationType.ETH: ConfirmationType.ERC20);
     }
 
     @Override
@@ -227,18 +217,10 @@ public class SendActivity extends BaseActivity {
                     double p = progress / 100f;
                     double d = (miner_max - miner_min) * p + miner_min;
 
-                    gasPrice = BalanceUtils.gweiToWei(BigDecimal.valueOf(d));
+                   gasPrice = BalanceUtils.gweiToWei(BigDecimal.valueOf(d));
+                   tvGasPrice.setText(gasformater.format(d) + " " + C.GWEI_UNIT);
 
-                    tvGasPrice.setText(gasformater.format(d) + " gwei");
-
-
-                try {
-                    netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit),  4) + etherUnit;
-                    tvGasCost.setText(String.valueOf(netCost ));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                updateNetworkFee();
             }
 
             @Override
@@ -250,16 +232,13 @@ public class SendActivity extends BaseActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
-
         });
 
         seekbar.setProgress(10);
         try {
             netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit), 4) + etherUnit;
         } catch (Exception e) {
-
         }
-
 
         customGasPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -274,6 +253,9 @@ public class SendActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.toString().trim().isEmpty()) {
+                    return;
+                }
                 gasPrice = BalanceUtils.gweiToWei(new BigDecimal(s.toString()));
 
                 try {
@@ -299,18 +281,29 @@ public class SendActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                gasLimit = new BigInteger( s.toString());
+                gasLimit = new BigInteger(s.toString());
 
-                try {
-                    netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit),  4) + etherUnit;
-                    tvGasCost.setText(String.valueOf(netCost ));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                updateNetworkFee();
             }
         });
     }
 
+    private void updateNetworkFee() {
+
+        try {
+            netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit),  4) + " " + C.ETH_SYMBOL;
+            tvGasCost.setText(String.valueOf(netCost ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void onGasSettings(GasSettings gasSettings) {
+        gasPrice = gasSettings.gasPrice;
+        gasLimit = gasSettings.gasLimit;
+
+    }
 
     private boolean verifyInfo(String address, String amount) {
 
@@ -362,9 +355,7 @@ public class SendActivity extends BaseActivity {
                 // send
                 dialog.hide();
 
-                pwdView = new InputPwdView(this, v -> {
-                    String pwd = pwdView.getPassword();
-
+                InputPwdView pwdView = new InputPwdView(this, pwd -> {
                     if (sendingTokens) {
                         viewModel.createTokenTransfer(pwd,
                                 etTransferAddress.getText().toString().trim(),
@@ -372,18 +363,14 @@ public class SendActivity extends BaseActivity {
                                 BalanceUtils.tokenToWei(new BigDecimal(amountText.getText().toString().trim()), decimals).toBigInteger(),
                                 gasPrice,
                                 gasLimit
-                                );
+                        );
                     } else {
                         viewModel.createTransaction(pwd, etTransferAddress.getText().toString().trim(),
                                 Convert.toWei(amountText.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger(),
                                 gasPrice,
-                                GAS_LIMIT );
+                                gasLimit );
                     }
-
-
-
-                }
-                );
+                });
 
                 dialog = new BottomSheetDialog(this);
                 dialog.setContentView(pwdView);
