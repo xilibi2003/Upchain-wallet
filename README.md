@@ -50,7 +50,7 @@
 
 
 
-安装包下载[地址](https://wiki.learnblockchain.cn/images/upchain_wallet.apk)。
+安装包下载[地址](https://img.learnblockchain.cn/apk/upchain_wallet.apk)。
 
 ## 参考的开源项目
 

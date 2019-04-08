@@ -79,6 +79,13 @@ public class ConfirmationViewModel extends BaseViewModel {
     }
 
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        fetchGasSettingsInteract.clean();
+    }
+
+
 
     private void onDefaultNetwork(NetworkInfo networkInfo) {
         defaultNetwork.postValue(networkInfo);
