@@ -138,7 +138,7 @@
     <string name="load_wallet_by_mnemonic_standard_ledger_option">m/44\'/60\'/0\'/0 Ledger (ETH)</string>
     <string name="load_wallet_by_mnemonic_standard_custom_option">m/44\'/60\'/1\'/0/0 自定义路径</string>
     <string name="load_wallet_by_mnemonic_help">什么是助记词？</string>
-    <string name="load_wallet_already_exist">钱包以存在</string>
+    <string name="load_wallet_already_exist">钱包已存在</string>
 
     <string name="load_wallet_by_official_wallet_keystore_hint">keystore 文本内容</string>
     <string name="load_wallet_by_official_wallet_keystore_tip">直接复制粘贴以太坊官方钱包keystore文件内容至输入框。或者通过生成keystore内容的二维码，扫描录入。</string>

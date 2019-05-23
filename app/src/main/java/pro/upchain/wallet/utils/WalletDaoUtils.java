@@ -1,6 +1,7 @@
 package pro.upchain.wallet.utils;
 
 import android.text.TextUtils;
+import android.widget.TextView;
 
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -108,17 +109,27 @@ public class WalletDaoUtils {
      * 以助记词检查钱包是否存在
      *
      * @param mnemonic
-     * @return
+     * @return true if repeat
      */
     public static boolean checkRepeatByMenmonic(String mnemonic) {
         List<ETHWallet> ethWallets = loadAll();
         for (ETHWallet ethWallet : ethWallets
                 ) {
+            if (TextUtils.isEmpty(ethWallet.getMnemonic())) {
+                LogUtils.d("wallet mnemonic empty");
+                continue;
+            }
             if (TextUtils.equals(ethWallet.getMnemonic().trim(), mnemonic.trim())) {
+                LogUtils.d("aleady");
                 return true;
             }
         }
         return false;
+    }
+
+
+    public static boolean isValid(String mnemonic) {
+        return mnemonic.split(" ").length >= 12;
     }
 
     public static boolean checkRepeatByKeystore(String keystore) {

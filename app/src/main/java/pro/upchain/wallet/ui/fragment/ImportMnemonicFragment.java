@@ -163,7 +163,10 @@ public class ImportMnemonicFragment extends BaseFragment {
         if (TextUtils.isEmpty(mnemonic)) {
             ToastUtils.showToast(R.string.load_wallet_by_mnemonic_input_tip);
             return false;
-        } else if (!WalletDaoUtils.checkRepeatByMenmonic(mnemonic)) {
+        } else if (!WalletDaoUtils.isValid(mnemonic)) {
+            ToastUtils.showToast(R.string.load_wallet_by_mnemonic_input_tip);
+            return false;
+        } else if (WalletDaoUtils.checkRepeatByMenmonic(mnemonic)) {
             ToastUtils.showToast(R.string.load_wallet_already_exist);
             return false;
         }
