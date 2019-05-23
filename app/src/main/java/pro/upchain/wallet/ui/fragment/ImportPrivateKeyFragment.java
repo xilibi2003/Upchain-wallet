@@ -17,6 +17,7 @@ import pro.upchain.wallet.utils.ToastUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
@@ -93,7 +94,7 @@ public class ImportPrivateKeyFragment extends BaseFragment {
                 boolean verifyWalletInfo = verifyInfo(privateKey, walletPwd, confirmPwd, pwdReminder);
                 if (verifyWalletInfo) {
                     showDialog(getString(R.string.loading_wallet_tip));
-                    createWalletInteract.loadWalletByPrivateKey(privateKey, walletPwd).subscribe(this::loadSuccess);
+                    createWalletInteract.loadWalletByPrivateKey(privateKey, walletPwd).subscribe(this::loadSuccess, this::onError);
                 }
                 break;
         }
@@ -121,5 +122,11 @@ public class ImportPrivateKeyFragment extends BaseFragment {
         getActivity().finish();
 
     }
+
+    private void onError(Throwable error) {
+        ToastUtils.showToast(R.string.load_wallet_by_private_key_input_tip);
+        dismissDialog();
+    }
+
 
 }
