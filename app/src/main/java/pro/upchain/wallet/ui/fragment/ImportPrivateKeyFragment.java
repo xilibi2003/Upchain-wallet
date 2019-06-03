@@ -12,6 +12,7 @@ import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.CreateWalletInteract;
+import pro.upchain.wallet.utils.ETHWalletUtils;
 import pro.upchain.wallet.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -101,7 +102,7 @@ public class ImportPrivateKeyFragment extends BaseFragment {
     }
 
     private boolean verifyInfo(String privateKey, String walletPwd, String confirmPwd, String pwdReminder) {
-        if (TextUtils.isEmpty(privateKey)) {
+        if (TextUtils.isEmpty(privateKey) || ETHWalletUtils.isTooSimplePrivateKey(walletPwd)) {
             ToastUtils.showToast(R.string.load_wallet_by_private_key_input_tip);
             return false;
         } else if (TextUtils.isEmpty(walletPwd)) {

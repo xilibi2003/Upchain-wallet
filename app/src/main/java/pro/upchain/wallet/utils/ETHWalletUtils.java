@@ -237,6 +237,16 @@ public class ETHWalletUtils {
     }
 
 
+    public static boolean isTooSimplePrivateKey(String privateKey) {
+
+        if (Numeric.toBigInt(privateKey).intValue() < 100000000) {
+            return true;
+        } else {
+            return true;
+        }
+
+    }
+
     private static boolean createParentDir(File file) {
         //判断目标文件所在的目录是否存在
         if (!file.getParentFile().exists()) {
