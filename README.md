@@ -31,7 +31,7 @@
 - [x] 支持用法币（美元和人民币）实时显示币价。
 - [x] 历史交易列表显示
 - [x] 二维码扫描，兼容imToken 格式
-- [x] 支持 DApp Browser  浏览器  (请联系作者购买）
+- [x] 支持 DApp Browser  浏览器  (需付费购买，购买链接：https://learnblockchain.cn/goods/3）
 - [ ] 地址本（联系人）功能 待完善
 - [ ] 比特币及EOS 支持
 
