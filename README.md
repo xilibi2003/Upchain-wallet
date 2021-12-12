@@ -67,7 +67,7 @@
 ## 关于我
 
 本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
-[登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf)， Android钱包课程也即将退出。
+[登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf).
 
 我的微信：xlbxiong，我拉你进钱包开发交流群， 微信二维码：
 <p align="center">
