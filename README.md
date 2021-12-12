@@ -74,14 +74,13 @@
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/tiny_qrcode.jpeg" width="300">
 </p>
 
-不要在微信里私聊问我问题，提问请到[深入浅出区块链问答社区](https://learnblockchain.cn/images/zsxq.png)，请理解。
+不要在微信里私聊问我问题，提问请到[登链社区 - 问答区](https://learnblockchain.cn/questions)，请理解。
 
 我的邮箱(Email): xlb@upchain.pro
 
-重要的事情说三遍：
-提供专业的钱包开发, 提供专业的DApp开发,提供专业交易所开发。
-提供专业的钱包开发, 提供专业的DApp开发,提供专业交易所开发。
-提供专业的钱包开发, 提供专业的DApp开发,提供专业交易所开发。
+
+钱包没再更新了， 现在时间放在DEFI, NFT 及社区上。
+
 
 
 您的支持将鼓励我继续提供更好的作品给大家:octocat:
