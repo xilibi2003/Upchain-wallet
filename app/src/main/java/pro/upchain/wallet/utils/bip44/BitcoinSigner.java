@@ -18,5 +18,5 @@ package pro.upchain.wallet.utils.bip44;
 
 
 public interface BitcoinSigner {
-   byte[] makeStandardBitcoinSignature(Sha256Hash transactionSigningHash);
+    byte[] makeStandardBitcoinSignature(Sha256Hash transactionSigningHash);
 }

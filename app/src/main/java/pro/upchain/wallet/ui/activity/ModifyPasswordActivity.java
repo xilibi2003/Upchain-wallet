@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -16,9 +18,6 @@ import pro.upchain.wallet.interact.ModifyWalletInteract;
 import pro.upchain.wallet.utils.Md5Utils;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.view.InputPwdDialog;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -47,7 +46,7 @@ public class ModifyPasswordActivity extends BaseActivity {
     private String walletAddress;
     private String walletName;
     private boolean walletIsBackup;
-    private ModifyWalletInteract  modifyWalletInteract;
+    private ModifyWalletInteract modifyWalletInteract;
     private InputPwdDialog inputPwdDialog;
     private String walletMnemonic;
 

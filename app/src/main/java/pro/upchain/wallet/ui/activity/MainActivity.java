@@ -1,14 +1,18 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.ui.adapter.HomePagerAdapter;
@@ -16,12 +20,6 @@ import pro.upchain.wallet.ui.fragment.MineFragment;
 import pro.upchain.wallet.ui.fragment.PropertyFragment;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.view.NoScrollViewPager;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import butterknife.BindView;
 
 
 /**

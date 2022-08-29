@@ -1,21 +1,15 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.content.ContextCompat;
+import static pro.upchain.wallet.C.Key.TRANSACTION;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.entity.NetworkInfo;
-import pro.upchain.wallet.entity.Transaction;
-import pro.upchain.wallet.utils.BalanceUtils;
-import pro.upchain.wallet.viewmodel.TransactionDetailViewModel;
-import pro.upchain.wallet.viewmodel.TransactionDetailViewModelFactory;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,8 +18,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import butterknife.BindView;
-
-import static pro.upchain.wallet.C.Key.TRANSACTION;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.domain.ETHWallet;
+import pro.upchain.wallet.entity.NetworkInfo;
+import pro.upchain.wallet.entity.Transaction;
+import pro.upchain.wallet.utils.BalanceUtils;
+import pro.upchain.wallet.viewmodel.TransactionDetailViewModel;
+import pro.upchain.wallet.viewmodel.TransactionDetailViewModelFactory;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -97,7 +97,7 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
         tvTxTime.setText(getDate(transaction.timeStamp));
         tvBlockNumber.setText(transaction.blockNumber);
 
-        transactionDetailViewModelFactory  = new TransactionDetailViewModelFactory();
+        transactionDetailViewModelFactory = new TransactionDetailViewModelFactory();
 
         viewModel = ViewModelProviders.of(this, transactionDetailViewModelFactory)
                 .get(TransactionDetailViewModel.class);

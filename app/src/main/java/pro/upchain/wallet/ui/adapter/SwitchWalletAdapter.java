@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.List;
+
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.CommonAdapter;
 import pro.upchain.wallet.base.ViewHolder;
-
-import java.util.List;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

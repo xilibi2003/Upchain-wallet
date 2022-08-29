@@ -1,17 +1,27 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
+import static pro.upchain.wallet.C.EXTRA_ADDRESS;
+import static pro.upchain.wallet.C.Key.TRANSACTION;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.barlibrary.ImmersionBar;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -22,17 +32,6 @@ import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.viewmodel.TransactionsViewModel;
 import pro.upchain.wallet.viewmodel.TransactionsViewModelFactory;
-import com.gyf.barlibrary.ImmersionBar;
-
-import java.util.Arrays;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-
-import static pro.upchain.wallet.C.EXTRA_ADDRESS;
-import static pro.upchain.wallet.C.Key.TRANSACTION;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -120,7 +119,6 @@ public class PropertyDetailActivity extends BaseActivity {
     }
 
 
-
     private void onTransactions(List<Transaction> transactions) {
         LogUtils.d("onTransactions", "size: " + transactions.size());
         transactionLists = transactions;
@@ -140,7 +138,7 @@ public class PropertyDetailActivity extends BaseActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
 
 
-        adapter = new TransactionsAdapter(R.layout.list_item_transaction, null );
+        adapter = new TransactionsAdapter(R.layout.list_item_transaction, null);
         list.setAdapter(adapter);
 
         adapter.setOnItemClickListener((BaseQuickAdapter adapter, View view, int position) -> {

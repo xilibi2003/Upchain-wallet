@@ -12,7 +12,6 @@
 
 如果觉得不错，点个Star ， 感谢！
 
-
 ## 目录
 
 * [功能介绍](#功能介绍)
@@ -20,8 +19,8 @@
 * [参考的开源项目](#参考的开源项目)
 * [关于我](#关于我)
 
-
 ## 功能介绍
+
 - [x] 账户余额查询及转账功能。
 - [x] 支持通过生成助记词、Keystore文件、私钥 创建钱包账号。
 - [x] 支持导出钱包账号助记词、私钥、Keystore文件。
@@ -31,10 +30,9 @@
 - [x] 支持用法币（美元和人民币）实时显示币价。
 - [x] 历史交易列表显示
 - [x] 二维码扫描，兼容imToken 格式
-- [x] 支持 DApp Browser  浏览器  (需付费购买，[购买链接](https://learnblockchain.cn/goods/3) ）
+- [x] 支持 DApp Browser 浏览器  (需付费购买，[购买链接](https://learnblockchain.cn/goods/3) ）
 - [ ] 地址本（联系人）功能 待完善
 - [ ] 比特币及EOS 支持
-
 
 ## 效果演示
 
@@ -62,12 +60,12 @@
 * [ETHWallet](https://github.com/DwyaneQ/ETHWallet)
 * [BGAQRCode](https://github.com/bingoogolapple/BGAQRCode-Android)
 
-
-
 ## 关于我
 
-本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
-[登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf).
+本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)
+作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
+[登链学院](https://upchain.ke.qq.com)
+已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf).
 
 我的微信：xlbxiong，我拉你进钱包开发交流群， 微信二维码：
 <p align="center">
@@ -78,20 +76,10 @@
 
 我的邮箱(Email): xlb@upchain.pro
 
-
 钱包没再更新了， 现在时间放在DEFI, NFT 及社区上。
-
-
 
 您的支持将鼓励我继续提供更好的作品给大家:octocat:
 
 <p align="center">
   <img src="https://learnblockchain.cn/images/qr_pay.jpg" width="300">
 </p>
-
-
-
-
-
-
-

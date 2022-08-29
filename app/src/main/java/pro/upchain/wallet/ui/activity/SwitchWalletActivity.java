@@ -5,14 +5,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.ui.adapter.SwitchWalletAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.ui.adapter.SwitchWalletAdapter;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

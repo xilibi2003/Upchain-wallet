@@ -3,19 +3,18 @@ package pro.upchain.wallet.repository;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.math.BigInteger;
 
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.entity.GasSettings;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 
-import java.math.BigInteger;
-
 public class SharedPreferenceRepository {
 
     private static final String CURRENT_ACCOUNT_ADDRESS_KEY = "current_account_address";
     private static final String DEFAULT_NETWORK_NAME_KEY = "default_network_name";
-    private static final String GAS_PRICE_KEY  ="gas_price";
-    private static final String GAS_LIMIT_KEY  ="gas_limit";
+    private static final String GAS_PRICE_KEY = "gas_price";
+    private static final String GAS_LIMIT_KEY = "gas_limit";
     private static final String GAS_LIMIT_FOR_TOKENS_KEY = "gas_limit_for_tokens";
     private static final String CURRENCY_UNIT = "currencyUnit";
 
@@ -37,7 +36,9 @@ public class SharedPreferenceRepository {
 
     public static SharedPreferenceRepository instance(Context context) {
         return init(context);
-    };
+    }
+
+    ;
 
     public String getCurrentWalletAddress() {
 
@@ -49,7 +50,7 @@ public class SharedPreferenceRepository {
         pref.edit().putString(CURRENT_ACCOUNT_ADDRESS_KEY, address).apply();
     }
 
-    public  int getCurrencyUnit() {
+    public int getCurrencyUnit() {
         return pref.getInt(CURRENCY_UNIT, 0);
     }
 

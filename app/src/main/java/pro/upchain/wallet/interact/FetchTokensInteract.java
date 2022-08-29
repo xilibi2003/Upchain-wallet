@@ -1,12 +1,11 @@
 package pro.upchain.wallet.interact;
 
 
-import pro.upchain.wallet.entity.Token;
-import pro.upchain.wallet.repository.TokenRepositoryType;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import pro.upchain.wallet.entity.Token;
+import pro.upchain.wallet.repository.TokenRepositoryType;
 
 public class FetchTokensInteract {
 

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -18,9 +20,6 @@ import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.UUi;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.view.LoadWalletSelectStandardPopupWindow;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

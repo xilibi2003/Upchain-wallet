@@ -6,17 +6,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.interact.FetchWalletInteract;
-import pro.upchain.wallet.ui.adapter.WalletManagerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.domain.ETHWallet;
+import pro.upchain.wallet.interact.FetchWalletInteract;
+import pro.upchain.wallet.ui.adapter.WalletManagerAdapter;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

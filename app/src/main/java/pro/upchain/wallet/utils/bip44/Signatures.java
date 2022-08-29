@@ -16,9 +16,6 @@
 
 package pro.upchain.wallet.utils.bip44;
 
-import pro.upchain.wallet.utils.bip44.ec.EcTools;
-import pro.upchain.wallet.utils.bip44.ec.Parameters;
-import pro.upchain.wallet.utils.bip44.ec.Point;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.io.ByteArrayOutputStream;
@@ -26,30 +23,34 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 
+import pro.upchain.wallet.utils.bip44.ec.EcTools;
+import pro.upchain.wallet.utils.bip44.ec.Parameters;
+import pro.upchain.wallet.utils.bip44.ec.Point;
+
 public class Signatures {
 
-   private static final byte[] HEADER;
-   private static final byte[] SIGNING_HEADER;
+    private static final byte[] HEADER;
+    private static final byte[] SIGNING_HEADER;
 
-   static{
-      try {
-         HEADER = "Bitcoin Signed Message:\n".getBytes("UTF-8");
-      } catch (UnsupportedEncodingException e) {
-         throw new RuntimeException(e);
-      }
-      SIGNING_HEADER = standardSigningHeader();
-   }
-   
+    static {
+        try {
+            HEADER = "Bitcoin Signed Message:\n".getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        SIGNING_HEADER = standardSigningHeader();
+    }
+
     public static Signature decodeSignatureParameters(ByteReader reader) {
         byte[][] bytes = decodeSignatureParameterBytes(reader);
-        if(bytes == null){
+        if (bytes == null) {
             return null;
         }
 
         // Make sure BigInteger regards it as positive
         bytes[0] = makePositive(bytes[0]);
         bytes[1] = makePositive(bytes[1]);
-        return new Signature(new BigInteger(bytes[0]),new BigInteger(bytes[1]));
+        return new Signature(new BigInteger(bytes[0]), new BigInteger(bytes[1]));
     }
 
     public static byte[][] decodeSignatureParameterBytes(ByteReader reader) {
@@ -90,7 +91,7 @@ public class Signatures {
                 return null;
             }
 
-            byte[][] result = new byte[][] { bytes1, bytes2 };
+            byte[][] result = new byte[][]{bytes1, bytes2};
             return result;
         } catch (ByteReader.InsufficientBytesException e) {
             return null;
@@ -98,111 +99,111 @@ public class Signatures {
     }
 
 
-   private static byte[] makePositive(byte[] bytes) {
-      if (bytes[0] < 0) {
-         byte[] temp = new byte[bytes.length + 1];
-         System.arraycopy(bytes, 0, temp, 1, bytes.length);
-         return temp;
-      }
-      return bytes;
-   }
+    private static byte[] makePositive(byte[] bytes) {
+        if (bytes[0] < 0) {
+            byte[] temp = new byte[bytes.length + 1];
+            System.arraycopy(bytes, 0, temp, 1, bytes.length);
+            return temp;
+        }
+        return bytes;
+    }
 
-   // checks the signature and enforces a Low-S Value - to counter the bitcoin
-   // transaction malleability problem, according to Bip62
-   // https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki#New_rules, pt5
-   static boolean verifySignatureLowS(byte[] message, Signature signature, Point Q) {
-      BigInteger n = Parameters.n;
-      BigInteger e = calculateE(n, message);
-      BigInteger r = signature.r;
-      BigInteger s = signature.s;
+    // checks the signature and enforces a Low-S Value - to counter the bitcoin
+    // transaction malleability problem, according to Bip62
+    // https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki#New_rules, pt5
+    static boolean verifySignatureLowS(byte[] message, Signature signature, Point Q) {
+        BigInteger n = Parameters.n;
+        BigInteger e = calculateE(n, message);
+        BigInteger r = signature.r;
+        BigInteger s = signature.s;
 
-      // r in the range [1,n-1]
-      if (r.compareTo(BigInteger.ONE) < 0 || r.compareTo(n) >= 0) {
-         return false;
-      }
+        // r in the range [1,n-1]
+        if (r.compareTo(BigInteger.ONE) < 0 || r.compareTo(n) >= 0) {
+            return false;
+        }
 
-      // s in the range [1,n/2]
-      if (s.compareTo(BigInteger.ONE) < 0 || s.compareTo(Parameters.MAX_SIG_S) > 0) {
-         return false;
-      }
+        // s in the range [1,n/2]
+        if (s.compareTo(BigInteger.ONE) < 0 || s.compareTo(Parameters.MAX_SIG_S) > 0) {
+            return false;
+        }
 
-      return checkSignature(Q, n, e, r, s);
-   }
+        return checkSignature(Q, n, e, r, s);
+    }
 
-   static boolean verifySignature(byte[] message, Signature signature, Point Q) {
-      BigInteger n = Parameters.n;
-      BigInteger e = calculateE(n, message);
-      BigInteger r = signature.r;
-      BigInteger s = signature.s;
+    static boolean verifySignature(byte[] message, Signature signature, Point Q) {
+        BigInteger n = Parameters.n;
+        BigInteger e = calculateE(n, message);
+        BigInteger r = signature.r;
+        BigInteger s = signature.s;
 
-      // r in the range [1,n-1]
-      if (r.compareTo(BigInteger.ONE) < 0 || r.compareTo(n) >= 0) {
-         return false;
-      }
+        // r in the range [1,n-1]
+        if (r.compareTo(BigInteger.ONE) < 0 || r.compareTo(n) >= 0) {
+            return false;
+        }
 
-      // s in the range [1,n-1]
-      if (s.compareTo(BigInteger.ONE) < 0 || s.compareTo(n) >= 0) {
-         return false;
-      }
+        // s in the range [1,n-1]
+        if (s.compareTo(BigInteger.ONE) < 0 || s.compareTo(n) >= 0) {
+            return false;
+        }
 
-      return checkSignature(Q, n, e, r, s);
-   }
+        return checkSignature(Q, n, e, r, s);
+    }
 
-   private static boolean checkSignature(Point Q, BigInteger n, BigInteger e, BigInteger r, BigInteger s) {
-      BigInteger c = s.modInverse(n);
+    private static boolean checkSignature(Point Q, BigInteger n, BigInteger e, BigInteger r, BigInteger s) {
+        BigInteger c = s.modInverse(n);
 
-      BigInteger u1 = e.multiply(c).mod(n);
-      BigInteger u2 = r.multiply(c).mod(n);
+        BigInteger u1 = e.multiply(c).mod(n);
+        BigInteger u2 = r.multiply(c).mod(n);
 
-      Point G = Parameters.G;
+        Point G = Parameters.G;
 
-      Point point = EcTools.sumOfTwoMultiplies(G, u1, Q, u2);
+        Point point = EcTools.sumOfTwoMultiplies(G, u1, Q, u2);
 
-      BigInteger v = point.getX().toBigInteger().mod(n);
+        BigInteger v = point.getX().toBigInteger().mod(n);
 
-      return v.equals(r);
-   }
+        return v.equals(r);
+    }
 
-   private static BigInteger calculateE(BigInteger n, byte[] message) {
-      if (n.bitLength() > message.length * 8) {
-         return new BigInteger(1, message);
-      } else {
-         int messageBitLength = message.length * 8;
-         BigInteger trunc = new BigInteger(1, message);
+    private static BigInteger calculateE(BigInteger n, byte[] message) {
+        if (n.bitLength() > message.length * 8) {
+            return new BigInteger(1, message);
+        } else {
+            int messageBitLength = message.length * 8;
+            BigInteger trunc = new BigInteger(1, message);
 
-         if (messageBitLength - n.bitLength() > 0) {
-            trunc = trunc.shiftRight(messageBitLength - n.bitLength());
-         }
+            if (messageBitLength - n.bitLength() > 0) {
+                trunc = trunc.shiftRight(messageBitLength - n.bitLength());
+            }
 
-         return trunc;
-      }
-   }
+            return trunc;
+        }
+    }
 
-   @VisibleForTesting
-   static byte[] formatMessageForSigning(String message) {
-      byte[] messageBytes;
-      try {
-         messageBytes = message.getBytes("UTF-8");
-      } catch (UnsupportedEncodingException e) {
-         throw new RuntimeException(e);
-      }
-      ByteWriter writer = new ByteWriter(messageBytes.length + SIGNING_HEADER.length + 1);
-      writer.putBytes(SIGNING_HEADER);
-      writer.putCompactInt(message.length());
-      writer.putBytes(messageBytes);
-      return writer.toBytes();
-   }
+    @VisibleForTesting
+    static byte[] formatMessageForSigning(String message) {
+        byte[] messageBytes;
+        try {
+            messageBytes = message.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        ByteWriter writer = new ByteWriter(messageBytes.length + SIGNING_HEADER.length + 1);
+        writer.putBytes(SIGNING_HEADER);
+        writer.putCompactInt(message.length());
+        writer.putBytes(messageBytes);
+        return writer.toBytes();
+    }
 
-   private static byte[] standardSigningHeader() {
-      ByteArrayOutputStream bos1 = new ByteArrayOutputStream();
-      bos1.write(HEADER.length);
-      try {
-         bos1.write(HEADER);
-      } catch (IOException e) {
-         throw new RuntimeException(e);
-      }
-      return bos1.toByteArray();
-   }
+    private static byte[] standardSigningHeader() {
+        ByteArrayOutputStream bos1 = new ByteArrayOutputStream();
+        bos1.write(HEADER.length);
+        try {
+            bos1.write(HEADER);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return bos1.toByteArray();
+    }
 
 
 }

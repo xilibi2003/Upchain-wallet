@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.ViewHolder;
-
-import java.util.List;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

@@ -3,9 +3,6 @@ package pro.upchain.wallet.ui.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,7 +10,14 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import pro.upchain.wallet.UpChainWalletApp;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.gyf.barlibrary.ImmersionBar;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -21,11 +25,6 @@ import pro.upchain.wallet.interact.CreateWalletInteract;
 import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
-import com.gyf.barlibrary.ImmersionBar;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -106,14 +105,11 @@ public class CreateWalletActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode)
-        {
+        switch (requestCode) {
             case REQUEST_WRITE_STORAGE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //reload my activity with permission granted or use the features what required the permission
-                } else
-                {
+                } else {
                     ToastUtils.showToast("The app was not allowed to write to your storage. Hence, it cannot function properly. Please consider granting it this permission");
                 }
             }

@@ -5,11 +5,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.repository.SharedPreferenceRepository;
 
 /**

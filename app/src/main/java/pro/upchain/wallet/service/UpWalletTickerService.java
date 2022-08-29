@@ -1,6 +1,7 @@
 package pro.upchain.wallet.service;
 
-import pro.upchain.wallet.entity.Ticker;
+import static pro.upchain.wallet.C.TICKER_API_URL;
+
 import com.google.gson.Gson;
 
 import io.reactivex.Observable;
@@ -10,14 +11,13 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.entity.Ticker;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-
-import static pro.upchain.wallet.C.TICKER_API_URL;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -73,7 +73,7 @@ public class UpWalletTickerService implements TickerService {
         Ticker[] response;
     }
 
-    private final static class ApiErrorOperator <T> implements ObservableOperator<T, Response<T>> {
+    private final static class ApiErrorOperator<T> implements ObservableOperator<T, Response<T>> {
 
         @Override
         public Observer<? super Response<T>> apply(Observer<? super T> observer) throws Exception {

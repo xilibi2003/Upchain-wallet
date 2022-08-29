@@ -1,21 +1,24 @@
 package pro.upchain.wallet.ui.adapter;
 
+import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.shizhefei.view.indicator.IndicatorViewPager;
 
 import java.util.List;
 
-import static android.support.v4.view.PagerAdapter.POSITION_NONE;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseFragment;
+
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

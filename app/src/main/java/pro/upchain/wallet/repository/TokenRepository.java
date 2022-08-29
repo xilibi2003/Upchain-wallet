@@ -2,12 +2,6 @@ package pro.upchain.wallet.repository;
 
 import android.util.Log;
 
-import pro.upchain.wallet.entity.NetworkInfo;
-import pro.upchain.wallet.entity.Token;
-import pro.upchain.wallet.entity.TokenInfo;
-import pro.upchain.wallet.service.TokenExplorerClientType;
-import pro.upchain.wallet.utils.LogUtils;
-
 import org.web3j.abi.FunctionEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
@@ -31,6 +25,11 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.entity.NetworkInfo;
+import pro.upchain.wallet.entity.Token;
+import pro.upchain.wallet.entity.TokenInfo;
+import pro.upchain.wallet.service.TokenExplorerClientType;
+import pro.upchain.wallet.utils.LogUtils;
 
 public class TokenRepository implements TokenRepositoryType {
 
@@ -78,50 +77,47 @@ public class TokenRepository implements TokenRepositoryType {
             e.onNext(tokens);
 
             updateTokenInfoCache(defaultNetwork, walletAddress);
-            tokens = tokenLocalSource.fetch(defaultNetwork,  walletAddress)
-                        .map(items -> {
-                            int len = items.length;
-                            Token[] result = new Token[len];
-                            for (int i = 0; i < len; i++) {
-                                BigDecimal balance = null;
-                                try {
-                                    if (items[i].address.isEmpty()) {
-                                        balance = getEthBalance(walletAddress);
-                                    } else {
-                                        balance = getBalance(walletAddress, items[i]);
-                                    }
-
-
-                                } catch (Exception e1) {
-                                    Log.d("TOKEN", "Err" +  e1.getMessage());
-                                    /* Quietly */
-                                }
-
-                                LogUtils.d("balance:" + balance);
-                                if (balance == null || balance.compareTo(BigDecimal.ZERO) == 0) {
-                                    result[i] = new Token(items[i], "0");
+            tokens = tokenLocalSource.fetch(defaultNetwork, walletAddress)
+                    .map(items -> {
+                        int len = items.length;
+                        Token[] result = new Token[len];
+                        for (int i = 0; i < len; i++) {
+                            BigDecimal balance = null;
+                            try {
+                                if (items[i].address.isEmpty()) {
+                                    balance = getEthBalance(walletAddress);
                                 } else {
-                                    BigDecimal decimalDivisor = new BigDecimal(Math.pow(10, items[i].decimals));
-                                    BigDecimal ethBalance = balance.divide(decimalDivisor);
-                                    if (items[i].decimals > 4) {
-
-                                        result[i] = new Token(items[i], ethBalance.setScale(4, RoundingMode.CEILING).toPlainString());
-                                    } else {
-                                        result[i] = new Token(items[i], ethBalance.setScale(items[i].decimals, RoundingMode.CEILING).toPlainString());
-                                    }
-
+                                    balance = getBalance(walletAddress, items[i]);
                                 }
 
+
+                            } catch (Exception e1) {
+                                Log.d("TOKEN", "Err" + e1.getMessage());
+                                /* Quietly */
+                            }
+
+                            LogUtils.d("balance:" + balance);
+                            if (balance == null || balance.compareTo(BigDecimal.ZERO) == 0) {
+                                result[i] = new Token(items[i], "0");
+                            } else {
+                                BigDecimal decimalDivisor = new BigDecimal(Math.pow(10, items[i].decimals));
+                                BigDecimal ethBalance = balance.divide(decimalDivisor);
+                                if (items[i].decimals > 4) {
+
+                                    result[i] = new Token(items[i], ethBalance.setScale(4, RoundingMode.CEILING).toPlainString());
+                                } else {
+                                    result[i] = new Token(items[i], ethBalance.setScale(items[i].decimals, RoundingMode.CEILING).toPlainString());
+                                }
 
                             }
-                            return result;
-                        }).blockingGet();
 
+
+                        }
+                        return result;
+                    }).blockingGet();
 
 
             e.onNext(tokens);
-
-
 
 
         });
@@ -130,7 +126,7 @@ public class TokenRepository implements TokenRepositoryType {
     @Override
     public Completable addToken(String walletAddress, String address, String symbol, int decimals) {
 
-        LogUtils.d("addToken:" + walletAddress + ", address: " + address + ", source:" + tokenLocalSource + ", ethereumNetworkRepository:" + ethereumNetworkRepository );
+        LogUtils.d("addToken:" + walletAddress + ", address: " + address + ", source:" + tokenLocalSource + ", ethereumNetworkRepository:" + ethereumNetworkRepository);
 
         return tokenLocalSource.put(
                 ethereumNetworkRepository.getDefaultNetwork(),
@@ -148,7 +144,7 @@ public class TokenRepository implements TokenRepositoryType {
                     for (TokenInfo tokenInfo : items) {
                         try {
                             tokenLocalSource.put(
-                                    ethereumNetworkRepository.getDefaultNetwork(), walletAddress, tokenInfo)
+                                            ethereumNetworkRepository.getDefaultNetwork(), walletAddress, tokenInfo)
                                     .blockingAwait();
                         } catch (Throwable t) {
                             Log.d("TOKEN_REM", "Err", t);
@@ -185,7 +181,8 @@ public class TokenRepository implements TokenRepositoryType {
         return new org.web3j.abi.datatypes.Function(
                 "balanceOf",
                 Collections.singletonList(new Address(owner)),
-                Collections.singletonList(new TypeReference<Uint256>() {}));
+                Collections.singletonList(new TypeReference<Uint256>() {
+                }));
     }
 
     private String callSmartContractFunction(
@@ -193,8 +190,8 @@ public class TokenRepository implements TokenRepositoryType {
         String encodedFunction = FunctionEncoder.encode(function);
 
         org.web3j.protocol.core.methods.response.EthCall response = web3j.ethCall(
-                Transaction.createEthCallTransaction(walletAddress, contractAddress, encodedFunction),
-                DefaultBlockParameterName.LATEST)
+                        Transaction.createEthCallTransaction(walletAddress, contractAddress, encodedFunction),
+                        DefaultBlockParameterName.LATEST)
                 .sendAsync().get();
 
         return response.getValue();

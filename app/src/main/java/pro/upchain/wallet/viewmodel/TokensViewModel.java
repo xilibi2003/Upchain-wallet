@@ -1,8 +1,11 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+
+import io.reactivex.Single;
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
@@ -14,9 +17,6 @@ import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.service.TickerService;
 import pro.upchain.wallet.service.UpWalletTickerService;
 import pro.upchain.wallet.utils.LogUtils;
-import com.google.gson.Gson;
-
-import io.reactivex.Single;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 
 
@@ -40,7 +40,7 @@ public class TokensViewModel extends BaseViewModel {
             FetchWalletInteract findDefaultWalletInteract,
             FetchTokensInteract fetchTokensInteract) {
         this.findDefaultWalletInteract = findDefaultWalletInteract;
-        this.ethereumNetworkRepository  = ethereumNetworkRepository;
+        this.ethereumNetworkRepository = ethereumNetworkRepository;
         this.fetchTokensInteract = fetchTokensInteract;
 
 
@@ -99,8 +99,8 @@ public class TokensViewModel extends BaseViewModel {
         this.tokens.postValue(tokens);
 
         //  TODO： 是否出现重复调用
-        for (Token token : tokens ) {
-            if (token.balance!=null && !token.balance.equals("0")) {   // > 0
+        for (Token token : tokens) {
+            if (token.balance != null && !token.balance.equals("0")) {   // > 0
                 getTicker(token.tokenInfo.symbol).subscribe(this::onPrice, this::onError);
             }
         }
@@ -112,15 +112,13 @@ public class TokensViewModel extends BaseViewModel {
                 .fetchTickerPrice(symbol, getCurrency()));   // getDefaultNetwork().symbol
     }
 
-    public  String getCurrency() {
+    public String getCurrency() {
         return ethereumNetworkRepository.getCurrency();
     }
 
-    private  void onPrice(Ticker ticker) {
+    private void onPrice(Ticker ticker) {
         LogUtils.d("Tokens", "price: " + ticker.symbol + "  " + ticker.price);
         this.prices.postValue(ticker);
     }
 
 }
-
-

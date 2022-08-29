@@ -6,8 +6,6 @@ import org.web3j.crypto.Sign;
 import org.web3j.crypto.TransactionEncoder;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.rlp.RlpEncoder;
@@ -50,64 +48,63 @@ public class CreateTransactionInteract {
     }
 
     // transfer ether
-    public Single<String>  createEthTransaction(ETHWallet from,  String to, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit, String password) {
+    public Single<String> createEthTransaction(ETHWallet from, String to, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit, String password) {
         final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
 
         return networkRepository.getLastTransactionNonce(web3j, from.address)
-                .flatMap(nonce -> Single.fromCallable( () -> {
+                .flatMap(nonce -> Single.fromCallable(() -> {
 
-            Credentials credentials = WalletUtils.loadCredentials(password,  from.getKeystorePath());
-            RawTransaction rawTransaction = RawTransaction.createEtherTransaction(nonce, gasPrice, gasLimit, to, amount);
-            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
+                            Credentials credentials = WalletUtils.loadCredentials(password, from.getKeystorePath());
+                            RawTransaction rawTransaction = RawTransaction.createEtherTransaction(nonce, gasPrice, gasLimit, to, amount);
+                            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
 
-            String hexValue = Numeric.toHexString(signedMessage);
-            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
+                            String hexValue = Numeric.toHexString(signedMessage);
+                            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
 
-            return ethSendTransaction.getTransactionHash();
+                            return ethSendTransaction.getTransactionHash();
 
-        } ).subscribeOn(Schedulers.computation())
+                        }).subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread()));
     }
 
     // transfer ERC20
-    public Single<String>  createERC20Transfer(ETHWallet from,  String to, String contractAddress, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit, String password) {
+    public Single<String> createERC20Transfer(ETHWallet from, String to, String contractAddress, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit, String password) {
         final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
 
         String callFuncData = TokenRepository.createTokenTransferData(to, amount);
 
 
         return networkRepository.getLastTransactionNonce(web3j, from.address)
-                .flatMap(nonce -> Single.fromCallable( () -> {
+                .flatMap(nonce -> Single.fromCallable(() -> {
 
-            Credentials credentials = WalletUtils.loadCredentials(password,  from.getKeystorePath());
-            RawTransaction rawTransaction = RawTransaction.createTransaction(
-                    nonce, gasPrice, gasLimit, contractAddress, callFuncData);
+                            Credentials credentials = WalletUtils.loadCredentials(password, from.getKeystorePath());
+                            RawTransaction rawTransaction = RawTransaction.createTransaction(
+                                    nonce, gasPrice, gasLimit, contractAddress, callFuncData);
 
-            LogUtils.d("rawTransaction:" + rawTransaction);
+                            LogUtils.d("rawTransaction:" + rawTransaction);
 
-            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
+                            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
 
-            String hexValue = Numeric.toHexString(signedMessage);
-            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
+                            String hexValue = Numeric.toHexString(signedMessage);
+                            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
 
-            return ethSendTransaction.getTransactionHash();
+                            return ethSendTransaction.getTransactionHash();
 
-        } ).subscribeOn(Schedulers.computation())
+                        }).subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread()));
     }
 
-    public Single<String> create(ETHWallet from, String to, BigInteger subunitAmount, BigInteger gasPrice, BigInteger gasLimit,  String data, String pwd)
-    {
+    public Single<String> create(ETHWallet from, String to, BigInteger subunitAmount, BigInteger gasPrice, BigInteger gasLimit, String data, String pwd) {
         return createTransaction(from, to, subunitAmount, gasPrice, gasLimit, data, pwd)
-                                .subscribeOn(Schedulers.computation())
-                                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 
     public Single<String> createContract(ETHWallet from, BigInteger gasPrice, BigInteger gasLimit, String data, String pwd) {
         return createTransaction(from, gasPrice, gasLimit, data, pwd)
-                                .subscribeOn(Schedulers.computation())
-                                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 
@@ -117,7 +114,7 @@ public class CreateTransactionInteract {
     // message : TransactionEncoder.encode(rtx)   // may wrong
 
     public Single<byte[]> getSignature(ETHWallet wallet, byte[] message, String password) {
-        return  Single.fromCallable(() -> {
+        return Single.fromCallable(() -> {
             Credentials credentials = WalletUtils.loadCredentials(password, wallet.getKeystorePath());
             Sign.SignatureData signatureData = Sign.signMessage(
                     message, credentials.getEcKeyPair());
@@ -140,9 +137,9 @@ public class CreateTransactionInteract {
         final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
 
         return networkRepository.getLastTransactionNonce(web3j, from.address)
-                .flatMap(nonce -> getRawTransaction(nonce, gasPrice, gasLimit,toAddress, subunitAmount,  data))
+                .flatMap(nonce -> getRawTransaction(nonce, gasPrice, gasLimit, toAddress, subunitAmount, data))
                 .flatMap(rawTx -> signEncodeRawTransaction(rawTx, password, from, networkRepository.getDefaultNetwork().chainId))
-                .flatMap(signedMessage -> Single.fromCallable( () -> {
+                .flatMap(signedMessage -> Single.fromCallable(() -> {
                     EthSendTransaction raw = web3j
                             .ethSendRawTransaction(Numeric.toHexString(signedMessage))
                             .send();
@@ -162,7 +159,7 @@ public class CreateTransactionInteract {
         return networkRepository.getLastTransactionNonce(web3j, from.address)
                 .flatMap(nonce -> getRawTransaction(nonce, gasPrice, gasLimit, BigInteger.ZERO, data))
                 .flatMap(rawTx -> signEncodeRawTransaction(rawTx, password, from, networkRepository.getDefaultNetwork().chainId))
-                .flatMap(signedMessage -> Single.fromCallable( () -> {
+                .flatMap(signedMessage -> Single.fromCallable(() -> {
                     EthSendTransaction raw = web3j
                             .ethSendRawTransaction(Numeric.toHexString(signedMessage))
                             .send();
@@ -172,12 +169,13 @@ public class CreateTransactionInteract {
                     return raw.getTransactionHash();
                 })).subscribeOn(Schedulers.io());
 
-    };
+    }
+
+    ;
 
 
     // for DApp  create contract  transaction
-    private Single<RawTransaction> getRawTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, String data)
-    {
+    private Single<RawTransaction> getRawTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, String data) {
         return Single.fromCallable(() ->
                 RawTransaction.createContractTransaction(
                         nonce,
@@ -187,8 +185,7 @@ public class CreateTransactionInteract {
                         data));
     }
 
-    private Single<RawTransaction> getRawTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String to , BigInteger value, String data)
-    {
+    private Single<RawTransaction> getRawTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String to, BigInteger value, String data) {
         return Single.fromCallable(() ->
                 RawTransaction.createTransaction(
                         nonce,
@@ -199,7 +196,7 @@ public class CreateTransactionInteract {
                         data));
     }
 
-    private  Single<byte[]> signEncodeRawTransaction(RawTransaction rtx, String password, ETHWallet wallet, int chainId) {
+    private Single<byte[]> signEncodeRawTransaction(RawTransaction rtx, String password, ETHWallet wallet, int chainId) {
 
         return Single.fromCallable(() -> {
             Credentials credentials = WalletUtils.loadCredentials(password, wallet.getKeystorePath());
@@ -207,7 +204,6 @@ public class CreateTransactionInteract {
             return signedMessage;
         });
     }
-
 
 
 }

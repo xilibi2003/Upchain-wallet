@@ -1,22 +1,22 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.ui.adapter.MessageCenterAdapter;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.ui.adapter.MessageCenterAdapter;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -68,8 +68,8 @@ public class TransactionsActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_btn:
-                Intent intent = new Intent(this,SwitchWalletActivity.class);
-                startActivityForResult(intent,SWITCH_WALLET_REQUEST);
+                Intent intent = new Intent(this, SwitchWalletActivity.class);
+                startActivityForResult(intent, SWITCH_WALLET_REQUEST);
                 break;
         }
     }

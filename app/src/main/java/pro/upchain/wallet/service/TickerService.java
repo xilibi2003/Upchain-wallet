@@ -1,9 +1,8 @@
 package pro.upchain.wallet.service;
 
 
-import pro.upchain.wallet.entity.Ticker;
-
 import io.reactivex.Observable;
+import pro.upchain.wallet.entity.Ticker;
 
 public interface TickerService {
 

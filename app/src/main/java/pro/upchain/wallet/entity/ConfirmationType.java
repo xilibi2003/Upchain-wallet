@@ -4,8 +4,7 @@ package pro.upchain.wallet.entity;
  * Created by James on 19/02/2018.
  */
 
-public enum ConfirmationType
-{
+public enum ConfirmationType {
     ETH,
     ERC20,
     ERC875,

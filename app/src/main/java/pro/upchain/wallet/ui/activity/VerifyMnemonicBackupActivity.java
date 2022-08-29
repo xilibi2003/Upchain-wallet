@@ -1,20 +1,13 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
-import pro.upchain.wallet.ui.adapter.VerifyBackupMnemonicWordsAdapter;
-import pro.upchain.wallet.ui.adapter.VerifyBackupSelectedMnemonicWordsAdapter;
-import pro.upchain.wallet.utils.LogUtils;
-import pro.upchain.wallet.utils.ToastUtils;
-import pro.upchain.wallet.utils.WalletDaoUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -25,6 +18,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
+import pro.upchain.wallet.ui.adapter.VerifyBackupMnemonicWordsAdapter;
+import pro.upchain.wallet.ui.adapter.VerifyBackupSelectedMnemonicWordsAdapter;
+import pro.upchain.wallet.utils.LogUtils;
+import pro.upchain.wallet.utils.ToastUtils;
+import pro.upchain.wallet.utils.WalletDaoUtils;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

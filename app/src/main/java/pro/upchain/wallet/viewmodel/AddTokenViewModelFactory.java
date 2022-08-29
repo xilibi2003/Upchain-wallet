@@ -1,8 +1,8 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.interact.AddTokenInteract;
@@ -18,7 +18,8 @@ public class AddTokenViewModelFactory implements ViewModelProvider.Factory {
         RepositoryFactory rf = UpChainWalletApp.repositoryFactory();
 
         this.findDefaultWalletInteract = new FetchWalletInteract();
-        this.addTokenInteract = new AddTokenInteract(findDefaultWalletInteract, rf.tokenRepository);;
+        this.addTokenInteract = new AddTokenInteract(findDefaultWalletInteract, rf.tokenRepository);
+        ;
 
     }
 

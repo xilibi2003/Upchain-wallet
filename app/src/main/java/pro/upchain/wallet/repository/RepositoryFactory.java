@@ -1,12 +1,11 @@
 package pro.upchain.wallet.repository;
 
-import pro.upchain.wallet.service.BlockExplorerClient;
-import pro.upchain.wallet.service.EthplorerTokenService;
-import pro.upchain.wallet.service.TokenExplorerClientType;
-
 import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.service.BlockExplorerClient;
+import pro.upchain.wallet.service.EthplorerTokenService;
+import pro.upchain.wallet.service.TokenExplorerClientType;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -26,7 +25,7 @@ public class RepositoryFactory {
 
         TokenLocalSource tokenLocalSource = new RealmTokenSource();
 
-        TokenExplorerClientType tokenExplorerClientType =  new EthplorerTokenService(httpClient, gson);
+        TokenExplorerClientType tokenExplorerClientType = new EthplorerTokenService(httpClient, gson);
         BlockExplorerClient blockExplorerClient = new BlockExplorerClient(httpClient, gson, ethereumNetworkRepository);
 
         tokenRepository = new TokenRepository(httpClient, ethereumNetworkRepository, tokenExplorerClientType, tokenLocalSource);
@@ -36,7 +35,7 @@ public class RepositoryFactory {
         transactionRepository = new TransactionRepository(ethereumNetworkRepository, inMemoryCache, null, blockExplorerClient);
     }
 
-    public static RepositoryFactory init (SharedPreferenceRepository sp, OkHttpClient httpClient, Gson gson) {
+    public static RepositoryFactory init(SharedPreferenceRepository sp, OkHttpClient httpClient, Gson gson) {
         if (sSelf == null) {
             sSelf = new RepositoryFactory(sp, httpClient, gson);
         }

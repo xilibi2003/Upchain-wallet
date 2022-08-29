@@ -1,22 +1,13 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.base.BaseFragment;
-import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.ui.adapter.LoadWalletPageFragmentAdapter;
-import pro.upchain.wallet.ui.fragment.ImportKeystoreFragment;
-import pro.upchain.wallet.ui.fragment.ImportMnemonicFragment;
-import pro.upchain.wallet.ui.fragment.ImportPrivateKeyFragment;
-import pro.upchain.wallet.utils.UUi;
+import androidx.viewpager.widget.ViewPager;
+
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.TextWidthColorBar;
@@ -26,6 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.base.BaseFragment;
+import pro.upchain.wallet.ui.adapter.LoadWalletPageFragmentAdapter;
+import pro.upchain.wallet.ui.fragment.ImportKeystoreFragment;
+import pro.upchain.wallet.ui.fragment.ImportMnemonicFragment;
+import pro.upchain.wallet.ui.fragment.ImportPrivateKeyFragment;
+import pro.upchain.wallet.utils.UUi;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

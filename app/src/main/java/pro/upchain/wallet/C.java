@@ -20,6 +20,7 @@ public abstract class C {
     public static final String POA_NETWORK_NAME = "POA Network";
     public static final String KOVAN_NETWORK_NAME = "Kovan";
     public static final String ROPSTEN_NETWORK_NAME = "Ropsten";
+    public static final String GOERLI_NETWORK_NAME = "Goerli";
 
     public static final String LOCAL_DEV_NETWORK_NAME = "local_dev";
 

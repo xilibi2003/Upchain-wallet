@@ -9,7 +9,7 @@
     <include layout="@layout/common_toolbar" />
 
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/address_input_layout"
         android:layout_marginTop="@dimen/big_margin"
         android:focusable="true"
@@ -18,30 +18,27 @@
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
-        >
+        android:background="@null">
+
         <EditText
             android:id="@+id/address"
             android:hint="@string/hint_contract_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/base_text_color"
-            android:textSize="13sp"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:textSize="13sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/symbol_input_layout"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@null"
-        >
+        android:background="@null">
+
         <EditText
             android:id="@+id/symbol"
             android:hint="@string/hint_contract_symbol"
@@ -49,19 +46,18 @@
             android:layout_height="wrap_content"
             android:maxLength="16"
             android:textColor="@color/base_text_color"
-            android:textSize="13sp"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:textSize="13sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/decimal_input_layout"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        >
+        android:layout_marginRight="15dp">
+
         <EditText
             android:id="@+id/decimals"
             android:hint="@string/hint_contract_decimals"
@@ -70,9 +66,8 @@
             android:layout_height="wrap_content"
             android:maxLength="16"
             android:textColor="@color/base_text_color"
-            android:textSize="13sp"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:textSize="13sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView

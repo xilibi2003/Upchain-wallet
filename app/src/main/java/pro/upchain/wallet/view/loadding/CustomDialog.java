@@ -15,7 +15,6 @@
  */
 package pro.upchain.wallet.view.loadding;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -40,8 +39,8 @@ public class CustomDialog extends Dialog {
 
     private View inflateView(Context ct) {
         View v = View.inflate(ct, R.layout.common_progress_view, null);
-        loadingView = (LoadingView)v.findViewById(R.id.loadingView);
-        tvProgress = (TextView)v.findViewById(R.id.tv_progress);
+        loadingView = (LoadingView) v.findViewById(R.id.loadingView);
+        tvProgress = (TextView) v.findViewById(R.id.tv_progress);
         return v;
     }
 
@@ -60,4 +59,3 @@ public class CustomDialog extends Dialog {
         tvProgress.setText(progressTip);
     }
 }
-

@@ -1,5 +1,9 @@
 package pro.upchain.wallet.ui.activity;
 
+import static pro.upchain.wallet.C.EXTRA_ADDRESS;
+import static pro.upchain.wallet.C.EXTRA_CONTRACT_ADDRESS;
+import static pro.upchain.wallet.C.EXTRA_DECIMALS;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -14,12 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.utils.GlideImageLoader;
-import pro.upchain.wallet.utils.ToastUtils;
-
-
 import org.web3j.utils.Convert;
 
 import butterknife.BindView;
@@ -27,10 +25,10 @@ import butterknife.OnClick;
 import cn.bingoogolapple.qrcode.core.BGAQRCodeUtil;
 import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 import io.reactivex.Single;
-
-import static pro.upchain.wallet.C.EXTRA_ADDRESS;
-import static pro.upchain.wallet.C.EXTRA_CONTRACT_ADDRESS;
-import static pro.upchain.wallet.C.EXTRA_DECIMALS;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.utils.GlideImageLoader;
+import pro.upchain.wallet.utils.ToastUtils;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -89,7 +87,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
                 () -> {
                     return QRCodeEncoder.syncEncodeQRCode(qRStr, BGAQRCodeUtil.dp2px(GatheringQRCodeActivity.this, 270), Color.parseColor("#000000"));
                 }
-        ).subscribe( bitmap ->  GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1) );
+        ).subscribe(bitmap -> GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1));
 
     }
 
@@ -120,7 +118,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
                                 return QRCodeEncoder.syncEncodeQRCode(qRStr + "&value=" + weiValue, BGAQRCodeUtil.dp2px(GatheringQRCodeActivity.this, 270), Color.parseColor("#000000"));
                             }
                         }
-                ).subscribe( bitmap ->  GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1) );
+                ).subscribe(bitmap -> GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1));
 
             }
         });

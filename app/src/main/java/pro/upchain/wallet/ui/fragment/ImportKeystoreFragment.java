@@ -7,14 +7,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.CreateWalletInteract;
 import pro.upchain.wallet.utils.ToastUtils;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

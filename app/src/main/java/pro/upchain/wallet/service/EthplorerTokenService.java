@@ -1,8 +1,7 @@
 package pro.upchain.wallet.service;
 
-import pro.upchain.wallet.entity.ApiErrorException;
-import pro.upchain.wallet.entity.ErrorEnvelope;
-import pro.upchain.wallet.entity.TokenInfo;
+import static pro.upchain.wallet.C.ErrorCode.UNKNOWN;
+
 import com.google.gson.Gson;
 
 import io.reactivex.Observable;
@@ -12,6 +11,9 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.entity.ApiErrorException;
+import pro.upchain.wallet.entity.ErrorEnvelope;
+import pro.upchain.wallet.entity.TokenInfo;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -19,12 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-import static pro.upchain.wallet.C.ErrorCode.UNKNOWN;
-
 public class EthplorerTokenService implements TokenExplorerClientType {
+
     private static final String ETHPLORER_API_URL = "https://api.ethplorer.io";
 
-    private EthplorerApiClient ethplorerApiClient;
+    private final EthplorerApiClient ethplorerApiClient;
 
     public EthplorerTokenService(
             OkHttpClient httpClient,

@@ -5,12 +5,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 
-import butterknife.BindView;
-
- /**
+/**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
  */

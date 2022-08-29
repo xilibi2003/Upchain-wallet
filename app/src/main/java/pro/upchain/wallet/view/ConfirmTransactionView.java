@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-
 import java.math.BigInteger;
+
+import pro.upchain.wallet.R;
 
 public class ConfirmTransactionView extends FrameLayout {
 
@@ -24,20 +24,20 @@ public class ConfirmTransactionView extends FrameLayout {
     public void fillInfo(String fromAddr, String addr, String amount, String fee, BigInteger gasPrice, BigInteger gasLimit) {
 
 
-        TextView fromAddressText = (TextView)findViewById(R.id.text_from);
+        TextView fromAddressText = (TextView) findViewById(R.id.text_from);
         fromAddressText.setText(fromAddr);
 
-        TextView toAddressText = (TextView)findViewById(R.id.text_to);
+        TextView toAddressText = (TextView) findViewById(R.id.text_to);
         toAddressText.setText(addr);
 
-        TextView valueText = (TextView)findViewById(R.id.text_value);
+        TextView valueText = (TextView) findViewById(R.id.text_value);
         valueText.setText(amount);
 
-        TextView gasPriceText = (TextView)findViewById(R.id.text_gas_price);
+        TextView gasPriceText = (TextView) findViewById(R.id.text_gas_price);
 
-        TextView gasLimitText = (TextView)findViewById(R.id.text_gas_limit);
+        TextView gasLimitText = (TextView) findViewById(R.id.text_gas_limit);
 
-        TextView networkFeeText = (TextView)findViewById(R.id.text_network_fee);
+        TextView networkFeeText = (TextView) findViewById(R.id.text_network_fee);
         networkFeeText.setText(fee);
 
 

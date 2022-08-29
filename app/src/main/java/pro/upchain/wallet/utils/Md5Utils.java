@@ -10,7 +10,6 @@ import java.security.NoSuchAlgorithmException;
 public class Md5Utils {
 
 
-
     public static String md5(String plainText) {
         byte[] secretBytes = null;
         try {
@@ -56,7 +55,7 @@ public class Md5Utils {
     private static String b(byte[] var0) {
         StringBuffer var1 = new StringBuffer(var0.length * 2);
 
-        for(int var2 = 0; var2 < var0.length; ++var2) {
+        for (int var2 = 0; var2 < var0.length; ++var2) {
             var1.append(Character.forDigit((var0[var2] & 240) >> 4, 16));
             var1.append(Character.forDigit(var0[var2] & 15, 16));
         }
@@ -65,5 +64,3 @@ public class Md5Utils {
     }
 
 }
-
-
