@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical"
     android:layout_gravity="center_vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/title"
         android:textSize="28sp"
@@ -16,16 +15,16 @@
         android:layout_marginBottom="@dimen/big_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Private and Secure"
-        />
+        tools:text="Private and Secure" />
+
     <ImageView
         android:id="@+id/img"
         android:contentDescription="@string/empty"
         android:layout_gravity="center_horizontal"
         android:layout_width="@dimen/intro_img_size"
         android:layout_height="@dimen/intro_img_size"
-        android:src="@drawable/onboarding_lock"
-        />
+        android:src="@drawable/onboarding_lock" />
+
     <TextView
         android:id="@+id/message"
         android:textSize="16sp"
@@ -35,6 +34,5 @@
         android:layout_margin="@dimen/big_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Private keys never leave your device."
-        />
+        tools:text="Private keys never leave your device." />
 </LinearLayout>

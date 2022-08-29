@@ -1,11 +1,10 @@
 package pro.upchain.wallet.interact;
 
-import pro.upchain.wallet.domain.ETHWallet;
-
 import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 
 /**

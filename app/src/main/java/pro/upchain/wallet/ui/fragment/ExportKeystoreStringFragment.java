@@ -6,11 +6,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseFragment;
-
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseFragment;
 
 
 /**

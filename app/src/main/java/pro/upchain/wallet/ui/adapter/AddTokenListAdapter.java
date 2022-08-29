@@ -5,11 +5,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Switch;
 
+import java.util.List;
+
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.ViewHolder;
 import pro.upchain.wallet.ui.activity.AddTokenActivity;
-
-import java.util.List;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -22,7 +22,7 @@ public class AddTokenListAdapter extends BaseAdapter {
     private int layoutId;
     private List<AddTokenActivity.TokenItem> items;
 
-    public AddTokenListAdapter(AddTokenActivity context, List<AddTokenActivity.TokenItem> tokenItems , int layoutId) {
+    public AddTokenListAdapter(AddTokenActivity context, List<AddTokenActivity.TokenItem> tokenItems, int layoutId) {
 
         this.mActivity = context;
         this.layoutId = layoutId;
@@ -45,7 +45,6 @@ public class AddTokenListAdapter extends BaseAdapter {
     }
 
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -57,8 +56,8 @@ public class AddTokenListAdapter extends BaseAdapter {
         } else {
             holder.getView(R.id.lly_item).setBackgroundColor(mActivity.getResources().getColor(R.color.add_property_gray_bg_color));
             holder.setVisible(R.id.add_switch, true);
-            holder.setTag(R.id.add_switch,  items.get(position));
-            ((Switch)holder.getView(R.id.add_switch)).setOnCheckedChangeListener(mActivity::onCheckedChanged);
+            holder.setTag(R.id.add_switch, items.get(position));
+            ((Switch) holder.getView(R.id.add_switch)).setOnCheckedChangeListener(mActivity::onCheckedChanged);
 
         }
 

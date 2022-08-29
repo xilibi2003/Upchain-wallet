@@ -19,8 +19,6 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-import pro.upchain.wallet.UpChainWalletApp;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -28,6 +26,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import pro.upchain.wallet.UpChainWalletApp;
 
 /**
  * Log工具类，可控制Log输出开关、保存Log到文件、过滤输出等级

@@ -1,16 +1,22 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.entity.Token;
@@ -21,13 +27,6 @@ import pro.upchain.wallet.viewmodel.AddTokenViewModel;
 import pro.upchain.wallet.viewmodel.AddTokenViewModelFactory;
 import pro.upchain.wallet.viewmodel.TokensViewModel;
 import pro.upchain.wallet.viewmodel.TokensViewModelFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny熊
@@ -63,7 +62,7 @@ public class AddTokenActivity extends BaseActivity {
 
     }
 
-        @Override
+    @Override
     public int getLayoutId() {
         return R.layout.activity_add_new_property;
     }
@@ -115,7 +114,7 @@ public class AddTokenActivity extends BaseActivity {
     private void onTokens(Token[] tokens) {
 
         for (TokenItem item : mItems) {
-            for (Token token: tokens) {
+            for (Token token : tokens) {
                 if (item.tokenInfo.address.equals(token.tokenInfo.address)) {
                     item.added = true;
                 }
@@ -128,7 +127,7 @@ public class AddTokenActivity extends BaseActivity {
         tokenList.setAdapter(mAdapter);
     }
 
-    public void onCheckedChanged(CompoundButton btn, boolean checked){
+    public void onCheckedChanged(CompoundButton btn, boolean checked) {
         TokenItem info = (TokenItem) btn.getTag();
         info.added = checked;
         LogUtils.d(info.toString() + ", checked:" + checked);
@@ -138,7 +137,9 @@ public class AddTokenActivity extends BaseActivity {
         }
 
 
-    };
+    }
+
+    ;
 
     @Override
     public void configViews() {

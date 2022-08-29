@@ -37,13 +37,13 @@ public class LoadWalletSelectStandardPopupWindow extends PopupWindow implements 
         contentView.findViewById(R.id.rl_jaxx).setOnClickListener(this);
         contentView.findViewById(R.id.rl_ledger).setOnClickListener(this);
         contentView.findViewById(R.id.rl_custom).setOnClickListener(this);
-        tvJaxx = (TextView)contentView.findViewById(R.id.tv_standard_jaxx);
+        tvJaxx = (TextView) contentView.findViewById(R.id.tv_standard_jaxx);
         tvJaxx.setSelected(true);
-        tvLedger = (TextView)contentView.findViewById(R.id.tv_standard_ledger);
-        tvCustom = (TextView)contentView.findViewById(R.id.tv_standard_custom);
-        ivJaxx = (ImageView)contentView.findViewById(R.id.iv_standard_jaxx);
-        ivLedger = (ImageView)contentView.findViewById(R.id.iv_standard_ledger);
-        ivCustom = (ImageView)contentView.findViewById(R.id.iv_standard_custom);
+        tvLedger = (TextView) contentView.findViewById(R.id.tv_standard_ledger);
+        tvCustom = (TextView) contentView.findViewById(R.id.tv_standard_custom);
+        ivJaxx = (ImageView) contentView.findViewById(R.id.iv_standard_jaxx);
+        ivLedger = (ImageView) contentView.findViewById(R.id.iv_standard_ledger);
+        ivCustom = (ImageView) contentView.findViewById(R.id.iv_standard_custom);
         setProperty();
     }
 

@@ -22,7 +22,6 @@ import pro.upchain.wallet.UpChainWalletApp;
 
 /**
  * Toast工具类，解决多个Toast同时出现的问题
- *
  */
 public class ToastUtils {
 

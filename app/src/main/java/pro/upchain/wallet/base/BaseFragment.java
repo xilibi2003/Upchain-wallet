@@ -18,17 +18,17 @@ package pro.upchain.wallet.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pro.upchain.wallet.view.loadding.CustomDialog;
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pro.upchain.wallet.view.loadding.CustomDialog;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -159,7 +159,6 @@ public abstract class BaseFragment extends Fragment {
     protected boolean isVisible(View view) {
         return view.getVisibility() == View.VISIBLE;
     }
-
 
 
 }

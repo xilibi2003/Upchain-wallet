@@ -1,14 +1,13 @@
 package pro.upchain.wallet.interact;
 
 
-import pro.upchain.wallet.repository.TokenRepositoryType;
-
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import pro.upchain.wallet.repository.TokenRepositoryType;
 
 public class AddTokenInteract {
     private final TokenRepositoryType tokenRepository;
-    private final FetchWalletInteract  findDefaultWalletInteract;
+    private final FetchWalletInteract findDefaultWalletInteract;
 
     public AddTokenInteract(
             FetchWalletInteract findDefaultWalletInteract, TokenRepositoryType tokenRepository) {

@@ -1,16 +1,15 @@
 package pro.upchain.wallet.repository;
 
 
-import pro.upchain.wallet.entity.NetworkInfo;
-import pro.upchain.wallet.entity.TokenInfo;
-import pro.upchain.wallet.repository.entity.RealmTokenInfo;
-
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import pro.upchain.wallet.entity.NetworkInfo;
+import pro.upchain.wallet.entity.TokenInfo;
+import pro.upchain.wallet.repository.entity.RealmTokenInfo;
 
 public class RealmTokenSource implements TokenLocalSource {
 

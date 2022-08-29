@@ -1,9 +1,8 @@
 package pro.upchain.wallet.repository;
 
 
-import pro.upchain.wallet.entity.Transaction;
-
 import io.reactivex.Single;
+import pro.upchain.wallet.entity.Transaction;
 
 public interface TransactionLocalSource {
     Single<Transaction[]> fetchTransaction(String walletAddr);

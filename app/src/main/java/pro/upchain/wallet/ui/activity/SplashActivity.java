@@ -2,14 +2,14 @@ package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import pro.upchain.wallet.domain.ETHWallet;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.FetchWalletInteract;
 
 
@@ -18,7 +18,7 @@ import pro.upchain.wallet.interact.FetchWalletInteract;
  * WeiXin: xlbxiong
  */
 
-public class SplashActivity extends AppCompatActivity  {
+public class SplashActivity extends AppCompatActivity {
 
 
     @Override

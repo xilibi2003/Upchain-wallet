@@ -1,17 +1,17 @@
 package pro.upchain.wallet.ui.adapter;
 
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.entity.Token;
 
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.entity.Token;
 
 public class TokensAdapter extends BaseQuickAdapter<Token, BaseViewHolder> {
 

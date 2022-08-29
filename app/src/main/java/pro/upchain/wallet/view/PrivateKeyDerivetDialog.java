@@ -5,9 +5,10 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import pro.upchain.wallet.R;
 
@@ -37,7 +38,7 @@ public class PrivateKeyDerivetDialog extends Dialog implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_derive_private_key);
         setCanceledOnTouchOutside(false);
-        tvPrivateKey = (TextView)findViewById(R.id.tv_private_key);
+        tvPrivateKey = (TextView) findViewById(R.id.tv_private_key);
         btnCopy = (TextView) findViewById(R.id.btn_copy);
         //初始化界面控件的事件
         initEvent();

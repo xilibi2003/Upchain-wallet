@@ -3,13 +3,11 @@ package pro.upchain.wallet.repository;
 
 import android.text.TextUtils;
 
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
 import pro.upchain.wallet.service.BlockExplorerClientType;
-import pro.upchain.wallet.utils.LogUtils;
-
-import io.reactivex.Maybe;
-import io.reactivex.Observable;
 
 public class TransactionRepository implements TransactionRepositoryType {
 

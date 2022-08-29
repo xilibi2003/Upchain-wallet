@@ -15,6 +15,7 @@ public class UUi {
 
     /**
      * 获取view
+     *
      * @param activity
      * @param mViews
      * @param id
@@ -22,7 +23,7 @@ public class UUi {
      * @return
      */
     @Deprecated
-    public static  <T extends View> T getView(Activity activity, SparseArray<View> mViews, int id) {
+    public static <T extends View> T getView(Activity activity, SparseArray<View> mViews, int id) {
         T view = (T) mViews.get(id);
         if (view == null) {
             view = (T) activity.findViewById(id);
@@ -32,7 +33,7 @@ public class UUi {
     }
 
 
-    public static  <T extends View> T getView(View mView, SparseArray<View> mViews, int id) {
+    public static <T extends View> T getView(View mView, SparseArray<View> mViews, int id) {
         T view = (T) mViews.get(id);
         if (view == null) {
             view = (T) mView.findViewById(id);
@@ -44,6 +45,7 @@ public class UUi {
 
     /**
      * 给多个view添加点击事件
+     *
      * @param listener
      * @param views
      */
@@ -82,42 +84,46 @@ public class UUi {
 
     /**
      * dip 转 px
+     *
      * @param dipValue
      * @return
      */
     public static int dip2px(float dipValue) {
         float scale = UpChainWalletApp.getsInstance().getResources().getDisplayMetrics().density;
-        return (int)(dipValue * scale + 0.5F);
+        return (int) (dipValue * scale + 0.5F);
     }
 
     /**
      * px 转 dp
+     *
      * @param pxValue
      * @return
      */
     public static int px2dip(float pxValue) {
         float scale = UpChainWalletApp.getsInstance().getResources().getDisplayMetrics().density;
-        return (int)(pxValue / scale + 0.5F);
+        return (int) (pxValue / scale + 0.5F);
     }
 
     /**
      * px转sp
+     *
      * @param pxValue
      * @return
      */
     public static int px2sp(float pxValue) {
         float fontScale = UpChainWalletApp.getsInstance().getResources().getDisplayMetrics().scaledDensity;
-        return (int)(pxValue / fontScale + 0.5F);
+        return (int) (pxValue / fontScale + 0.5F);
     }
 
     /**
      * sp转px
+     *
      * @param spValue
      * @return
      */
     public static int sp2px(float spValue) {
         float fontScale = UpChainWalletApp.getsInstance().getResources().getDisplayMetrics().scaledDensity;
-        return (int)(spValue * fontScale + 0.5F);
+        return (int) (spValue * fontScale + 0.5F);
     }
 
 }

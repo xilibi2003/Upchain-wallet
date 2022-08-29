@@ -1,8 +1,8 @@
 package pro.upchain.wallet.domain;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Generated;
+
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 /**
  * 钱包账号实体类
@@ -13,7 +13,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class ETHWallet {
 
-    @Id(autoincrement = true)
+    @Id(assignable = true)
     private Long id;
 
     public String address;
@@ -24,11 +24,9 @@ public class ETHWallet {
     private boolean isCurrent;
     private boolean isBackup;
 
-
-    @Generated(hash = 1331046581)
     public ETHWallet(Long id, String address, String name, String password,
-            String keystorePath, String mnemonic, boolean isCurrent,
-            boolean isBackup) {
+                     String keystorePath, String mnemonic, boolean isCurrent,
+                     boolean isBackup) {
         this.id = id;
         this.address = address;
         this.name = name;
@@ -39,7 +37,6 @@ public class ETHWallet {
         this.isBackup = isBackup;
     }
 
-    @Generated(hash = 1963897189)
     public ETHWallet() {
     }
 

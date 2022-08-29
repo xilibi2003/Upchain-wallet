@@ -29,104 +29,104 @@ import java.math.BigInteger;
  */
 public class Curve implements Serializable {
 
-   private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-   private FieldElement _a;
-   private FieldElement _b;
-   private BigInteger _q;
-   private Point _infinity;
+    private FieldElement _a;
+    private FieldElement _b;
+    private BigInteger _q;
+    private Point _infinity;
 
-   public Curve(BigInteger q, BigInteger a, BigInteger b) {
-      this._q = q;
-      this._a = fromBigInteger(a);
-      this._b = fromBigInteger(b);
-      this._infinity = new Point(this, null, null);
-   }
+    public Curve(BigInteger q, BigInteger a, BigInteger b) {
+        this._q = q;
+        this._a = fromBigInteger(a);
+        this._b = fromBigInteger(b);
+        this._infinity = new Point(this, null, null);
+    }
 
-   public FieldElement getA() {
-      return _a;
-   }
+    public FieldElement getA() {
+        return _a;
+    }
 
-   public FieldElement getB() {
-      return _b;
-   }
+    public FieldElement getB() {
+        return _b;
+    }
 
-   public BigInteger getQ() {
-      return _q;
-   }
+    public BigInteger getQ() {
+        return _q;
+    }
 
-   public Point getInfinity() {
-      return _infinity;
-   }
+    public Point getInfinity() {
+        return _infinity;
+    }
 
-   public int getFieldSize() {
-      return _q.bitLength();
-   }
+    public int getFieldSize() {
+        return _q.bitLength();
+    }
 
-   public FieldElement fromBigInteger(BigInteger x) {
-      return new FieldElement(this._q, x);
-   }
+    public FieldElement fromBigInteger(BigInteger x) {
+        return new FieldElement(this._q, x);
+    }
 
-   public Point createPoint(BigInteger x, BigInteger y, boolean withCompression) {
-      return new Point(this, fromBigInteger(x), fromBigInteger(y), withCompression);
-   }
+    public Point createPoint(BigInteger x, BigInteger y, boolean withCompression) {
+        return new Point(this, fromBigInteger(x), fromBigInteger(y), withCompression);
+    }
 
-   public Point decodePoint(byte[] encodedPoint) {
-      Point p = null;
-      // Switch on encoding type
-      switch (encodedPoint[0]) {
-      case 0x00:
-         p = getInfinity();
-         break;
-      case 0x02:
-      case 0x03:
-         int ytilde = encodedPoint[0] & 1;
-         byte[] i = new byte[encodedPoint.length - 1];
-         System.arraycopy(encodedPoint, 1, i, 0, i.length);
-         FieldElement x = new FieldElement(this._q, new BigInteger(1, i));
-         FieldElement alpha = x.multiply(x.square().add(_a)).add(_b);
-         FieldElement beta = alpha.sqrt();
-         if (beta == null) {
-            throw new RuntimeException("Invalid compression");
-         }
-         int bit0 = (beta.toBigInteger().testBit(0) ? 1 : 0);
-         if (bit0 == ytilde) {
-            p = new Point(this, x, beta, true);
-         } else {
-            p = new Point(this, x, new FieldElement(this._q, _q.subtract(beta.toBigInteger())), true);
-         }
-         break;
-      case 0x04:
-      case 0x06:
-      case 0x07:
-         byte[] xEnc = new byte[(encodedPoint.length - 1) / 2];
-         byte[] yEnc = new byte[(encodedPoint.length - 1) / 2];
-         System.arraycopy(encodedPoint, 1, xEnc, 0, xEnc.length);
-         System.arraycopy(encodedPoint, xEnc.length + 1, yEnc, 0, yEnc.length);
-         p = new Point(this, new FieldElement(this._q, new BigInteger(1, xEnc)), new FieldElement(this._q,
-               new BigInteger(1, yEnc)));
-         break;
-      default:
-         throw new RuntimeException("Invalid encoding 0x" + Integer.toString(encodedPoint[0], 16));
-      }
-      return p;
-   }
+    public Point decodePoint(byte[] encodedPoint) {
+        Point p = null;
+        // Switch on encoding type
+        switch (encodedPoint[0]) {
+            case 0x00:
+                p = getInfinity();
+                break;
+            case 0x02:
+            case 0x03:
+                int ytilde = encodedPoint[0] & 1;
+                byte[] i = new byte[encodedPoint.length - 1];
+                System.arraycopy(encodedPoint, 1, i, 0, i.length);
+                FieldElement x = new FieldElement(this._q, new BigInteger(1, i));
+                FieldElement alpha = x.multiply(x.square().add(_a)).add(_b);
+                FieldElement beta = alpha.sqrt();
+                if (beta == null) {
+                    throw new RuntimeException("Invalid compression");
+                }
+                int bit0 = (beta.toBigInteger().testBit(0) ? 1 : 0);
+                if (bit0 == ytilde) {
+                    p = new Point(this, x, beta, true);
+                } else {
+                    p = new Point(this, x, new FieldElement(this._q, _q.subtract(beta.toBigInteger())), true);
+                }
+                break;
+            case 0x04:
+            case 0x06:
+            case 0x07:
+                byte[] xEnc = new byte[(encodedPoint.length - 1) / 2];
+                byte[] yEnc = new byte[(encodedPoint.length - 1) / 2];
+                System.arraycopy(encodedPoint, 1, xEnc, 0, xEnc.length);
+                System.arraycopy(encodedPoint, xEnc.length + 1, yEnc, 0, yEnc.length);
+                p = new Point(this, new FieldElement(this._q, new BigInteger(1, xEnc)), new FieldElement(this._q,
+                        new BigInteger(1, yEnc)));
+                break;
+            default:
+                throw new RuntimeException("Invalid encoding 0x" + Integer.toString(encodedPoint[0], 16));
+        }
+        return p;
+    }
 
-   @Override
-   public boolean equals(Object obj) {
-      if (obj == this) {
-         return true;
-      }
-      if (!(obj instanceof Curve)) {
-         return false;
-      }
-      Curve other = (Curve) obj;
-      return this._q.equals(other._q) && _a.equals(other._a) && _b.equals(other._b);
-   }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Curve)) {
+            return false;
+        }
+        Curve other = (Curve) obj;
+        return this._q.equals(other._q) && _a.equals(other._a) && _b.equals(other._b);
+    }
 
-   @Override
-   public int hashCode() {
-      return _a.hashCode() ^ _b.hashCode() ^ _q.hashCode();
-   }
+    @Override
+    public int hashCode() {
+        return _a.hashCode() ^ _b.hashCode() ^ _q.hashCode();
+    }
 
 }

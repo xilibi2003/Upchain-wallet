@@ -3,8 +3,6 @@ package pro.upchain.wallet.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.math.BigDecimal;
-
 public class Token implements Parcelable {
     public final TokenInfo tokenInfo;
     public final String balance;

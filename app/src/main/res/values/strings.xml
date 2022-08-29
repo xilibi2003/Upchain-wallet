@@ -84,6 +84,7 @@
     <string name="net_setting_main">Mainnet（主网）</string>
     <string name="net_setting_kovan">Kovan 测试网络</string>
     <string name="net_setting_ropsten">Ropsten 测试网络</string>
+    <string name="net_setting_goerli">Goerli 测试网络</string>
     <string name="net_setting_local_dev"> 本地测试网络</string>
 
     <string name="currency_unit_setting_cny">CNY</string>
@@ -122,12 +123,10 @@
     <string name="load_wallet_btn">开始导入</string>
 
 
-
     <string name="load_wallet_indicator_mnemonic">助记词</string>
     <string name="load_wallet_indicator_official">官方钱包</string>
 
     <string name="load_wallet_indicator_private_key">私钥</string>
-    <string name="load_wallet_indicator_observer">观察</string>
 
     <string name="load_wallet_by_mnemonic_hint">助记词，按空格分隔</string>
     <string name="load_wallet_by_mnemonic_input_tip">请检查您的助记词</string>

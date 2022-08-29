@@ -9,6 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -19,17 +24,10 @@ import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.view.InputPwdDialog;
 import pro.upchain.wallet.view.PrivateKeyDerivetDialog;
-import com.gyf.barlibrary.ImmersionBar;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
-
  */
 public class WalletDetailActivity extends BaseActivity {
 

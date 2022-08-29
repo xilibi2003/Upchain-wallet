@@ -1,15 +1,11 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.app.Dialog;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -23,6 +19,21 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.web3j.utils.Convert;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -36,17 +47,6 @@ import pro.upchain.wallet.view.ConfirmTransactionView;
 import pro.upchain.wallet.view.InputPwdView;
 import pro.upchain.wallet.viewmodel.ConfirmationViewModel;
 import pro.upchain.wallet.viewmodel.ConfirmationViewModelFactory;
-
-import org.web3j.utils.Convert;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -109,7 +109,7 @@ public class SendActivity extends BaseActivity {
     private String symbol;
 
     private String netCost;
-    private  BigInteger gasPrice;
+    private BigInteger gasPrice;
     private BigInteger gasLimit;
 
 
@@ -119,7 +119,7 @@ public class SendActivity extends BaseActivity {
 
     private static final int QRCODE_SCANNER_REQUEST = 1100;
 
-    private static final double miner_min = 5 ;
+    private static final double miner_min = 5;
     private static final double miner_max = 55;
 
     private String scanResult;
@@ -176,7 +176,7 @@ public class SendActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.prepare(this, sendingTokens? ConfirmationType.ETH: ConfirmationType.ERC20);
+        viewModel.prepare(this, sendingTokens ? ConfirmationType.ETH : ConfirmationType.ERC20);
     }
 
     @Override
@@ -214,11 +214,11 @@ public class SendActivity extends BaseActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                    double p = progress / 100f;
-                    double d = (miner_max - miner_min) * p + miner_min;
+                double p = progress / 100f;
+                double d = (miner_max - miner_min) * p + miner_min;
 
-                   gasPrice = BalanceUtils.gweiToWei(BigDecimal.valueOf(d));
-                   tvGasPrice.setText(gasformater.format(d) + " " + C.GWEI_UNIT);
+                gasPrice = BalanceUtils.gweiToWei(BigDecimal.valueOf(d));
+                tvGasPrice.setText(gasformater.format(d) + " " + C.GWEI_UNIT);
 
                 updateNetworkFee();
             }
@@ -259,8 +259,8 @@ public class SendActivity extends BaseActivity {
                 gasPrice = BalanceUtils.gweiToWei(new BigDecimal(s.toString()));
 
                 try {
-                    netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit),  4) + etherUnit;
-                    tvGasCost.setText(String.valueOf(netCost ));
+                    netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit), 4) + etherUnit;
+                    tvGasCost.setText(String.valueOf(netCost));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -291,8 +291,8 @@ public class SendActivity extends BaseActivity {
     private void updateNetworkFee() {
 
         try {
-            netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit),  4) + " " + C.ETH_SYMBOL;
-            tvGasCost.setText(String.valueOf(netCost ));
+            netCost = BalanceUtils.weiToEth(gasPrice.multiply(gasLimit), 4) + " " + C.ETH_SYMBOL;
+            tvGasCost.setText(String.valueOf(netCost));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -307,23 +307,22 @@ public class SendActivity extends BaseActivity {
 
     private boolean verifyInfo(String address, String amount) {
 
-            try {
-                new Address(address);
-            } catch (Exception e) {
-                ToastUtils.showToast(R.string.addr_error_tips);
-                return false;
-            }
-
-            try {
-                String wei = BalanceUtils.EthToWei(amount);
-                return wei != null;
-            } catch (Exception e) {
-                ToastUtils.showToast(R.string.amount_error_tips);
-
-                return false;
-            }
+        try {
+            new Address(address);
+        } catch (Exception e) {
+            ToastUtils.showToast(R.string.addr_error_tips);
+            return false;
         }
 
+        try {
+            String wei = BalanceUtils.EthToWei(amount);
+            return wei != null;
+        } catch (Exception e) {
+            ToastUtils.showToast(R.string.amount_error_tips);
+
+            return false;
+        }
+    }
 
 
     @OnClick({R.id.rl_btn, R.id.btn_next})
@@ -341,7 +340,7 @@ public class SendActivity extends BaseActivity {
 
                 if (verifyInfo(toAddr, amount)) {
                     ConfirmTransactionView confirmView = new ConfirmTransactionView(this, this::onClick);
-                    confirmView.fillInfo(walletAddr, toAddr, " - " + amount + " " +  symbol, netCost, gasPrice, gasLimit);
+                    confirmView.fillInfo(walletAddr, toAddr, " - " + amount + " " + symbol, netCost, gasPrice, gasLimit);
 
                     dialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
                     dialog.setContentView(confirmView);
@@ -368,7 +367,7 @@ public class SendActivity extends BaseActivity {
                         viewModel.createTransaction(pwd, etTransferAddress.getText().toString().trim(),
                                 Convert.toWei(amountText.getText().toString().trim(), Convert.Unit.ETHER).toBigInteger(),
                                 gasPrice,
-                                gasLimit );
+                                gasLimit);
                     }
                 });
 
@@ -438,7 +437,7 @@ public class SendActivity extends BaseActivity {
         if (result.contains(":") && result.contains("?")) {  // 符合协议格式
             String[] urlParts = result.split(":");
             if (urlParts[0].equals("ethereum")) {
-                urlParts =  urlParts[1].split("\\?");
+                urlParts = urlParts[1].split("\\?");
 
                 fillAddress(urlParts[0]);
 

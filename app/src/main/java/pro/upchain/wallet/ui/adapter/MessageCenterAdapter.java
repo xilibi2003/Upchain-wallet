@@ -2,10 +2,10 @@ package pro.upchain.wallet.ui.adapter;
 
 import android.content.Context;
 
+import java.util.List;
+
 import pro.upchain.wallet.base.CommonAdapter;
 import pro.upchain.wallet.base.ViewHolder;
-
-import java.util.List;
 
 
 public class MessageCenterAdapter extends CommonAdapter<String> {

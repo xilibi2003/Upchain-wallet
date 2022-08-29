@@ -2,12 +2,12 @@ package pro.upchain.wallet.ui.adapter;
 
 import android.content.Context;
 
+import java.util.List;
+
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.CommonAdapter;
 import pro.upchain.wallet.base.ViewHolder;
 import pro.upchain.wallet.domain.ETHWallet;
-
-import java.util.List;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -22,7 +22,7 @@ public class WalletManagerAdapter extends CommonAdapter<ETHWallet> {
 
     @Override
     public void convert(ViewHolder holder, ETHWallet wallet) {
-        holder.setText(R.id.tv_wallet_name,wallet.getName());
-        holder.setText(R.id.tv_wallet_address,wallet.getAddress());
+        holder.setText(R.id.tv_wallet_name, wallet.getName());
+        holder.setText(R.id.tv_wallet_address, wallet.getAddress());
     }
 }

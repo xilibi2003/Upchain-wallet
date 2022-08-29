@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.utils.LogUtils;
@@ -12,15 +14,11 @@ import pro.upchain.wallet.utils.Md5Utils;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.view.InputPwdDialog;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
  */
-
 
 
 // 进行备份提示

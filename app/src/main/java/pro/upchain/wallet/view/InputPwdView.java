@@ -1,11 +1,12 @@
 package pro.upchain.wallet.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import pro.upchain.wallet.R;
 
@@ -24,7 +25,7 @@ public class InputPwdView extends FrameLayout {
 
         LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_input_password, this, true);
-        password = (EditText)findViewById(R.id.password);
+        password = (EditText) findViewById(R.id.password);
 
         findViewById(R.id.send_button).setOnClickListener(new OnClickListener() {
             @Override
@@ -33,7 +34,6 @@ public class InputPwdView extends FrameLayout {
             }
         });
     }
-
 
 
     public String getPassword() {

@@ -4,18 +4,16 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.view.MnemonicBackupAlertDialog;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
  */
-
 
 
 // 提示 抄下钱包助记词 界面
@@ -74,4 +72,3 @@ public class MnemonicBackupActivity extends BaseActivity {
         }
     }
 }
-

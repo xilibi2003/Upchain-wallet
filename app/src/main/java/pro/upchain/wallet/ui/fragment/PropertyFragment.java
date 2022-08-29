@@ -1,15 +1,11 @@
 package pro.upchain.wallet.ui.fragment;
 
-import android.arch.lifecycle.ViewModelProviders;
+import static pro.upchain.wallet.C.EXTRA_ADDRESS;
+import static pro.upchain.wallet.C.Key.WALLET;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,7 +15,28 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.barlibrary.ImmersionBar;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
@@ -43,23 +60,6 @@ import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.viewmodel.TokensViewModel;
 import pro.upchain.wallet.viewmodel.TokensViewModelFactory;
-import com.gyf.barlibrary.ImmersionBar;
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-
-import static pro.upchain.wallet.C.EXTRA_ADDRESS;
-import static pro.upchain.wallet.C.Key.WALLET;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -167,7 +167,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         tokensViewModel = ViewModelProviders.of(this.getActivity(), tokensViewModelFactory)
                 .get(TokensViewModel.class);
 
-        tokensViewModel.defaultWallet().observe(this,  this::showWallet);
+        tokensViewModel.defaultWallet().observe(this, this::showWallet);
 
 //        tokensViewModel.progress().observe(this, systemView::showProgress);
 //        tokensViewModel.error().observe(this, this::onError);
@@ -195,7 +195,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 }
             }
             if (!TextUtils.isEmpty(token.value)) {
-                sum  = sum.add(new BigDecimal(token.value));
+                sum = sum.add(new BigDecimal(token.value));
             }
 
         }
@@ -284,7 +284,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         headView.findViewById(R.id.lly_wallet_address).setOnClickListener(this);
         headView.findViewById(R.id.civ_wallet_logo).setOnClickListener(this);
         tvWalletName = (TextView) headView.findViewById(R.id.tv_wallet_name);
-        tvWalletAddress =(TextView) headView.findViewById(R.id.tv_wallet_address);
+        tvWalletAddress = (TextView) headView.findViewById(R.id.tv_wallet_address);
         tvTolalAssetValue = (TextView) headView.findViewById(R.id.tv_total_value);
 
         tvTolalAsset = (TextView) headView.findViewById(R.id.tv_total_assets);
@@ -357,7 +357,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
 //                tokensViewModel.showAddToken(this.getApplicationContext());
 
                 intent = new Intent(mContext, AddTokenActivity.class);
-                intent.putExtra(WALLET,  currEthWallet.getAddress());
+                intent.putExtra(WALLET, currEthWallet.getAddress());
                 startActivityForResult(intent, ADD_NEW_PROPERTY_REQUEST);
 
                 break;
@@ -412,7 +412,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 ToastUtils.showLongToast(scanResult);
 
                 Intent intent = new Intent(mContext, SendActivity.class);
-                intent.putExtra("scan_result", scanResult );
+                intent.putExtra("scan_result", scanResult);
 
                 startActivity(intent);
 

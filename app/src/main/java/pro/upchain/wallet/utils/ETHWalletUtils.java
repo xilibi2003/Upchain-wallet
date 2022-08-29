@@ -1,10 +1,9 @@
 package pro.upchain.wallet.utils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pro.upchain.wallet.domain.ETHWallet;
 
 import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicKey;
@@ -25,6 +24,8 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
+
+import pro.upchain.wallet.domain.ETHWallet;
 
 /**
  * 以太坊钱包创建工具类
@@ -144,7 +145,7 @@ public class ETHWalletUtils {
 
     private static String convertMnemonicList(List<String> mnemonics) {
         StringBuilder sb = new StringBuilder();
-        int size =  mnemonics.size();
+        int size = mnemonics.size();
 
         for (int i = 0; i < size; i++) {
             sb.append(mnemonics.get(i));
@@ -270,7 +271,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static ETHWallet modifyPassword(long walletId, String walletName, String oldPassword, String newPassword) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.get(walletId);
         Credentials credentials = null;
         ECKeyPair keypair = null;
         try {
@@ -279,7 +280,7 @@ public class ETHWalletUtils {
             File destinationDirectory = new File(AppFilePath.Wallet_DIR, "keystore_" + walletName + ".json");
             WalletUtils.generateWalletFile(newPassword, keypair, destinationDirectory, true);
             ethWallet.setPassword(newPassword);
-            WalletDaoUtils.ethWalletDao.insert(ethWallet);
+            WalletDaoUtils.ethWalletDao.put(ethWallet);
         } catch (CipherException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -296,7 +297,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String derivePrivateKey(long walletId, String pwd) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.get(walletId);
         Credentials credentials;
         ECKeyPair keypair;
         String privateKey = null;
@@ -320,7 +321,7 @@ public class ETHWalletUtils {
      * @return
      */
     public static String deriveKeystore(long walletId, String pwd) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.get(walletId);
         String keystore = null;
         WalletFile walletFile;
         try {
@@ -339,9 +340,9 @@ public class ETHWalletUtils {
      * @return
      */
     public static boolean deleteWallet(long walletId) {
-        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.load(walletId);
+        ETHWallet ethWallet = WalletDaoUtils.ethWalletDao.get(walletId);
         if (deleteFile(ethWallet.getKeystorePath())) {
-            WalletDaoUtils.ethWalletDao.deleteByKey(walletId);
+            WalletDaoUtils.ethWalletDao.remove(walletId);
             return true;
         } else {
             return false;

@@ -17,19 +17,19 @@ package pro.upchain.wallet.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.view.loadding.CustomDialog;
-import com.gyf.barlibrary.ImmersionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.gyf.barlibrary.ImmersionBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.view.loadding.CustomDialog;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ImmersionBar.with(this).init();
         unbinder = ButterKnife.bind(this);
 
-        mCommonToolbar = ButterKnife.findById(this, R.id.common_toolbar);
+        mCommonToolbar = findViewById(R.id.common_toolbar);
         if (mCommonToolbar != null) {
             ImmersionBar.with(this)
                     .titleBar(mCommonToolbar, false)

@@ -3,12 +3,12 @@ package pro.upchain.wallet.ui.adapter;
 import android.content.Context;
 import android.graphics.Color;
 
+import java.util.List;
+
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.CommonAdapter;
 import pro.upchain.wallet.base.ViewHolder;
 import pro.upchain.wallet.domain.ETHWallet;
-
-import java.util.List;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

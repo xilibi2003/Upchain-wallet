@@ -3,6 +3,7 @@ package pro.upchain.wallet.ui.fragment;
 import android.content.Intent;
 import android.view.View;
 
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.ui.activity.ContactsActivity;
@@ -11,8 +12,6 @@ import pro.upchain.wallet.ui.activity.MessageCenterActivity;
 import pro.upchain.wallet.ui.activity.SystemSettingActivity;
 import pro.upchain.wallet.ui.activity.TransactionsActivity;
 import pro.upchain.wallet.ui.activity.WalletMangerActivity;
-
-import butterknife.OnClick;
 
 
 public class MineFragment extends BaseFragment {

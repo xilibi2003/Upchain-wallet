@@ -2,12 +2,10 @@ package pro.upchain.wallet.repository;
 
 import android.text.format.DateUtils;
 
-
-import pro.upchain.wallet.entity.Transaction;
-
 import java.util.Map;
 
 import io.reactivex.Single;
+import pro.upchain.wallet.entity.Transaction;
 
 // TODO: Add pagination.
 public class TransactionInMemorySource implements TransactionLocalSource {
@@ -38,8 +36,7 @@ public class TransactionInMemorySource implements TransactionLocalSource {
     }
 
     @Override
-    public
-    Single<Transaction[]> fetchTransaction(String walletAddr, String tokenAddr) {
+    public Single<Transaction[]> fetchTransaction(String walletAddr, String tokenAddr) {
         return Single.fromCallable(() -> {
             CacheUnit unit = cache.get(walletAddr + tokenAddr);
             Transaction[] transactions = new Transaction[0];

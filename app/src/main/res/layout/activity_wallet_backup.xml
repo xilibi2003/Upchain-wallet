@@ -54,6 +54,6 @@
         android:text="@string/wallet_backup_backup_help"
         android:textColor="@color/transfer_advanced_setting_help_text_color"
         android:textSize="12sp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </LinearLayout>

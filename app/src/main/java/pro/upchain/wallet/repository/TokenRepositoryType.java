@@ -1,10 +1,9 @@
 package pro.upchain.wallet.repository;
 
 
-import pro.upchain.wallet.entity.Token;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import pro.upchain.wallet.entity.Token;
 
 public interface TokenRepositoryType {
 

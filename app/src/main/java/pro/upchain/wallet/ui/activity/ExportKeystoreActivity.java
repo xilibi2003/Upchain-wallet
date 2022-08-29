@@ -2,16 +2,10 @@ package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.base.BaseFragment;
-import pro.upchain.wallet.ui.adapter.DeriveKeystorePageFragmentAdapter;
-import pro.upchain.wallet.ui.fragment.ExportKeystoreQRCodeFragment;
-import pro.upchain.wallet.ui.fragment.ExportKeystoreStringFragment;
-import pro.upchain.wallet.utils.UUi;
+import androidx.viewpager.widget.ViewPager;
+
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.TextWidthColorBar;
@@ -21,6 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.base.BaseFragment;
+import pro.upchain.wallet.ui.adapter.DeriveKeystorePageFragmentAdapter;
+import pro.upchain.wallet.ui.fragment.ExportKeystoreQRCodeFragment;
+import pro.upchain.wallet.ui.fragment.ExportKeystoreStringFragment;
+import pro.upchain.wallet.utils.UUi;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -60,7 +61,7 @@ public class ExportKeystoreActivity extends BaseActivity {
         deriveKeystoreStringFragment = new ExportKeystoreStringFragment();
         deriveKeystoreQRCodeFragment = new ExportKeystoreQRCodeFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("walletKeystore",walletKeystore);//这里的values就是我们要传的值
+        bundle.putString("walletKeystore", walletKeystore);//这里的values就是我们要传的值
         deriveKeystoreStringFragment.setArguments(bundle);
         deriveKeystoreQRCodeFragment.setArguments(bundle);
         fragmentList.add(deriveKeystoreStringFragment);

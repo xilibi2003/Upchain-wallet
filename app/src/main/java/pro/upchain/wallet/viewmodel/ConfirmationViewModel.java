@@ -1,9 +1,11 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.app.Activity;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import java.math.BigInteger;
+
+import io.reactivex.schedulers.Schedulers;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.ConfirmationType;
@@ -11,16 +13,8 @@ import pro.upchain.wallet.entity.GasSettings;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.interact.CreateTransactionInteract;
 import pro.upchain.wallet.interact.FetchGasSettingsInteract;
-
 import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
-
-import org.web3j.utils.Numeric;
-
-import java.math.BigInteger;
-
-import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
 
 public class ConfirmationViewModel extends BaseViewModel {
     private final MutableLiveData<String> newTransaction = new MutableLiveData<>();
@@ -61,15 +55,16 @@ public class ConfirmationViewModel extends BaseViewModel {
         return gasSettings;
     }
 
-    public LiveData<String> sendTransaction() { return newTransaction; }
+    public LiveData<String> sendTransaction() {
+        return newTransaction;
+    }
 
-    public void overrideGasSettings(GasSettings settings)
-    {
+    public void overrideGasSettings(GasSettings settings) {
         gasSettingsOverride = settings;
         gasSettings.postValue(settings);
     }
 
-    public void prepare(BaseActivity ctx,  ConfirmationType type) {
+    public void prepare(BaseActivity ctx, ConfirmationType type) {
         this.confirmationType = type;
         disposable = ethereumNetworkRepository
                 .find()
@@ -84,7 +79,6 @@ public class ConfirmationViewModel extends BaseViewModel {
         super.onCleared();
         fetchGasSettingsInteract.clean();
     }
-
 
 
     private void onDefaultNetwork(NetworkInfo networkInfo) {
@@ -123,10 +117,8 @@ public class ConfirmationViewModel extends BaseViewModel {
         }
     }
 
-    public void calculateGasSettings(byte[] transaction, boolean isNonFungible)
-    {
-        if (gasSettings.getValue() == null)
-        {
+    public void calculateGasSettings(byte[] transaction, boolean isNonFungible) {
+        if (gasSettings.getValue() == null) {
             disposable = fetchGasSettingsInteract
                     .fetch(transaction, isNonFungible)
                     .subscribe(this::onGasSettings, this::onError);
@@ -138,12 +130,10 @@ public class ConfirmationViewModel extends BaseViewModel {
         this.gasSettings.setValue(gasSettings);
     }
 
-    private void onGasPrice(BigInteger currentGasPrice)
-    {
+    private void onGasPrice(BigInteger currentGasPrice) {
         if (this.gasSettings.getValue() != null //protect against race condition
                 && this.gasSettingsOverride == null //only update if user hasn't overriden
-                )
-        {
+        ) {
             GasSettings updateSettings = new GasSettings(currentGasPrice, gasSettings.getValue().gasLimit);
             this.gasSettings.postValue(updateSettings);
         }
