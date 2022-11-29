@@ -17,17 +17,23 @@ import butterknife.OnClick;
  */
 
 
-public class Web3SettingActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
+public class Web3SettingActivity extends BaseActivity implements View.OnClickListener {
     TextView tvTitle;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.et_wallet_service_url)
     EditText etWalletServiceUrl;
-    @BindView(R.id.tv_reset_url)
     TextView tvResetUrl;
-    @BindView(R.id.iv_btn)
     TextView tvBtn;
+    private TextView ivBtn;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        etWalletServiceUrl = findViewById(R.id.et_wallet_service_url);
+        tvResetUrl = findViewById(R.id.tv_reset_url);
+    }
 
     @Override
     public int getLayoutId() {
@@ -48,10 +54,11 @@ public class Web3SettingActivity extends BaseActivity {
 
     @Override
     public void configViews() {
-
+        tvResetUrl.setOnClickListener(this);
+        rlBtn.setOnClickListener(this);
     }
 
-    @OnClick({R.id.tv_reset_url, R.id.rl_btn})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_reset_url:

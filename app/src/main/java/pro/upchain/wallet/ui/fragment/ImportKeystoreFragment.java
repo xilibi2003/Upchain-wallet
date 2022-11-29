@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import pro.upchain.wallet.R;
@@ -23,13 +24,9 @@ import butterknife.OnClick;
 
 public class ImportKeystoreFragment extends BaseFragment {
 
-    @BindView(R.id.et_keystore)
     EditText etKeystore;
-    @BindView(R.id.et_wallet_pwd)
     EditText etWalletPwd;
-    @BindView(R.id.cb_agreement)
     CheckBox cbAgreement;
-    @BindView(R.id.btn_load_wallet)
     TextView btnLoadWallet;
 
     CreateWalletInteract createWalletInteract;
@@ -38,6 +35,15 @@ public class ImportKeystoreFragment extends BaseFragment {
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_load_wallet_by_official_wallet;
+    }
+
+    @Override
+    public void initView() {
+
+        etKeystore = parentView.findViewById(R.id.et_keystore);
+        etWalletPwd = parentView.findViewById(R.id.et_wallet_pwd);
+        cbAgreement = parentView.findViewById(R.id.cb_agreement);
+        btnLoadWallet = parentView.findViewById(R.id.btn_load_wallet);
     }
 
     @Override

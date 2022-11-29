@@ -1,25 +1,44 @@
 package pro.upchain.wallet.ui.fragment;
 
-import android.arch.lifecycle.ViewModelProviders;
+import static pro.upchain.wallet.C.EXTRA_ADDRESS;
+import static pro.upchain.wallet.C.Key.WALLET;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.barlibrary.ImmersionBar;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
@@ -41,25 +60,9 @@ import pro.upchain.wallet.utils.BalanceUtils;
 import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
+import pro.upchain.wallet.view.ListViewForScrollView;
 import pro.upchain.wallet.viewmodel.TokensViewModel;
 import pro.upchain.wallet.viewmodel.TokensViewModelFactory;
-import com.gyf.barlibrary.ImmersionBar;
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-
-import static pro.upchain.wallet.C.EXTRA_ADDRESS;
-import static pro.upchain.wallet.C.Key.WALLET;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -71,20 +74,15 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
     TokensViewModelFactory tokensViewModelFactory;
     private TokensViewModel tokensViewModel;
 
-    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.common_toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.refreshLayout)
     TwinklingRefreshLayout refreshLayout;
 
-    @BindView(R.id.tv_property_label)
     TextView tvPropertToolbaryLabel;
 
-    @BindView(R.id.drawer)
     DrawerLayout drawer;
-    @BindView(R.id.lv_wallet)
     ListView lvWallet;
+
 
     private ETHWallet currEthWallet;
 
@@ -97,7 +95,6 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
     private int bannerHeight = 300;
     private View mIv;
 
-    @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
 
     private static final int QRCODE_SCANNER_REQUEST = 1100;
@@ -115,6 +112,13 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
     private TextView tvTolalAsset;
 
     private String currency;
+    private TextView tvPropertyLabel;
+    private LinearLayout llyMenu;
+    private Toolbar commonToolbar;
+    private FrameLayout frame;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private LinearLayout llyQrcodeScanner;
+    private LinearLayout llyCreateWallet;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,6 +137,9 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initDatas() {
+        if (recyclerView == null) {
+            recyclerView = getParentView().findViewById(R.id.recycler_view);
+        }
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         //设置布局管理器
@@ -142,21 +149,18 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         recyclerAdapter = new TokensAdapter(R.layout.list_item_property, new ArrayList<>());  //
 
         recyclerView.setAdapter(recyclerAdapter);
-        recyclerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        recyclerAdapter.setOnItemClickListener((adapter, view, position) -> {
 
-                Intent intent = new Intent(getActivity(), PropertyDetailActivity.class);
-                Token token = tokenItems.get(position);
+            Intent intent = new Intent(getActivity(), PropertyDetailActivity.class);
+            Token token = tokenItems.get(position);
 
-                intent.putExtra(C.EXTRA_BALANCE, token.balance);
-                intent.putExtra(C.EXTRA_ADDRESS, currEthWallet.getAddress());
-                intent.putExtra(C.EXTRA_CONTRACT_ADDRESS, token.tokenInfo.address);
-                intent.putExtra(C.EXTRA_SYMBOL, token.tokenInfo.symbol);
-                intent.putExtra(C.EXTRA_DECIMALS, token.tokenInfo.decimals);
+            intent.putExtra(C.EXTRA_BALANCE, token.balance);
+            intent.putExtra(EXTRA_ADDRESS, currEthWallet.getAddress());
+            intent.putExtra(C.EXTRA_CONTRACT_ADDRESS, token.tokenInfo.address);
+            intent.putExtra(C.EXTRA_SYMBOL, token.tokenInfo.symbol);
+            intent.putExtra(C.EXTRA_DECIMALS, token.tokenInfo.decimals);
 
-                startActivity(intent);
-            }
+            startActivity(intent);
         });
 
 
@@ -167,7 +171,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         tokensViewModel = ViewModelProviders.of(this.getActivity(), tokensViewModelFactory)
                 .get(TokensViewModel.class);
 
-        tokensViewModel.defaultWallet().observe(this,  this::showWallet);
+        tokensViewModel.defaultWallet().observe(this, this::showWallet);
 
 //        tokensViewModel.progress().observe(this, systemView::showProgress);
 //        tokensViewModel.error().observe(this, this::onError);
@@ -195,7 +199,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 }
             }
             if (!TextUtils.isEmpty(token.value)) {
-                sum  = sum.add(new BigDecimal(token.value));
+                sum = sum.add(new BigDecimal(token.value));
             }
 
         }
@@ -273,6 +277,9 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 }
             }
         });
+        llyMenu.setOnClickListener(this);
+        llyQrcodeScanner.setOnClickListener(this);
+        llyCreateWallet.setOnClickListener(this);
     }
 
     private void addHeaderView() {
@@ -283,11 +290,11 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         headView.findViewById(R.id.lly_add_token).setOnClickListener(this);
         headView.findViewById(R.id.lly_wallet_address).setOnClickListener(this);
         headView.findViewById(R.id.civ_wallet_logo).setOnClickListener(this);
-        tvWalletName = (TextView) headView.findViewById(R.id.tv_wallet_name);
-        tvWalletAddress =(TextView) headView.findViewById(R.id.tv_wallet_address);
-        tvTolalAssetValue = (TextView) headView.findViewById(R.id.tv_total_value);
+        tvWalletName =  headView.findViewById(R.id.tv_wallet_name);
+        tvWalletAddress =  headView.findViewById(R.id.tv_wallet_address);
+        tvTolalAssetValue =  headView.findViewById(R.id.tv_total_value);
 
-        tvTolalAsset = (TextView) headView.findViewById(R.id.tv_total_assets);
+        tvTolalAsset =  headView.findViewById(R.id.tv_total_assets);
         if (currency.equals("CNY")) {
             tvTolalAsset.setText(R.string.property_total_assets_cny);
         } else {
@@ -335,7 +342,8 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         });
     }
 
-    @OnClick({R.id.lly_menu, R.id.lly_qrcode_scanner, R.id.lly_create_wallet})
+//    @OnClick({R.id.lly_menu, R.id.lly_qrcode_scanner, R.id.lly_create_wallet})
+    @Override
     public void onClick(View view) {
         Intent intent = null;
         ETHWallet wallet = null;
@@ -357,7 +365,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
 //                tokensViewModel.showAddToken(this.getApplicationContext());
 
                 intent = new Intent(mContext, AddTokenActivity.class);
-                intent.putExtra(WALLET,  currEthWallet.getAddress());
+                intent.putExtra(WALLET, currEthWallet.getAddress());
                 startActivityForResult(intent, ADD_NEW_PROPERTY_REQUEST);
 
                 break;
@@ -368,6 +376,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 if (wallet == null) {
                     return;
                 }
+                System.out.printf("钱包地址 wallet:"+wallet.getAddress());
 
                 intent.putExtra(EXTRA_ADDRESS, wallet.getAddress());
                 startActivity(intent);
@@ -394,11 +403,11 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
 
     // 打开关闭DrawerLayout
     private void openOrCloseDrawerLayout() {
-        boolean drawerOpen = drawer.isDrawerOpen(Gravity.END);
+        boolean drawerOpen = drawer.isDrawerOpen(GravityCompat.END);
         if (drawerOpen) {
-            drawer.closeDrawer(Gravity.END);
+            drawer.closeDrawer(GravityCompat.END);
         } else {
-            drawer.openDrawer(Gravity.END);
+            drawer.openDrawer(GravityCompat.END);
         }
     }
 
@@ -412,7 +421,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 ToastUtils.showLongToast(scanResult);
 
                 Intent intent = new Intent(mContext, SendActivity.class);
-                intent.putExtra("scan_result", scanResult );
+                intent.putExtra("scan_result", scanResult);
 
                 startActivity(intent);
 
@@ -457,6 +466,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         return super.onCreateView(inflater, container, state);
+
     }
 
     @Override
@@ -468,5 +478,25 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
     public void onDestroy() {
         super.onDestroy();
         ImmersionBar.with(this).destroy();
+    }
+
+    @Override
+    public void initView() {
+        recyclerView = parentView.findViewById(R.id.recycler_view);
+        mToolbar = parentView.findViewById(R.id.common_toolbar);
+        refreshLayout = parentView.findViewById(R.id.refresh_layout);
+        tvPropertToolbaryLabel = parentView.findViewById(R.id.tv_property_label);
+        drawer = parentView.findViewById(R.id.drawer);
+        lvWallet = parentView.findViewById(R.id.lv_wallet);
+        swipeRefresh = parentView.findViewById(R.id.swipe_refresh_layout);
+
+
+        tvPropertyLabel = parentView.findViewById(R.id.tv_property_label);
+        llyMenu = parentView.findViewById(R.id.lly_menu);
+        commonToolbar = parentView.findViewById(R.id.common_toolbar);
+        frame = parentView.findViewById(R.id.frame);
+        swipeRefreshLayout = parentView.findViewById(R.id.swipe_refresh_layout);
+        llyQrcodeScanner =parentView. findViewById(R.id.lly_qrcode_scanner);
+        llyCreateWallet =parentView. findViewById(R.id.lly_create_wallet);
     }
 }

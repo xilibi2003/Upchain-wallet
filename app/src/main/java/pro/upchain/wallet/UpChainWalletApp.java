@@ -3,20 +3,22 @@ package pro.upchain.wallet;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.multidex.MultiDexApplication;
 
-import pro.upchain.wallet.domain.DaoMaster;
-import pro.upchain.wallet.domain.DaoSession;
-import pro.upchain.wallet.repository.RepositoryFactory;
-import pro.upchain.wallet.repository.SharedPreferenceRepository;
-import pro.upchain.wallet.utils.AppFilePath;
-import pro.upchain.wallet.utils.LogInterceptor;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.google.gson.Gson;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import io.realm.Realm;
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.repository.RepositoryFactory;
+import pro.upchain.wallet.repository.SharedPreferenceRepository;
+import pro.upchain.wallet.utils.AppFilePath;
+import pro.upchain.wallet.utils.LogInterceptor;
+import wallet.domain.DaoMaster;
+import wallet.domain.DaoSession;
 
 
 /**
@@ -47,6 +49,10 @@ public class UpChainWalletApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        System.loadLibrary("TrustWalletCore");
+        // 主要是添加下面这句代码
+        MultiDex.install(this);
+
         sInstance = this;
         init();
 
@@ -90,7 +96,7 @@ public class UpChainWalletApp extends MultiDexApplication {
     }
 
     public static RepositoryFactory repositoryFactory() {
-        return  repositoryFactory;
+        return repositoryFactory;
     }
 
 

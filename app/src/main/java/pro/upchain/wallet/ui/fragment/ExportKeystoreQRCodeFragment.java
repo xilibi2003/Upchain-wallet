@@ -22,7 +22,6 @@ import pro.upchain.wallet.utils.GlideImageLoader;
  */
 
 public class ExportKeystoreQRCodeFragment extends BaseFragment {
-    @BindView(R.id.iv_keystore)
     ImageView ivKeystore;
 
     String walletKeystore;
@@ -36,6 +35,11 @@ public class ExportKeystoreQRCodeFragment extends BaseFragment {
     public void attachView() {
         Bundle arguments = getArguments();
         walletKeystore = arguments.getString("walletKeystore");
+    }
+
+    @Override
+    public void initView() {
+        ivKeystore = parentView.findViewById(R.id.iv_keystore);
     }
 
     @Override
@@ -54,7 +58,7 @@ public class ExportKeystoreQRCodeFragment extends BaseFragment {
                             return QRCodeEncoder.syncEncodeQRCode(walletKeystore, BGAQRCodeUtil.dp2px(getSupportActivity()
                                     , 240), Color.parseColor("#000000"));
                         }
-                ).subscribe( bitmap ->  GlideImageLoader.loadBmpImage(ivKeystore, bitmap, -1) );
+                ).subscribe(bitmap -> GlideImageLoader.loadBmpImage(ivKeystore, bitmap, -1));
             }
         });
 

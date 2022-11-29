@@ -1,22 +1,13 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.base.BaseFragment;
-import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.ui.adapter.LoadWalletPageFragmentAdapter;
-import pro.upchain.wallet.ui.fragment.ImportKeystoreFragment;
-import pro.upchain.wallet.ui.fragment.ImportMnemonicFragment;
-import pro.upchain.wallet.ui.fragment.ImportPrivateKeyFragment;
-import pro.upchain.wallet.utils.UUi;
+import androidx.viewpager.widget.ViewPager;
+
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.TextWidthColorBar;
@@ -26,6 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.base.BaseFragment;
+import pro.upchain.wallet.ui.adapter.LoadWalletPageFragmentAdapter;
+import pro.upchain.wallet.ui.fragment.ImportKeystoreFragment;
+import pro.upchain.wallet.ui.fragment.ImportMnemonicFragment;
+import pro.upchain.wallet.ui.fragment.ImportPrivateKeyFragment;
+import pro.upchain.wallet.utils.UUi;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -34,15 +33,10 @@ import butterknife.BindView;
 
 public class ImportWalletActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     ImageView ivBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.indicator_view)
     ScrollIndicatorView indicatorView;
-    @BindView(R.id.vp_load_wallet)
     ViewPager vpLoadWallet;
 
     boolean firstAccount;
@@ -50,6 +44,16 @@ public class ImportWalletActivity extends BaseActivity {
     private List<BaseFragment> fragmentList = new ArrayList<>();
     private LoadWalletPageFragmentAdapter loadWalletPageFragmentAdapter;
     private IndicatorViewPager indicatorViewPager;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        indicatorView = findViewById(R.id.indicator_view);
+        vpLoadWallet = findViewById(R.id.vp_load_wallet);
+    }
 
     @Override
     public int getLayoutId() {

@@ -6,7 +6,7 @@
 
     <dimen name="small_margin">4dp</dimen>
 	<dimen name="normal_margin">8dp</dimen>
-	<dimen name="big_margin">16dp</dimen>
+	<dimen name="big_margin">14dp</dimen>
 
     <dimen name="intro_height">340dp</dimen>
     <dimen name="intro_img_size">200dp</dimen>

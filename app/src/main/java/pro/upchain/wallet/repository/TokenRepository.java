@@ -104,7 +104,6 @@ public class TokenRepository implements TokenRepositoryType {
                                     BigDecimal decimalDivisor = new BigDecimal(Math.pow(10, items[i].decimals));
                                     BigDecimal ethBalance = balance.divide(decimalDivisor);
                                     if (items[i].decimals > 4) {
-
                                         result[i] = new Token(items[i], ethBalance.setScale(4, RoundingMode.CEILING).toPlainString());
                                     } else {
                                         result[i] = new Token(items[i], ethBalance.setScale(items[i].decimals, RoundingMode.CEILING).toPlainString());
@@ -169,7 +168,7 @@ public class TokenRepository implements TokenRepositoryType {
 
 
     private BigDecimal getBalance(String walletAddress, TokenInfo tokenInfo) throws Exception {
-        org.web3j.abi.datatypes.Function function = balanceOf(walletAddress);
+        Function function = balanceOf(walletAddress);
         String responseValue = callSmartContractFunction(function, tokenInfo.address, walletAddress);
 
         List<Type> response = FunctionReturnDecoder.decode(
@@ -181,15 +180,15 @@ public class TokenRepository implements TokenRepositoryType {
         }
     }
 
-    private static org.web3j.abi.datatypes.Function balanceOf(String owner) {
-        return new org.web3j.abi.datatypes.Function(
+    private static Function balanceOf(String owner) {
+        return new Function(
                 "balanceOf",
                 Collections.singletonList(new Address(owner)),
                 Collections.singletonList(new TypeReference<Uint256>() {}));
     }
 
     private String callSmartContractFunction(
-            org.web3j.abi.datatypes.Function function, String contractAddress, String walletAddress) throws Exception {
+            Function function, String contractAddress, String walletAddress) throws Exception {
         String encodedFunction = FunctionEncoder.encode(function);
 
         org.web3j.protocol.core.methods.response.EthCall response = web3j.ethCall(

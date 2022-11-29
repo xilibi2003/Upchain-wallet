@@ -17,6 +17,7 @@ public class NetworkInfo {
             String etherscanUrl,
             int chainId,
             boolean isMainNetwork) {
+
         this.name = name;
         this.symbol = symbol;
         this.rpcServerUrl = rpcServerUrl;

@@ -13,6 +13,7 @@ import pro.upchain.wallet.base.BaseFragment;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.CreateWalletInteract;
 import pro.upchain.wallet.utils.ETHWalletUtils;
+import pro.upchain.wallet.utils.Hex;
 import pro.upchain.wallet.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -25,23 +26,14 @@ import butterknife.OnClick;
  */
 
 public class ImportPrivateKeyFragment extends BaseFragment {
-    @BindView(R.id.et_private_key)
     EditText etPrivateKey;
-    @BindView(R.id.et_wallet_pwd)
     EditText etWalletPwd;
-    @BindView(R.id.et_wallet_pwd_again)
     EditText etWalletPwdAgain;
-    @BindView(R.id.et_wallet_pwd_reminder_info)
     EditText etWalletPwdReminderInfo;
-    @BindView(R.id.cb_agreement)
     CheckBox cbAgreement;
-    @BindView(R.id.tv_agreement)
     TextView tvAgreement;
-    @BindView(R.id.lly_wallet_agreement)
     LinearLayout llyWalletAgreement;
-    @BindView(R.id.btn_load_wallet)
     TextView btnLoadWallet;
-    @BindView(R.id.btn_help)
     TextView btnHelp;
 
     CreateWalletInteract createWalletInteract;
@@ -49,6 +41,20 @@ public class ImportPrivateKeyFragment extends BaseFragment {
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_load_wallet_by_private_key;
+    }
+
+    @Override
+    public void initView() {
+
+        etPrivateKey = parentView. findViewById(R.id.et_private_key);
+        etWalletPwd = parentView. findViewById(R.id.et_wallet_pwd);
+        etWalletPwdAgain = parentView. findViewById(R.id.et_wallet_pwd_again);
+        etWalletPwdReminderInfo = parentView. findViewById(R.id.et_wallet_pwd_reminder_info);
+        cbAgreement =parentView.  findViewById(R.id.cb_agreement);
+        tvAgreement = parentView. findViewById(R.id.tv_agreement);
+        llyWalletAgreement = parentView. findViewById(R.id.lly_wallet_agreement);
+        btnLoadWallet = parentView. findViewById(R.id.btn_load_wallet);
+        btnHelp = parentView. findViewById(R.id.btn_help);
     }
 
     @Override
@@ -102,7 +108,7 @@ public class ImportPrivateKeyFragment extends BaseFragment {
     }
 
     private boolean verifyInfo(String privateKey, String walletPwd, String confirmPwd, String pwdReminder) {
-        if (TextUtils.isEmpty(privateKey) || ETHWalletUtils.isTooSimplePrivateKey(walletPwd)) {
+        if (TextUtils.isEmpty(privateKey) || ETHWalletUtils.isTooSimplePrivateKey(privateKey)) {
             ToastUtils.showToast(R.string.load_wallet_by_private_key_input_tip);
             return false;
         } else if (TextUtils.isEmpty(walletPwd)) {

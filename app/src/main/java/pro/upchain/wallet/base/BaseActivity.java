@@ -17,19 +17,20 @@ package pro.upchain.wallet.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.view.loadding.CustomDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.gyf.barlibrary.ImmersionBar;
 
-
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.view.loadding.CustomDialog;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -43,7 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context mContext;
     private CustomDialog dialog;//进度条
-    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         mContext = this;
         ImmersionBar.with(this).init();
-        unbinder = ButterKnife.bind(this);
-
-        mCommonToolbar = ButterKnife.findById(this, R.id.common_toolbar);
+        initView();
+        mCommonToolbar = findViewById(R.id.common_toolbar);
         if (mCommonToolbar != null) {
             ImmersionBar.with(this)
                     .titleBar(mCommonToolbar, false)
@@ -77,6 +76,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         configViews();
     }
 
+    public abstract void initView();
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -85,7 +86,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
         ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
         dismissDialog();
     }

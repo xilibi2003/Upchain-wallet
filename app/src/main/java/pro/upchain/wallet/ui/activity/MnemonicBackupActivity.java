@@ -2,7 +2,11 @@ package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -17,18 +21,24 @@ import butterknife.OnClick;
  */
 
 
-
 // 提示 抄下钱包助记词 界面
 
-public class MnemonicBackupActivity extends BaseActivity {
+public class MnemonicBackupActivity extends BaseActivity implements View.OnClickListener {
     private static final int VERIFY_MNEMONIC_BACKUP_REQUEST = 1101;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_mnemonic)
     TextView tvMnemonic;
     private String walletMnemonic;
 
     private long walletId;
+    private TextView btnNext;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        tvMnemonic = findViewById(R.id.tv_mnemonic);
+        btnNext = findViewById(R.id.btn_next);
+    }
 
     @Override
     public int getLayoutId() {
@@ -53,10 +63,10 @@ public class MnemonicBackupActivity extends BaseActivity {
 
     @Override
     public void configViews() {
-
+        btnNext.setOnClickListener(this);
     }
 
-    @OnClick(R.id.btn_next)
+    @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, VerifyMnemonicBackupActivity.class);
         intent.putExtra("walletId", walletId);
@@ -73,5 +83,7 @@ public class MnemonicBackupActivity extends BaseActivity {
             }
         }
     }
+
+
 }
 

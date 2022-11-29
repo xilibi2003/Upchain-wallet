@@ -1,11 +1,12 @@
 package pro.upchain.wallet.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import pro.upchain.wallet.R;
 

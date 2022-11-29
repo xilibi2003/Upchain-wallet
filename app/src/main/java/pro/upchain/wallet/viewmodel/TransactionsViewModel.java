@@ -1,10 +1,12 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.text.TextUtils;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+import java.util.Map;
 
+import io.reactivex.disposables.Disposable;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
@@ -12,15 +14,6 @@ import pro.upchain.wallet.interact.FetchTransactionsInteract;
 import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.utils.LogUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 
 public class TransactionsViewModel extends BaseViewModel {
     private static final long FETCH_TRANSACTIONS_INTERVAL = 1;
@@ -50,7 +43,7 @@ public class TransactionsViewModel extends BaseViewModel {
     protected void onCleared() {
         super.onCleared();
 
-        transactionDisposable.dispose();
+//        transactionDisposable.dispose();
 //        balanceDisposable.dispose();
     }
 
@@ -79,13 +72,13 @@ public class TransactionsViewModel extends BaseViewModel {
     }
 
     public void fetchTransactions() {
-        progress.postValue(true);
-        transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.MINUTES)
-            .doOnNext(l ->
-                disposable = fetchTransactionsInteract
-                        .fetch(defaultWallet.getValue().address,  this.tokenAddr )
-                        .subscribe(this::onTransactions, this::onError))
-            .subscribe();
+//        progress.postValue(true);
+//        transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.MINUTES)
+//            .doOnNext(l ->
+//                disposable = fetchTransactionsInteract
+//                        .fetch(defaultWallet.getValue().address,  this.tokenAddr )
+//                        .subscribe(this::onTransactions, this::onError))
+//            .subscribe();
     }
 
     public void getBalance() {
@@ -107,25 +100,25 @@ public class TransactionsViewModel extends BaseViewModel {
         LogUtils.d("onDefaultWallet");
         defaultWallet.setValue(wallet);
 //        getBalance();
-        fetchTransactions();
+//        fetchTransactions();
     }
 
     private void onTransactions(Transaction[] transactions) {
-        progress.postValue(false);
-
-        // ETH transfer ingore the contract call
-        if (TextUtils.isEmpty(tokenAddr)) {
-            ArrayList<Transaction> transactionList = new ArrayList<>();
-            LogUtils.d("size:" + transactionList.size());
-            for (Transaction t: transactions) {
-                if (t.operations == null || t.operations.length == 0) {
-                    transactionList.add(t);
-                }
-            }
-            this.transactions.postValue(transactionList);
-        } else {
-            this.transactions.postValue(Arrays.asList(transactions));
-        }
+//        progress.postValue(false);
+//
+//        // ETH transfer ingore the contract call
+//        if (TextUtils.isEmpty(tokenAddr)) {
+//            ArrayList<Transaction> transactionList = new ArrayList<>();
+//            LogUtils.d("size:" + transactionList.size());
+//            for (Transaction t: transactions) {
+//                if (t.operations == null || t.operations.length == 0) {
+//                    transactionList.add(t);
+//                }
+//            }
+//            this.transactions.postValue(transactionList);
+//        } else {
+//            this.transactions.postValue(Arrays.asList(transactions));
+//        }
 
 
     }

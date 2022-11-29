@@ -1,21 +1,20 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
 import pro.upchain.wallet.interact.FetchWalletInteract;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class TransactionDetailViewModel extends BaseViewModel {
 

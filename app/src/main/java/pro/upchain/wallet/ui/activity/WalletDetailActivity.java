@@ -9,6 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -19,51 +24,29 @@ import pro.upchain.wallet.utils.ToastUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.view.InputPwdDialog;
 import pro.upchain.wallet.view.PrivateKeyDerivetDialog;
-import com.gyf.barlibrary.ImmersionBar;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
-
  */
-public class WalletDetailActivity extends BaseActivity {
+public class WalletDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int WALLET_DETAIL_RESULT = 2201;
     private static final int MODIFY_PASSWORD_REQUEST = 1102;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.lly_back)
     LinearLayout llyBack;
-    @BindView(R.id.iv_btn)
     TextView ivBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
-    @BindView(R.id.civ_wallet)
     CircleImageView civWallet;
-    @BindView(R.id.tv_eth_balance)
     TextView tvEthBalance;
-    @BindView(R.id.lly_wallet_property)
     LinearLayout llyWalletProperty;
-    @BindView(R.id.tv_wallet_address)
     TextView tvWalletAddress;
-    @BindView(R.id.et_wallet_name)
     EditText etWalletName;
-    @BindView(R.id.rl_modify_pwd)
     RelativeLayout rlModifyPwd;
-    @BindView(R.id.rl_derive_private_key)
     RelativeLayout rlDerivePrivateKey;
-    @BindView(R.id.rl_derive_keystore)
     RelativeLayout rlDeriveKeystore;
-    @BindView(R.id.btn_delete_wallet)
     TextView btnDeleteWallet;
-    @BindView(R.id.btn_mnemonic_backup)
     TextView btnMnemonicBackup;
     private long walletId;
     private String walletPwd;
@@ -75,6 +58,26 @@ public class WalletDetailActivity extends BaseActivity {
     private PrivateKeyDerivetDialog privateKeyDerivetDialog;
     private boolean fromList;
     private ModifyWalletInteract modifyWalletInteract;
+
+
+    @Override
+    public void initView() {
+        llyBack = findViewById(R.id.lly_back);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        rlTitle = findViewById(R.id.rl_title);
+        civWallet = findViewById(R.id.civ_wallet);
+        tvEthBalance = findViewById(R.id.tv_eth_balance);
+        tvTitle = findViewById(R.id.tv_title);
+        btnMnemonicBackup = findViewById(R.id.btn_mnemonic_backup);
+        btnDeleteWallet = findViewById(R.id.btn_delete_wallet);
+        rlDeriveKeystore = findViewById(R.id.rl_derive_keystore);
+        rlDerivePrivateKey = findViewById(R.id.rl_derive_private_key);
+        rlModifyPwd = findViewById(R.id.rl_modify_pwd);
+        etWalletName = findViewById(R.id.et_wallet_name);
+        tvWalletAddress = findViewById(R.id.tv_wallet_address);
+        llyWalletProperty = findViewById(R.id.lly_wallet_property);
+    }
 
 
     @Override
@@ -99,19 +102,6 @@ public class WalletDetailActivity extends BaseActivity {
         walletIsBackup = intent.getBooleanExtra("walletIsBackup", false);
         walletMnemonic = intent.getStringExtra("walletMnemonic");
         fromList = intent.getBooleanExtra("fromList", false);
-    }
-
-    @Override
-    public void configViews() {
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .statusBarDarkFont(true, 1f)
-                .init();
-
-        tvTitle.setText(walletName);
-        etWalletName.setText(walletName);
-        tvWalletAddress.setText(walletAddress);
-
     }
 
 
@@ -175,9 +165,25 @@ public class WalletDetailActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_btn, R.id.rl_modify_pwd, R.id.btn_mnemonic_backup
-            , R.id.btn_delete_wallet, R.id.rl_derive_private_key
-            , R.id.rl_derive_keystore})
+    @Override
+    public void configViews() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .statusBarDarkFont(true, 1f)
+                .init();
+
+        tvTitle.setText(walletName);
+        etWalletName.setText(walletName);
+        tvWalletAddress.setText(walletAddress);
+        rlBtn.setOnClickListener(this);
+        rlModifyPwd.setOnClickListener(this);
+        btnMnemonicBackup.setOnClickListener(this);
+        btnDeleteWallet.setOnClickListener(this);
+        rlDeriveKeystore.setOnClickListener(this);
+        rlDerivePrivateKey.setOnClickListener(this);
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_btn:

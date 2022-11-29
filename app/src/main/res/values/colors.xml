@@ -5,6 +5,8 @@
     <color name="colorAccent">#19b6ed</color>
 
     <color name="white">#ffffffff</color>
+    <color name="black">#313849</color>
+
     <color name="property_drawer_scrim_bg_color">#55ffffff</color>
 
     <!--通用背景色-->
@@ -47,10 +49,23 @@
     <color name="bottom_dialog_title">#89000000</color>
     <color name="bottom_dialog_item">#dd000000</color>
 
-    <color name="text_black">#2f2f2f</color>
-    <color name="cancel_red">#db393a</color>
-
     <color name="green">#2fbb4f</color>
     <color name="red">#f7506c</color>
+
+    <color name="text_black">#2f2f2f</color>
+    <color name="light_gray">#9b9b9b</color>
+    <color name="super_light_grey">#ececec</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="button_disabled">#b4cd99</color>
+    <color name="colorPrimaryLight">#AA54C1E3</color>
+
+    <color name="holo_blue">#FF33b5e5</color>
+
+    <color name="disabled_color">#888888</color>
+    <color name="cancel_red">#db393a</color>
+    <color name="text_dark_gray">#4a4a4a</color>
+    <color name="button_green">#69c800</color>
+    <color name="white20">#32FFFFFF</color>
 
 </resources>

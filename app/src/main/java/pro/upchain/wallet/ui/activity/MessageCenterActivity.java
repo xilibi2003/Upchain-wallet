@@ -21,14 +21,19 @@ import butterknife.BindView;
 
 
 public class MessageCenterActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.lv_message_center)
     ListView lvMessageCenter;
     private List<String> strings;
     private MessageCenterAdapter drawerWalletAdapter;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        rlBtn = findViewById(R.id.rl_btn);
+        lvMessageCenter = findViewById(R.id.lv_message_center);
+    }
 
     @Override
     public int getLayoutId() {

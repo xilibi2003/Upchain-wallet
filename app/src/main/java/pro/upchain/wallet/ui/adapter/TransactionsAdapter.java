@@ -1,23 +1,24 @@
 package pro.upchain.wallet.ui.adapter;
 
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import static pro.upchain.wallet.C.ETHER_DECIMALS;
+
 import android.text.TextUtils;
-import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.entity.Transaction;
-import pro.upchain.wallet.entity.TransactionOperation;
-import pro.upchain.wallet.utils.LogUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pro.upchain.wallet.C.ETHER_DECIMALS;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.entity.Transaction;
+import pro.upchain.wallet.entity.TransactionOperation;
+import pro.upchain.wallet.utils.LogUtils;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

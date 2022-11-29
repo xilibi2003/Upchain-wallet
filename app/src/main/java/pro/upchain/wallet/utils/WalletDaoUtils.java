@@ -1,13 +1,12 @@
 package pro.upchain.wallet.utils;
 
 import android.text.TextUtils;
-import android.widget.TextView;
+
+import java.util.List;
 
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.domain.ETHWalletDao;
-
-import java.util.List;
+import wallet.domain.ETHWalletDao;
 
 
 /**

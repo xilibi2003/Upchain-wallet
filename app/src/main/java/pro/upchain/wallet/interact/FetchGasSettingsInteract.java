@@ -1,15 +1,15 @@
 package pro.upchain.wallet.interact;
 
 
-import android.arch.lifecycle.MutableLiveData;
+import static pro.upchain.wallet.C.GAS_LIMIT_MIN;
+import static pro.upchain.wallet.C.GAS_PER_BYTE;
+
+import androidx.lifecycle.MutableLiveData;
 
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.methods.request.Transaction;
-import org.web3j.protocol.core.methods.response.EthEstimateGas;
 import org.web3j.protocol.core.methods.response.EthGasPrice;
 import org.web3j.protocol.http.HttpService;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.concurrent.TimeUnit;
@@ -26,13 +26,11 @@ import pro.upchain.wallet.repository.SharedPreferenceRepository;
 import pro.upchain.wallet.utils.BalanceUtils;
 import pro.upchain.wallet.utils.LogUtils;
 
-import static pro.upchain.wallet.C.GAS_LIMIT_MIN;
-import static pro.upchain.wallet.C.GAS_PER_BYTE;
-
 public class FetchGasSettingsInteract {
 
 
     private final EthereumNetworkRepository networkRepository;
+    private final SharedPreferenceRepository repository;
 
     private BigInteger cachedGasPrice;
 
@@ -45,6 +43,7 @@ public class FetchGasSettingsInteract {
     private final static long FETCH_GAS_PRICE_INTERVAL = 60;
 
     public FetchGasSettingsInteract(SharedPreferenceRepository repository, EthereumNetworkRepository networkRepository) {
+        this.repository = repository;
         this.networkRepository = networkRepository;
 
         this.currentChainId = networkRepository.getDefaultNetwork().chainId;
@@ -55,10 +54,7 @@ public class FetchGasSettingsInteract {
                 .doOnNext(l ->
                         fetchGasPriceByWeb3()
                 ).subscribe();
-    }
 
-    public void clean() {
-        gasSettingsDisposable.dispose();
     }
 
 
@@ -87,7 +83,7 @@ public class FetchGasSettingsInteract {
     }
 
     private void fetchGasPriceByWeb3() {
-        LogUtils.d("fetchGasPriceByWeb3 start");
+
         final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
 
         try {
@@ -150,21 +146,6 @@ public class FetchGasSettingsInteract {
         BigInteger estimate = bytePrice.multiply(dataLength).add(txMin);
         estimate = estimate.divide(roundingFactor).add(BigInteger.ONE).multiply(roundingFactor);
         return estimate;
-    }
-
-    public BigInteger getTransactionGasLimit(Transaction transaction) {
-
-        final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
-        try {
-            EthEstimateGas ethEstimateGas = web3j.ethEstimateGas(transaction).send();
-            if (ethEstimateGas.hasError()){
-                throw new RuntimeException(ethEstimateGas.getError().getMessage());
-            }
-            return ethEstimateGas.getAmountUsed();
-        } catch (IOException e) {
-            throw new RuntimeException("net error");
-        }
-
     }
 
 }

@@ -1,12 +1,13 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -24,21 +25,26 @@ import butterknife.OnClick;
  */
 
 
-public class TransactionsActivity extends BaseActivity {
+public class TransactionsActivity extends BaseActivity implements View.OnClickListener{
     private static final int SWITCH_WALLET_REQUEST = 1101;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     ImageView ivBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.lv_trading_record)
     ListView lvTradingRecord;
-    @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
 
     private List<String> strings;
     private MessageCenterAdapter drawerWalletAdapter;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        lvTradingRecord = findViewById(R.id.lv_trading_record);
+        swipeRefresh = findViewById(R.id.swipeRefresh);
+    }
 
     @Override
     public int getLayoutId() {
@@ -62,9 +68,10 @@ public class TransactionsActivity extends BaseActivity {
     @Override
     public void configViews() {
 //        swipeRefresh.setRefreshing(true);
+        rlBtn.setOnClickListener(this);
     }
 
-    @OnClick(R.id.rl_btn)
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_btn:

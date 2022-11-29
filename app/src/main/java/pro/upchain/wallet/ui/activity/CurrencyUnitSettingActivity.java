@@ -3,6 +3,7 @@ package pro.upchain.wallet.ui.activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import pro.upchain.wallet.R;
@@ -18,18 +19,22 @@ import pro.upchain.wallet.repository.SharedPreferenceRepository;
  */
 
 public class CurrencyUnitSettingActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     TextView tvBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.iv_cny)
     ImageView ivCNY;
-    @BindView(R.id.iv_usd)
     ImageView ivUSD;
     // 0为CNY 1 USD
     private int currencyUnit = 0;
+
+    @Override
+    public void initView() {
+        tvTitle = findViewById(R.id.tv_title);
+        tvBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        ivCNY = findViewById(R.id.iv_cny);
+        ivUSD = findViewById(R.id.iv_usd);
+    }
 
     @Override
     public int getLayoutId() {

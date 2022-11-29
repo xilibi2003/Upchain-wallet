@@ -1,20 +1,16 @@
 package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
-import pro.upchain.wallet.ui.adapter.VerifyBackupMnemonicWordsAdapter;
-import pro.upchain.wallet.ui.adapter.VerifyBackupSelectedMnemonicWordsAdapter;
-import pro.upchain.wallet.utils.LogUtils;
-import pro.upchain.wallet.utils.ToastUtils;
-import pro.upchain.wallet.utils.WalletDaoUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -25,6 +21,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
+import pro.upchain.wallet.ui.adapter.VerifyBackupMnemonicWordsAdapter;
+import pro.upchain.wallet.ui.adapter.VerifyBackupSelectedMnemonicWordsAdapter;
+import pro.upchain.wallet.utils.LogUtils;
+import pro.upchain.wallet.utils.ToastUtils;
+import pro.upchain.wallet.utils.WalletDaoUtils;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -34,13 +38,10 @@ import butterknife.OnClick;
 
 // 验证 助记词是否 正确界面
 
-public class VerifyMnemonicBackupActivity extends BaseActivity {
+public class VerifyMnemonicBackupActivity extends BaseActivity implements View.OnClickListener{
     private static final int VERIFY_SUCCESS_RESULT = 2202;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.rv_selected)
     RecyclerView rvSelected;
-    @BindView(R.id.rv_mnemonic)
     RecyclerView rvMnemonic;
     private String walletMnemonic;
 
@@ -51,6 +52,17 @@ public class VerifyMnemonicBackupActivity extends BaseActivity {
     private VerifyBackupMnemonicWordsAdapter verifyBackupMenmonicWordsAdapter;
     private VerifyBackupSelectedMnemonicWordsAdapter verifyBackupSelectedMnemonicWordsAdapter;
     private long walletId;
+    private TextView btnConfirm;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        rvSelected = findViewById(R.id.rv_selected);
+        rvMnemonic = findViewById(R.id.rv_mnemonic);
+
+        btnConfirm = findViewById(R.id.btn_confirm);
+    }
 
     @Override
     public int getLayoutId() {
@@ -124,10 +136,11 @@ public class VerifyMnemonicBackupActivity extends BaseActivity {
             }
 
         });
+        btnConfirm.setOnClickListener(this);
 
     }
 
-    @OnClick(R.id.btn_confirm)
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_confirm:

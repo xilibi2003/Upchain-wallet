@@ -3,8 +3,12 @@ package pro.upchain.wallet.ui.activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -23,7 +27,7 @@ import butterknife.OnClick;
  * WeiXin: xlbxiong
  */
 
-public class WalletMangerActivity extends BaseActivity {
+public class WalletMangerActivity extends BaseActivity implements View.OnClickListener{
     private static final int CREATE_WALLET_REQUEST = 1101;
     private static final int WALLET_DETAIL_REQUEST = 1102;
     @BindView(R.id.lv_wallet)
@@ -33,6 +37,18 @@ public class WalletMangerActivity extends BaseActivity {
     private List<ETHWallet> walletList;
     private WalletManagerAdapter walletManagerAdapter;
     private FetchWalletInteract fetchWalletInteract;
+    private LinearLayout llyCreateWallet;
+    private LinearLayout llyLoadWallet;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        lvWallet = findViewById(R.id.lv_wallet);
+
+        llyCreateWallet = findViewById(R.id.lly_create_wallet);
+        llyLoadWallet = findViewById(R.id.lly_load_wallet);
+    }
 
     @Override
     public int getLayoutId() {
@@ -78,9 +94,12 @@ public class WalletMangerActivity extends BaseActivity {
                 startActivityForResult(intent, WALLET_DETAIL_REQUEST);
             }
         });
+        llyCreateWallet.setOnClickListener(this);
+        llyLoadWallet.setOnClickListener(this);
+
     }
 
-    @OnClick({R.id.lly_create_wallet, R.id.lly_load_wallet})
+    @Override
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {

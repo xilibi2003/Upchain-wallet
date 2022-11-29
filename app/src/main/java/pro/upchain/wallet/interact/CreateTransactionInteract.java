@@ -6,8 +6,6 @@ import org.web3j.crypto.Sign;
 import org.web3j.crypto.TransactionEncoder;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.rlp.RlpEncoder;
@@ -25,6 +23,7 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import pro.upchain.wallet.domain.ETHWallet;
+import pro.upchain.wallet.entity.TransactionData;
 import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.repository.TokenRepository;
 import pro.upchain.wallet.utils.LogUtils;
@@ -110,6 +109,66 @@ public class CreateTransactionInteract {
                                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+
+    public Single<TransactionData> createWithSig(ETHWallet from, String to, BigInteger subunitAmount, BigInteger gasPrice, BigInteger gasLimit, String data, String pwd)
+    {
+        return createTransactionWithSig(from, to, subunitAmount, gasPrice, gasLimit, data, pwd)
+                                .subscribeOn(Schedulers.computation())
+                                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<TransactionData> createWithSig(ETHWallet from, BigInteger gasPrice, BigInteger gasLimit, String data, String pwd)
+    {
+        return createTransactionWithSig(from, gasPrice, gasLimit, data, pwd)
+                                .subscribeOn(Schedulers.computation())
+                                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public Single<TransactionData> createTransactionWithSig(ETHWallet from, String toAddress, BigInteger subunitAmount, BigInteger gasPrice, BigInteger gasLimit, String data, String password) {
+
+        final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
+
+        TransactionData txData = new TransactionData();
+
+        return networkRepository.getLastTransactionNonce(web3j, from.address)
+                .flatMap(nonce -> getRawTransaction(nonce, gasPrice, gasLimit,toAddress, subunitAmount,  data))
+                .flatMap(rawTx -> signEncodeRawTransaction(rawTx, password, from, networkRepository.getDefaultNetwork().chainId))
+                .flatMap(signedMessage -> Single.fromCallable( () -> {
+                    txData.signature = Numeric.toHexString(signedMessage);
+                    EthSendTransaction raw = web3j
+                            .ethSendRawTransaction(Numeric.toHexString(signedMessage))
+                            .send();
+                    if (raw.hasError()) {
+                        throw new Exception(raw.getError().getMessage());
+                    }
+                    txData.txHash = raw.getTransactionHash();
+                    return txData;
+                })).subscribeOn(Schedulers.io());
+    }
+
+
+    public Single<TransactionData> createTransactionWithSig(ETHWallet from, BigInteger gasPrice, BigInteger gasLimit, String data, String password) {
+
+        final Web3j web3j = Web3j.build(new HttpService(networkRepository.getDefaultNetwork().rpcServerUrl));
+
+        TransactionData txData = new TransactionData();
+
+        return networkRepository.getLastTransactionNonce(web3j, from.address)
+                .flatMap(nonce -> getRawTransaction(nonce, gasPrice, gasLimit, BigInteger.ZERO, data))
+                .flatMap(rawTx -> signEncodeRawTransaction(rawTx, password, from, networkRepository.getDefaultNetwork().chainId))
+                .flatMap(signedMessage -> Single.fromCallable( () -> {
+                    txData.signature = Numeric.toHexString(signedMessage);
+                    EthSendTransaction raw = web3j
+                            .ethSendRawTransaction(Numeric.toHexString(signedMessage))
+                            .send();
+                    if (raw.hasError()) {
+                        throw new Exception(raw.getError().getMessage());
+                    }
+                    txData.txHash = raw.getTransactionHash();
+                    return txData;
+                })).subscribeOn(Schedulers.io());
+    }
 
     // https://github.com/web3j/web3j/issues/208
     // https://ethereum.stackexchange.com/questions/17708/solidity-ecrecover-and-web3j-sign-signmessage-are-not-compatible-is-it

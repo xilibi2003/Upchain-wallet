@@ -1,14 +1,15 @@
 package pro.upchain.wallet.ui.adapter;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
 
 import java.util.Collections;
 import java.util.List;
+
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.domain.VerifyMnemonicWordTag;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro

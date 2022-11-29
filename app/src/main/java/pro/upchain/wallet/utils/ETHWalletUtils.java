@@ -1,10 +1,9 @@
 package pro.upchain.wallet.utils;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pro.upchain.wallet.domain.ETHWallet;
 
 import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicKey;
@@ -26,11 +25,13 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
 
+import pro.upchain.wallet.domain.ETHWallet;
+
 /**
  * 以太坊钱包创建工具类
  */
 
-public class ETHWalletUtils {
+public class    ETHWalletUtils {
 
     private static ObjectMapper objectMapper = ObjectMapperFactory.getObjectMapper();
     /**
@@ -160,7 +161,7 @@ public class ETHWalletUtils {
     private static ETHWallet generateWallet(String walletName, String pwd, ECKeyPair ecKeyPair) {
         WalletFile keyStoreFile;
         try {
-            keyStoreFile = Wallet.create(pwd, ecKeyPair, 1024, 1); // WalletUtils. .generateNewWalletFile();
+            keyStoreFile = Wallet.create(pwd, ecKeyPair, 1024, 1); // WalletUtils.generateNewWalletFile();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -190,7 +191,7 @@ public class ETHWalletUtils {
         ethWallet.setName(walletName);
         ethWallet.setAddress(Keys.toChecksumAddress(keyStoreFile.getAddress()));
         ethWallet.setKeystorePath(destination.getAbsolutePath());
-        ethWallet.setPassword(Md5Utils.md5(pwd));
+        ethWallet.setPassword(pwd);
         return ethWallet;
     }
 
@@ -238,11 +239,10 @@ public class ETHWalletUtils {
 
 
     public static boolean isTooSimplePrivateKey(String privateKey) {
-
-        if (Numeric.toBigInt(privateKey).intValue() < 100000000) {
+        if (privateKey.length() < 10) {
             return true;
         } else {
-            return true;
+            return false;
         }
 
     }

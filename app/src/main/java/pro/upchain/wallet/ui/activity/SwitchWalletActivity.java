@@ -2,6 +2,8 @@ package pro.upchain.wallet.ui.activity;
 
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,12 +23,17 @@ import butterknife.BindView;
 
 
 public class SwitchWalletActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.lv_wallet)
     ListView lvWallet;
     private SwitchWalletAdapter switchWalletAdapter;
     private List<String> strings;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        lvWallet = findViewById(R.id.lv_wallet);
+    }
 
     @Override
     public int getLayoutId() {

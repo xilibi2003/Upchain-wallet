@@ -1,17 +1,28 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
+import static pro.upchain.wallet.C.EXTRA_ADDRESS;
+import static pro.upchain.wallet.C.Key.TRANSACTION;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.barlibrary.ImmersionBar;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
@@ -22,17 +33,6 @@ import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 import pro.upchain.wallet.viewmodel.TransactionsViewModel;
 import pro.upchain.wallet.viewmodel.TransactionsViewModelFactory;
-import com.gyf.barlibrary.ImmersionBar;
-
-import java.util.Arrays;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
-
-import static pro.upchain.wallet.C.EXTRA_ADDRESS;
-import static pro.upchain.wallet.C.Key.TRANSACTION;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -40,7 +40,7 @@ import static pro.upchain.wallet.C.Key.TRANSACTION;
  */
 
 
-public class PropertyDetailActivity extends BaseActivity {
+public class PropertyDetailActivity extends BaseActivity implements View.OnClickListener{
 
     TransactionsViewModelFactory transactionsViewModelFactory;
     private TransactionsViewModel viewModel;
@@ -56,19 +56,33 @@ public class PropertyDetailActivity extends BaseActivity {
 
     SwipeRefreshLayout refreshLayout;
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
 
-    @BindView(R.id.tv_amount)
     TextView tvAmount;
 
     List<Transaction> transactionLists;
+    private LinearLayout llyBack;
+    private RecyclerView list;
+    private LinearLayout llyTransfer;
+    private LinearLayout llyGathering;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void initView() {
+        tvTitle=findViewById(R.id.tv_title);
+        tvAmount=findViewById(R.id.tv_amount);
+
+        llyBack = findViewById(R.id.lly_back);
+        list = findViewById(R.id.list);
+        refreshLayout = findViewById(R.id.refresh_layout);
+        llyTransfer = findViewById(R.id.lly_transfer);
+        llyGathering = findViewById(R.id.lly_gathering);
     }
 
     @Override
@@ -152,7 +166,9 @@ public class PropertyDetailActivity extends BaseActivity {
         });
 
         refreshLayout.setOnRefreshListener(viewModel::fetchTransactions);
-
+        llyBack.setOnClickListener(this);
+        llyTransfer.setOnClickListener(this);
+        llyGathering.setOnClickListener(this);
     }
 
 
@@ -172,7 +188,7 @@ public class PropertyDetailActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.lly_back, R.id.lly_transfer, R.id.lly_gathering})
+    @Override
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
