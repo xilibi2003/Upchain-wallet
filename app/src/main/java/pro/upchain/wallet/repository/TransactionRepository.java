@@ -3,6 +3,10 @@ package pro.upchain.wallet.repository;
 
 import android.text.TextUtils;
 
+import java.math.BigInteger;
+
+import io.reactivex.Single;
+import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
 import pro.upchain.wallet.entity.Transaction;
 import pro.upchain.wallet.service.BlockExplorerClientType;
@@ -29,6 +33,12 @@ public class TransactionRepository implements TransactionRepositoryType {
         this.networkRepository.addOnChangeDefaultNetwork(this::onNetworkChanged);
     }
 
+    /**
+     * 查询交易记录
+     * @param walletAddr
+     * @param tokenAddr
+     * @return
+     */
     @Override
     public Observable<Transaction[]> fetchTransaction(String walletAddr, String tokenAddr) {
         return Observable.create(e -> {
@@ -56,19 +66,31 @@ public class TransactionRepository implements TransactionRepositoryType {
 
     @Override
     public Maybe<Transaction> findTransaction(String walletAddr, String transactionHash) {
-        return fetchTransaction(walletAddr, null)
-                .firstElement()
-                .flatMap(transactions -> {
-                    for (Transaction transaction : transactions) {
-                        if (transaction.hash.equals(transactionHash)) {
-                            return Maybe.just(transaction);
-                        }
-                    }
-                    return null;
-                });
+//        return fetchTransaction(walletAddr, null)
+//                .firstElement()
+//                .flatMap(transactions -> {
+//                    for (Transaction transaction : transactions) {
+//                        if (transaction.hash.equals(transactionHash)) {
+//                            return Maybe.just(transaction);
+//                        }
+//                    }
+//                    return null;
+//                });
+        return null;
     }
 
     private void onNetworkChanged(NetworkInfo networkInfo) {
         transactionLocalSource.clear();
+    }
+
+
+    @Override
+    public Single<String> createTransaction(ETHWallet from, BigInteger gasPrice, BigInteger gasLimit, String data, String password) {
+        return null;
+    }
+
+    @Override
+    public Single<String> createTransaction(ETHWallet from, String toAddress, BigInteger subunitAmount, BigInteger gasPrice, BigInteger gasLimit, byte[] data, String password) {
+        return null;
     }
 }

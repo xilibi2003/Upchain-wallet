@@ -1,16 +1,23 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.entity.Token;
@@ -21,13 +28,6 @@ import pro.upchain.wallet.viewmodel.AddTokenViewModel;
 import pro.upchain.wallet.viewmodel.AddTokenViewModelFactory;
 import pro.upchain.wallet.viewmodel.TokensViewModel;
 import pro.upchain.wallet.viewmodel.TokensViewModelFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny熊
@@ -43,13 +43,9 @@ public class AddTokenActivity extends BaseActivity {
     private AddTokenViewModel addTokenViewModel;
 
     private static final int SEARCH_ICO_TOKEN_REQUEST = 1000;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.lv_ico)
     ListView tokenList;
-    @BindView(R.id.common_toolbar)
     Toolbar commonToolbar;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
 
 
@@ -63,7 +59,16 @@ public class AddTokenActivity extends BaseActivity {
 
     }
 
-        @Override
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        rlBtn = findViewById(R.id.rl_btn);
+        commonToolbar = findViewById(R.id.common_toolbar);
+        tokenList = findViewById(R.id.lv_ico);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_add_new_property;
     }
@@ -90,12 +95,13 @@ public class AddTokenActivity extends BaseActivity {
     public void initDatas() {
 
         // TODO 写死了几个热门的ERC20 （ 主网地址）
-        mItems.add(new TokenItem(new TokenInfo("", "ETH", "ETH", 18), true, R.drawable.wallet_logo_demo));
-        mItems.add(new TokenItem(new TokenInfo("0xB8c77482e45F1F44dE1745F52C74426C631bDD52", "", "BNB", 18), false, R.drawable.wallet_logo_demo));
+        mItems.add(new TokenItem(new TokenInfo("", "BNB", "BNB", 18), true, R.drawable.wallet_logo_demo));
+//        mItems.add(new TokenItem(new TokenInfo("0xB8c77482e45F1F44dE1745F52C74426C631bDD52", "", "BNB", 18), false, R.drawable.wallet_logo_demo));
         mItems.add(new TokenItem(new TokenInfo("0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "USD Coin", "USDC", 6), false, R.drawable.wallet_logo_demo));
         mItems.add(new TokenItem(new TokenInfo("0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2", "Maker", "MKR", 18), false, R.drawable.wallet_logo_demo));
         mItems.add(new TokenItem(new TokenInfo("0xd850942ef8811f2a866692a623011bde52a462c1", "VeChain", "VEN", 18), false, R.drawable.wallet_logo_demo));
         mItems.add(new TokenItem(new TokenInfo("0x0000000000085d4780B73119b644AE5ecd22b376", "TrueUSD", "TUSD", 18), false, R.drawable.wallet_logo_demo));
+        mItems.add(new TokenItem(new TokenInfo("0x613552479cC8133b0C7864EDb457658D63432682", "BNB", "BNB", 18), false, R.drawable.wallet_logo_demo));
 
 
         tokensViewModelFactory = new TokensViewModelFactory();
@@ -115,7 +121,7 @@ public class AddTokenActivity extends BaseActivity {
     private void onTokens(Token[] tokens) {
 
         for (TokenItem item : mItems) {
-            for (Token token: tokens) {
+            for (Token token : tokens) {
                 if (item.tokenInfo.address.equals(token.tokenInfo.address)) {
                     item.added = true;
                 }
@@ -128,7 +134,7 @@ public class AddTokenActivity extends BaseActivity {
         tokenList.setAdapter(mAdapter);
     }
 
-    public void onCheckedChanged(CompoundButton btn, boolean checked){
+    public void onCheckedChanged(CompoundButton btn, boolean checked) {
         TokenItem info = (TokenItem) btn.getTag();
         info.added = checked;
         LogUtils.d(info.toString() + ", checked:" + checked);
@@ -138,7 +144,9 @@ public class AddTokenActivity extends BaseActivity {
         }
 
 
-    };
+    }
+
+    ;
 
     @Override
     public void configViews() {

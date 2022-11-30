@@ -1,31 +1,30 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.app.Activity;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.domain.ETHWallet;
-import pro.upchain.wallet.entity.ConfirmationType;
-import pro.upchain.wallet.entity.GasSettings;
-import pro.upchain.wallet.entity.NetworkInfo;
-import pro.upchain.wallet.interact.CreateTransactionInteract;
-import pro.upchain.wallet.interact.FetchGasSettingsInteract;
-
-import pro.upchain.wallet.interact.FetchWalletInteract;
-import pro.upchain.wallet.repository.EthereumNetworkRepository;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.web3j.utils.Numeric;
 
 import java.math.BigInteger;
 
-import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.domain.ETHWallet;
+import pro.upchain.wallet.entity.ConfirmationType;
+import pro.upchain.wallet.entity.GasSettings;
+import pro.upchain.wallet.entity.NetworkInfo;
+import pro.upchain.wallet.entity.TransactionData;
+import pro.upchain.wallet.interact.CreateTransactionInteract;
+import pro.upchain.wallet.interact.FetchGasSettingsInteract;
+import pro.upchain.wallet.interact.FetchWalletInteract;
+import pro.upchain.wallet.repository.EthereumNetworkRepository;
+import pro.upchain.wallet.web3.entity.Web3Transaction;
 
 public class ConfirmationViewModel extends BaseViewModel {
     private final MutableLiveData<String> newTransaction = new MutableLiveData<>();
     private final MutableLiveData<ETHWallet> defaultWallet = new MutableLiveData<>();
     private final MutableLiveData<GasSettings> gasSettings = new MutableLiveData<>();
+    private final MutableLiveData<TransactionData> newDappTransaction = new MutableLiveData<>();
 
     private GasSettings gasSettingsOverride = null;   // use setting
 
@@ -63,6 +62,10 @@ public class ConfirmationViewModel extends BaseViewModel {
 
     public LiveData<String> sendTransaction() { return newTransaction; }
 
+    public LiveData<TransactionData> sendDappTransaction() {
+        return newDappTransaction;
+    }
+
     public void overrideGasSettings(GasSettings settings)
     {
         gasSettingsOverride = settings;
@@ -76,13 +79,6 @@ public class ConfirmationViewModel extends BaseViewModel {
                 .subscribe(this::onDefaultNetwork, this::onError);
 
         fetchGasSettingsInteract.gasPriceUpdate().observe(ctx, this::onGasPrice);  // listen price
-    }
-
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        fetchGasSettingsInteract.clean();
     }
 
 
@@ -114,6 +110,34 @@ public class ConfirmationViewModel extends BaseViewModel {
         createTransactionInteract.createERC20Transfer(defaultWallet.getValue(), to, contractAddress, amount, gasPrice, gasLimit, password)
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::onCreateTransaction, this::onError);
+    }
+
+
+    public void signWeb3DAppTransaction(Web3Transaction transaction, BigInteger gasPrice, BigInteger gasLimit, String pwd)
+    {
+        progress.postValue(true);
+        BigInteger addr = Numeric.toBigInt(transaction.recipient.toString());
+
+        if (addr.equals(BigInteger.ZERO)) //constructor
+        {
+            disposable = createTransactionInteract
+                    .createWithSig(defaultWallet.getValue(), gasPrice, gasLimit, transaction.payload, pwd)
+                    .subscribe(this::onCreateDappTransaction,
+                            this::onError);
+        }
+        else
+        {
+//            byte[] data = Numeric.hexStringToByteArray(transaction.payload);
+            disposable = createTransactionInteract
+                    .createWithSig(defaultWallet.getValue(), transaction.recipient.toString(), transaction.value, gasPrice, gasLimit, transaction.payload, pwd)
+                    .subscribe(this::onCreateDappTransaction,
+                            this::onError);
+        }
+    }
+
+    private void onCreateDappTransaction(TransactionData txData) {
+        progress.postValue(false);
+        newDappTransaction.postValue(txData);
     }
 
     private void onDefaultWallet(ETHWallet wallet) {

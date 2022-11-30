@@ -1,13 +1,26 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.v4.content.ContextCompat;
+import static pro.upchain.wallet.C.Key.TRANSACTION;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.util.Calendar;
+import java.util.Locale;
+
+import butterknife.BindView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
@@ -17,16 +30,6 @@ import pro.upchain.wallet.utils.BalanceUtils;
 import pro.upchain.wallet.viewmodel.TransactionDetailViewModel;
 import pro.upchain.wallet.viewmodel.TransactionDetailViewModelFactory;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.util.Calendar;
-import java.util.Locale;
-
-import butterknife.BindView;
-
-import static pro.upchain.wallet.C.Key.TRANSACTION;
-
 /**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
@@ -35,27 +38,19 @@ import static pro.upchain.wallet.C.Key.TRANSACTION;
 
 public class TransactionDetailActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
 
-    @BindView(R.id.amount)
     TextView amount;
 
-    @BindView(R.id.from)
     TextView tvFrom;
 
-    @BindView(R.id.to)
     TextView tvTo;
 
-    @BindView(R.id.gas_fee)
     TextView tvGasFee;
 
-    @BindView(R.id.txn_hash)
     TextView tvTxHash;
 
-    @BindView(R.id.txn_time)
     TextView tvTxTime;
-    @BindView(R.id.block_number)
     TextView tvBlockNumber;
 
     private Transaction transaction;
@@ -67,6 +62,19 @@ public class TransactionDetailActivity extends BaseActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        amount = findViewById(R.id.amount);
+        tvFrom = findViewById(R.id.from);
+        tvTo = findViewById(R.id.to);
+        tvGasFee = findViewById(R.id.gas_fee);
+        tvTxHash = findViewById(R.id.txn_hash);
+        tvTxTime = findViewById(R.id.txn_time);
+        tvBlockNumber = findViewById(R.id.block_number);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+
+import io.reactivex.Single;
 import pro.upchain.wallet.UpChainWalletApp;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
@@ -14,12 +17,10 @@ import pro.upchain.wallet.repository.EthereumNetworkRepository;
 import pro.upchain.wallet.service.TickerService;
 import pro.upchain.wallet.service.UpWalletTickerService;
 import pro.upchain.wallet.utils.LogUtils;
-import com.google.gson.Gson;
-
-import io.reactivex.Single;
 import pro.upchain.wallet.utils.WalletDaoUtils;
 
 
+// 
 public class TokensViewModel extends BaseViewModel {
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
 

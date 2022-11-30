@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/big_padding">
+
+            <TextView
+                android:id="@+id/title_set_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/font_light"
+                android:gravity="center"
+                android:text="@string/advanced_settings"
+                android:textColor="@color/text_black"
+                android:textSize="25sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/font_light"
+                    android:text="@string/label_gas_price"
+                    android:textColor="@color/text_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/gas_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/font_semibold"
+                    android:text="--"
+                    android:textColor="@color/text_black"
+                    tools:text="30 (Gwei)" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/gas_price_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/big_margin"
+                android:progressTint="@color/colorPrimaryDark"
+                android:thumbTint="@color/colorPrimaryDark"
+                android:tickMarkTint="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/gas_price_info_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_light"
+                android:text="@string/info_gas_price"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/big_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/font_light"
+                    android:text="@string/label_gas_limit"
+                    android:textColor="@color/text_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/gas_limit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/font_semibold"
+                    android:text="--"
+                    android:textColor="@color/text_black"
+                    tools:text="90000" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/gas_limit_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/big_margin"
+                android:progressTint="@color/colorPrimaryDark"
+                android:thumbTint="@color/colorPrimaryDark"
+                android:tickMarkTint="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/gas_limit_info_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_light"
+                android:text="@string/info_gas_limit"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/big_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/font_light"
+                    android:text="@string/label_network_fee"
+                    android:textColor="@color/text_black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_network_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/font_semibold"
+                    android:text="--"
+                    android:textColor="@color/text_black"
+                    tools:text="0.0027 ETH" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <Button
+                android:id="@+id/button_gas_save"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mine_header_bg_shape"
+                android:fontFamily="@font/font_regular"
+                android:gravity="center"
+                android:text="@string/action_save"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="20sp" />
+        </LinearLayout>
+</LinearLayout>

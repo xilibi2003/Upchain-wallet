@@ -9,7 +9,7 @@
     <include layout="@layout/common_toolbar" />
 
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/address_input_layout"
         android:layout_marginTop="@dimen/big_margin"
         android:focusable="true"
@@ -28,12 +28,12 @@
             android:textColor="@color/base_text_color"
             android:textSize="13sp"
             />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/symbol_input_layout"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_width="match_parent"
@@ -51,9 +51,9 @@
             android:textColor="@color/base_text_color"
             android:textSize="13sp"
             />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/decimal_input_layout"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             android:textColor="@color/base_text_color"
             android:textSize="13sp"
             />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <TextView

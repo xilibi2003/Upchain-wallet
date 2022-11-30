@@ -15,7 +15,6 @@ import pro.upchain.wallet.base.BaseActivity;
 
 public class HelpActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
 
     @Override
@@ -41,6 +40,11 @@ public class HelpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void initView() {
+        tvTitle=findViewById(R.id.tv_title);
     }
 
 

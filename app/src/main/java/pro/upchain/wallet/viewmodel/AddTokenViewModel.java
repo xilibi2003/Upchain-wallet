@@ -1,8 +1,9 @@
 package pro.upchain.wallet.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import pro.upchain.wallet.interact.AddTokenInteract;
 import pro.upchain.wallet.interact.FetchWalletInteract;

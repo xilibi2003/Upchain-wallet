@@ -3,6 +3,7 @@ package pro.upchain.wallet.ui.activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import pro.upchain.wallet.UpChainWalletApp;
@@ -20,18 +21,24 @@ import pro.upchain.wallet.repository.SharedPreferenceRepository;
 
 
 public class LanguageSettingActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     TextView tvBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
-    @BindView(R.id.iv_chinese)
     ImageView ivChinese;
-    @BindView(R.id.iv_English)
     ImageView ivEnglish;
     // 0为简体中文 1 English
     private int language = 0;
+    private TextView ivBtn;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        ivChinese = findViewById(R.id.iv_chinese);
+        ivEnglish = findViewById(R.id.iv_English);
+    }
 
     @Override
     public int getLayoutId() {

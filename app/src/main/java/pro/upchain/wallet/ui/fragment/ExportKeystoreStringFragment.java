@@ -30,6 +30,11 @@ public class ExportKeystoreStringFragment extends BaseFragment {
     }
 
     @Override
+    public void initView() {
+
+    }
+
+    @Override
     public void attachView() {
 
     }

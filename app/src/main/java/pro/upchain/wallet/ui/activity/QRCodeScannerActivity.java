@@ -3,14 +3,13 @@ package pro.upchain.wallet.ui.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Vibrator;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import pro.upchain.wallet.R;
-import pro.upchain.wallet.base.BaseActivity;
-import pro.upchain.wallet.utils.LogUtils;
+import androidx.appcompat.widget.Toolbar;
+
 import com.gyf.barlibrary.ImmersionBar;
 
 import java.util.List;
@@ -19,6 +18,9 @@ import butterknife.BindView;
 import cn.bingoogolapple.qrcode.core.BarcodeType;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
+import pro.upchain.wallet.R;
+import pro.upchain.wallet.base.BaseActivity;
+import pro.upchain.wallet.utils.LogUtils;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -28,7 +30,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 
 
-public class QRCodeScannerActivity extends BaseActivity implements  EasyPermissions.PermissionCallbacks,  View.OnClickListener, QRCodeView.Delegate {
+public class QRCodeScannerActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, View.OnClickListener, QRCodeView.Delegate {
 
 
     private static final String TAG = QRCodeScannerActivity.class.getSimpleName();
@@ -38,15 +40,24 @@ public class QRCodeScannerActivity extends BaseActivity implements  EasyPermissi
     private static final int QRCODE_RESULT = 124;
 
 
-    @BindView(R.id.scanner_toolsbar)
     Toolbar scannerToolbar;
 
     private RelativeLayout rlFlashLight;
     private LinearLayout llBack;
 
-    @BindView(R.id.zxingview)
     ZXingView mZXingView;
+    private ZXingView zxingview;
+    private LinearLayout llyBack;
+    private Toolbar scannerToolsbar;
 
+    @Override
+    public void initView() {
+
+        zxingview = findViewById(R.id.zxingview);
+        llyBack = findViewById(R.id.lly_back);
+        rlFlashLight = findViewById(R.id.rl_flash_light);
+        scannerToolsbar = findViewById(R.id.scanner_toolsbar);
+    }
 
     @Override
     public int getLayoutId() {
@@ -73,10 +84,10 @@ public class QRCodeScannerActivity extends BaseActivity implements  EasyPermissi
                 .init();
 
 
-        rlFlashLight = (RelativeLayout) findViewById(R.id.rl_flash_light);
+        rlFlashLight =  findViewById(R.id.rl_flash_light);
         rlFlashLight.setOnClickListener(this);
 
-        llBack = (LinearLayout) findViewById(R.id.lly_back);
+        llBack =  findViewById(R.id.lly_back);
         llBack.setOnClickListener(this);
 
 

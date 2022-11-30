@@ -9,4 +9,7 @@ public class Ticker {
     public String price;
     @SerializedName("percent_change_24h")
     public String percentChange24h;
+
+    public String price_usd;
+
 }

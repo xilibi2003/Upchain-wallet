@@ -3,6 +3,7 @@ package pro.upchain.wallet.ui.activity;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import pro.upchain.wallet.R;
@@ -25,15 +26,11 @@ import butterknife.OnClick;
 
 // 进行备份提示
 
-public class WalletBackupActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
+public class WalletBackupActivity extends BaseActivity implements View.OnClickListener {
     TextView tvTitle;
-    @BindView(R.id.btn_backup)
     TextView btnBackup;
-    @BindView(R.id.btn_backup_help)
     TextView btnBackupHelp;
 
-    @BindView(R.id.iv_btn)
     TextView btnSkip;
 
     private InputPwdDialog inputPwdDialog;
@@ -43,6 +40,14 @@ public class WalletBackupActivity extends BaseActivity {
     private String walletMnemonic;
     private long walletId;
     private boolean firstAccount;
+
+    @Override
+    public void initView() {
+        btnSkip=findViewById(R.id.iv_btn);
+        tvTitle = findViewById(R.id.tv_title);
+        btnBackup = findViewById(R.id.btn_backup);
+        btnBackupHelp = findViewById(R.id.btn_backup_help);
+    }
 
     @Override
     public int getLayoutId() {
@@ -69,9 +74,12 @@ public class WalletBackupActivity extends BaseActivity {
     @Override
     public void configViews() {
         btnSkip.setText(R.string.wallet_backup_skip_btn);
+        btnBackup.setOnClickListener(this);
+        btnBackupHelp.setOnClickListener(this);
+        btnSkip.setOnClickListener(this);
     }
 
-    @OnClick({R.id.btn_backup, R.id.btn_backup_help, R.id.iv_btn})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_backup:

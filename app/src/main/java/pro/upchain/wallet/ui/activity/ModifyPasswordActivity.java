@@ -26,21 +26,14 @@ import butterknife.OnClick;
  */
 
 
-public class ModifyPasswordActivity extends BaseActivity {
+public class ModifyPasswordActivity extends BaseActivity implements View.OnClickListener {
     private static final int MODIFY_PWD_RESULT = 2201;
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.et_old_pwd)
     EditText etOldPwd;
-    @BindView(R.id.et_new_pwd)
     EditText etNewPwd;
-    @BindView(R.id.et_new_pwd_again)
     EditText etNewPwdAgain;
-    @BindView(R.id.iv_btn)
     TextView ivBtn;
-    @BindView(R.id.tv_import_wallet)
     TextView tvImportWallet;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
     private long walletId;
     private String walletPwd;
@@ -50,6 +43,18 @@ public class ModifyPasswordActivity extends BaseActivity {
     private ModifyWalletInteract  modifyWalletInteract;
     private InputPwdDialog inputPwdDialog;
     private String walletMnemonic;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+        etOldPwd = findViewById(R.id.et_old_pwd);
+        etNewPwd = findViewById(R.id.et_new_pwd);
+        etNewPwdAgain = findViewById(R.id.et_new_pwd_again);
+        tvImportWallet = findViewById(R.id.tv_import_wallet);
+    }
 
     @Override
     public int getLayoutId() {
@@ -78,12 +83,6 @@ public class ModifyPasswordActivity extends BaseActivity {
         walletMnemonic = intent.getStringExtra("walletMnemonic");
     }
 
-    @Override
-    public void configViews() {
-        etOldPwd.addTextChangedListener(watcher);
-        etNewPwd.addTextChangedListener(watcher);
-        etNewPwdAgain.addTextChangedListener(watcher);
-    }
 
     TextWatcher watcher = new TextWatcher() {
         @Override
@@ -111,7 +110,17 @@ public class ModifyPasswordActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.tv_import_wallet, R.id.rl_btn})
+
+    @Override
+    public void configViews() {
+        etOldPwd.addTextChangedListener(watcher);
+        etNewPwd.addTextChangedListener(watcher);
+        etNewPwdAgain.addTextChangedListener(watcher);
+        tvImportWallet.setOnClickListener(this);
+        rlBtn.setOnClickListener(this);
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_import_wallet:
@@ -165,5 +174,6 @@ public class ModifyPasswordActivity extends BaseActivity {
     public void deleteSuccess(boolean isDelete) {
 
     }
+
 
 }

@@ -3,7 +3,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-
 	android:padding="16dp">
 
     <TextView
@@ -31,7 +30,6 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
-
 
 
 		<TextView
@@ -64,7 +62,27 @@
 			android:textSize="12sp"
 			android:textAppearance="?attr/textAppearanceListItemSmall" />
 
-		<TextView
+        <TextView
+            android:id="@+id/label_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/requester_url" />
+
+        <TextView
+            android:id="@+id/text_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:textAppearance="?attr/textAppearanceListItemSmall" />
+
+
+
+    <TextView
             android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/subtitle_gas_fee" />
@@ -84,7 +102,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
 		app:layout_constraintTop_toBottomOf="@+id/text_value">
         <TextView
             android:layout_width="wrap_content"
@@ -142,7 +159,9 @@
 
     </LinearLayout>
 
-	<Button
+
+
+    <Button
 		android:id="@+id/confirm_button"
 		style="@style/Widget.AppCompat.Button.Colored"
 		android:layout_width="match_parent"
@@ -152,6 +171,5 @@
         android:background="@drawable/mine_header_bg_shape"
 		app:layout_constraintTop_toBottomOf="@+id/ll"
 		/>
-
 
 </LinearLayout>

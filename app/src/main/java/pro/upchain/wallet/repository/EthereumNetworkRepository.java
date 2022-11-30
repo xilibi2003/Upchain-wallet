@@ -1,6 +1,7 @@
 package pro.upchain.wallet.repository;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 
 import org.web3j.protocol.Web3j;
@@ -31,22 +32,33 @@ import static pro.upchain.wallet.C.ROPSTEN_NETWORK_NAME;
  * WeiXin: xlbxiong
  */
 
-public class EthereumNetworkRepository  {
+public class EthereumNetworkRepository {
 
     public static EthereumNetworkRepository sSelf;
 
-    private final NetworkInfo[] NETWORKS = new NetworkInfo[] {
+    private final NetworkInfo[] NETWORKS = new NetworkInfo[]{
+
+            new NetworkInfo("Binance test Chain testnet", "Binance test Chain",
+                    "https://data-seed-prebsc-2-s1.binance.org:8545",
+                    "https://api.bscscan.com/",
+                    "https://testnet.bscscan.com", 0x61, true),
+
+            new NetworkInfo("Binance Smart Chain ", "Binance Smart Chain",
+                    "https://bsc-dataseed1.binance.org/",
+                    "https://api.bscscan.com/",
+                    "https://bscscan.com", 0x61, true),
+
             new NetworkInfo(ETHEREUM_MAIN_NETWORK_NAME, ETH_SYMBOL,
                     "https://mainnet.infura.io/llyrtzQ3YhkdESt2Fzrk",
                     "https://api.trustwalletapp.com/",
-                    "https://etherscan.io/",1, true),
+                    "https://etherscan.io/", 1, true),
             new NetworkInfo(CLASSIC_NETWORK_NAME, ETC_SYMBOL,
                     "https://mewapi.epool.io/",
                     "https://classic.trustwalletapp.com",
-                    "https://gastracker.io",61, true),
+                    "https://gastracker.io", 61, false),
             new NetworkInfo(POA_NETWORK_NAME, POA_SYMBOL,
                     "https://core.poa.network",
-                    "https://poa.trustwalletapp.com","poa", 99, false),
+                    "https://poa.trustwalletapp.com", "poa", 99, false),
             new NetworkInfo(KOVAN_NETWORK_NAME, ETH_SYMBOL,
                     "https://kovan.infura.io/llyrtzQ3YhkdESt2Fzrk",
                     "http://192.168.8.103:8001/",
@@ -55,12 +67,12 @@ public class EthereumNetworkRepository  {
             new NetworkInfo(ROPSTEN_NETWORK_NAME, ETH_SYMBOL,
                     "https://ropsten.infura.io/llyrtzQ3YhkdESt2Fzrk",
                     "http://192.168.8.103:8000/",
-                    "https://ropsten.etherscan.io",3, false),
+                    "https://ropsten.etherscan.io", 3, false),
 
             new NetworkInfo(LOCAL_DEV_NETWORK_NAME, ETH_SYMBOL,
                     "http://192.168.8.100:8545",
                     "http://192.168.8.100:8000/",
-                    "",1337, false),
+                    "", 1337, false),
     };
 
     private final SharedPreferenceRepository preferences;
@@ -95,8 +107,8 @@ public class EthereumNetworkRepository  {
     }
 
     public String getCurrency() {
-        int currencyUnit =  preferences.getCurrencyUnit();
-        if (currencyUnit ==0 ) {
+        int currencyUnit = preferences.getCurrencyUnit();
+        if (currencyUnit == 0) {
             return "CNY";
         } else {
             return "USD";
@@ -129,11 +141,12 @@ public class EthereumNetworkRepository  {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<BigInteger> getLastTransactionNonce(Web3j web3j, String walletAddress)
-    {
+    public Single<BigInteger> getLastTransactionNonce(Web3j web3j, String walletAddress) {
+        Log.i("EthereumNetworkRepository", "getLastTransactionNonce，walletAddress: " + walletAddress);
+
         return Single.fromCallable(() -> {
             EthGetTransactionCount ethGetTransactionCount = web3j
-                    .ethGetTransactionCount(walletAddress, DefaultBlockParameterName.PENDING)   // or DefaultBlockParameterName.LATEST
+                    .ethGetTransactionCount(walletAddress, DefaultBlockParameterName.LATEST)   // or DefaultBlockParameterName.LATEST
                     .send();
             return ethGetTransactionCount.getTransactionCount();
         });

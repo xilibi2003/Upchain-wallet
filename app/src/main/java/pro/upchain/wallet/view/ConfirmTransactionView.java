@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import pro.upchain.wallet.C;
 import pro.upchain.wallet.R;
+import pro.upchain.wallet.utils.BalanceUtils;
 
 import java.math.BigInteger;
 
@@ -21,23 +23,41 @@ public class ConfirmTransactionView extends FrameLayout {
     }
 
 
+    public void setTitle(String title) {
+
+        TextView titleTv = findViewById(R.id.title);
+        titleTv.setText(title);
+    }
+
+    public void setRequest(String url) {
+        TextView labelWebsite = findViewById(R.id.label_website);
+        labelWebsite.setVisibility(VISIBLE);
+
+        TextView text_website = findViewById(R.id.text_website);
+        text_website.setVisibility(VISIBLE);
+        text_website.setText(url);
+    }
+
     public void fillInfo(String fromAddr, String addr, String amount, String fee, BigInteger gasPrice, BigInteger gasLimit) {
 
 
-        TextView fromAddressText = (TextView)findViewById(R.id.text_from);
+        TextView fromAddressText = findViewById(R.id.text_from);
         fromAddressText.setText(fromAddr);
 
-        TextView toAddressText = (TextView)findViewById(R.id.text_to);
+        TextView toAddressText = findViewById(R.id.text_to);
         toAddressText.setText(addr);
 
-        TextView valueText = (TextView)findViewById(R.id.text_value);
+        TextView valueText = findViewById(R.id.text_value);
         valueText.setText(amount);
 
-        TextView gasPriceText = (TextView)findViewById(R.id.text_gas_price);
+        TextView gasPriceText = findViewById(R.id.text_gas_price);
+        String gasPriceStr = BalanceUtils.weiToGwei(gasPrice) + " " + C.GWEI_UNIT;
+        gasPriceText.setText(gasPriceStr);
 
-        TextView gasLimitText = (TextView)findViewById(R.id.text_gas_limit);
+        TextView gasLimitText = findViewById(R.id.text_gas_limit);
+        gasLimitText.setText(gasLimit.toString());
 
-        TextView networkFeeText = (TextView)findViewById(R.id.text_network_fee);
+        TextView networkFeeText = findViewById(R.id.text_network_fee);
         networkFeeText.setText(fee);
 
 

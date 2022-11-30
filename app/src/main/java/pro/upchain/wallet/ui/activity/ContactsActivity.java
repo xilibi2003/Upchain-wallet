@@ -10,19 +10,24 @@ import pro.upchain.wallet.base.BaseActivity;
 
 import butterknife.BindView;
 
- /**
+/**
  * Created by Tiny 熊 @ Upchain.pro
  * WeiXin: xlbxiong
  */
 
 
 public class ContactsActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     ImageView ivBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+        ivBtn = findViewById(R.id.iv_btn);
+        rlBtn = findViewById(R.id.rl_btn);
+    }
 
     @Override
     public int getLayoutId() {

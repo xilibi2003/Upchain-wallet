@@ -18,17 +18,17 @@ package pro.upchain.wallet.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pro.upchain.wallet.view.loadding.CustomDialog;
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import pro.upchain.wallet.view.loadding.CustomDialog;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -39,7 +39,6 @@ public abstract class BaseFragment extends Fragment {
     protected Context mContext;
 
     private CustomDialog dialog;
-    private Unbinder unbinder;
 
 
     public abstract
@@ -49,11 +48,12 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         parentView = inflater.inflate(getLayoutResId(), container, false);
-        unbinder = ButterKnife.bind(this, parentView);
-//        EventBus.getDefault().register(this);
+        initView();
         activity = getSupportActivity();
         mContext = activity;
         this.inflater = inflater;
+        initDatas();
+        configViews();
         return parentView;
     }
 
@@ -61,11 +61,12 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         attachView();
-        initDatas();
-        configViews();
+
+
     }
+
+    public abstract void initView();
 
     public abstract void attachView();
 
@@ -91,7 +92,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
 //        EventBus.getDefault().unregister(this);
     }
 
@@ -159,7 +159,6 @@ public abstract class BaseFragment extends Fragment {
     protected boolean isVisible(View view) {
         return view.getVisibility() == View.VISIBLE;
     }
-
 
 
 }

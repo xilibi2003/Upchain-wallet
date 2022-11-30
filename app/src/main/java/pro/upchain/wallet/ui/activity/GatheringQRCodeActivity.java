@@ -39,21 +39,26 @@ import static pro.upchain.wallet.C.EXTRA_DECIMALS;
 
 public class GatheringQRCodeActivity extends BaseActivity {
 
-    @BindView(R.id.iv_gathering_qrcode)
     ImageView ivGatheringQrcode;
 
-    @BindView(R.id.btn_copy_address)
     Button btnCopyAddress;
-    @BindView(R.id.tv_wallet_address)
+
     TextView tvWalletAddress;
 
-    @BindView(R.id.et_gathering_money)
     EditText etGatheringMoney;
 
     private String walletAddress;
     private String contractAddress;
     private int decimals;
     private String qRStr;
+
+    @Override
+    public void initView() {
+        ivGatheringQrcode = findViewById(R.id.iv_gathering_qrcode);
+        btnCopyAddress = findViewById(R.id.btn_copy_address);
+        tvWalletAddress = findViewById(R.id.tv_wallet_address);
+        etGatheringMoney = findViewById(R.id.et_gathering_money);
+    }
 
     @Override
     public int getLayoutId() {
@@ -71,7 +76,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
         walletAddress = intent.getStringExtra(EXTRA_ADDRESS);
         contractAddress = intent.getStringExtra(EXTRA_CONTRACT_ADDRESS);
         decimals = intent.getIntExtra(EXTRA_DECIMALS, 18);
-
+        System.out.printf("钱包地址:" + walletAddress);
         tvWalletAddress.setText(walletAddress);
         initAddressQRCode();
     }
@@ -79,7 +84,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
     // 参考
     // ethereum:0x6B523CD4FCDF3332BcB3177050e22cF7272b4c3A?contractAddress=0xd03e0c90c088d92f05c0f493312860d9e524049c&decimal=1&value=100000
     private void initAddressQRCode() {
-
+        System.out.printf("钱包地址:" + walletAddress);
         qRStr = "ethereum:" + walletAddress + "?decimal=" + decimals;
         if (!TextUtils.isEmpty(contractAddress)) {
             qRStr += "&contractAddress=" + contractAddress;
@@ -89,7 +94,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
                 () -> {
                     return QRCodeEncoder.syncEncodeQRCode(qRStr, BGAQRCodeUtil.dp2px(GatheringQRCodeActivity.this, 270), Color.parseColor("#000000"));
                 }
-        ).subscribe( bitmap ->  GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1) );
+        ).subscribe(bitmap -> GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1));
 
     }
 
@@ -120,7 +125,7 @@ public class GatheringQRCodeActivity extends BaseActivity {
                                 return QRCodeEncoder.syncEncodeQRCode(qRStr + "&value=" + weiValue, BGAQRCodeUtil.dp2px(GatheringQRCodeActivity.this, 270), Color.parseColor("#000000"));
                             }
                         }
-                ).subscribe( bitmap ->  GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1) );
+                ).subscribe(bitmap -> GlideImageLoader.loadBmpImage(ivGatheringQrcode, bitmap, -1));
 
             }
         });

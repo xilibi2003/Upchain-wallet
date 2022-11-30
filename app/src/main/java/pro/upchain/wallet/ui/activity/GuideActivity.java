@@ -2,12 +2,13 @@ package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.view.AddWalletView;
@@ -18,7 +19,7 @@ import pro.upchain.wallet.view.AddWalletView;
  */
 
 
-public class GuideActivity extends AppCompatActivity  implements
+public class GuideActivity extends AppCompatActivity implements
         View.OnClickListener,
         AddWalletView.OnNewWalletClickListener,
         AddWalletView.OnImportWalletClickListener  {
@@ -31,7 +32,7 @@ public class GuideActivity extends AppCompatActivity  implements
 
         setContentView(R.layout.activity_guide);
 
-        frameLayout = (FrameLayout)findViewById(R.id.frame);
+        frameLayout = findViewById(R.id.frame);
 
         AddWalletView addWalletView = new AddWalletView(this, R.layout.layout_empty_add_account);
 

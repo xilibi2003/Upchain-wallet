@@ -2,6 +2,9 @@ package pro.upchain.wallet.ui.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import pro.upchain.wallet.R;
@@ -19,6 +22,12 @@ import butterknife.OnClick;
 public class SystemSettingActivity extends BaseActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
+
+    @Override
+    public void initView() {
+
+        tvTitle = findViewById(R.id.tv_title);
+    }
 
     @Override
     public int getLayoutId() {

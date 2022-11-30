@@ -29,24 +29,16 @@ import butterknife.OnClick;
 
 public class ImportMnemonicFragment extends BaseFragment {
 
-    @BindView(R.id.et_mnemonic)
     EditText etMnemonic;
-    @BindView(R.id.et_standard)
     EditText etStandard;
-    @BindView(R.id.et_wallet_pwd)
     EditText etWalletPwd;
-    @BindView(R.id.et_wallet_pwd_again)
     EditText etWalletPwdAgain;
-    @BindView(R.id.et_wallet_pwd_reminder_info)
     EditText etWalletPwdReminderInfo;
-    @BindView(R.id.cb_agreement)
     CheckBox cbAgreement;
-    @BindView(R.id.tv_agreement)
     TextView tvAgreement;
-    @BindView(R.id.lly_wallet_agreement)
     LinearLayout llyWalletAgreement;
-    @BindView(R.id.btn_load_wallet)
     TextView btnLoadWallet;
+    LinearLayout llyStandardMenu;
 
     CreateWalletInteract createWalletInteract;
 
@@ -60,19 +52,32 @@ public class ImportMnemonicFragment extends BaseFragment {
     }
 
     @Override
+    public void initView() {
+
+        etMnemonic = parentView.findViewById(R.id.et_mnemonic);
+        etStandard = parentView.findViewById(R.id.et_standard);
+        etWalletPwd = parentView.findViewById(R.id.et_wallet_pwd);
+        etWalletPwdAgain = parentView.findViewById(R.id.et_wallet_pwd_again);
+        etWalletPwdReminderInfo = parentView.findViewById(R.id.et_wallet_pwd_reminder_info);
+        cbAgreement = parentView.findViewById(R.id.cb_agreement);
+        tvAgreement = parentView.findViewById(R.id.tv_agreement);
+        llyWalletAgreement = parentView.findViewById(R.id.lly_wallet_agreement);
+        btnLoadWallet = parentView.findViewById(R.id.btn_load_wallet);
+        llyStandardMenu = parentView.findViewById(R.id.lly_standard_menu);
+    }
+
+    @Override
     public void attachView() {
 
     }
 
     @Override
     public void initDatas() {
-
         createWalletInteract = new CreateWalletInteract();
     }
 
     @Override
     public void configViews() {
-
         cbAgreement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -121,6 +126,24 @@ public class ImportMnemonicFragment extends BaseFragment {
                 }
             }
         });
+
+        btnLoadWallet.setOnClickListener(view -> {
+            String mnemonic = etMnemonic.getText().toString().trim();
+            String walletPwd = etWalletPwd.getText().toString().trim();
+            String confirmPwd = etWalletPwdAgain.getText().toString().trim();
+            String pwdReminder = etWalletPwdReminderInfo.getText().toString().trim();
+            boolean verifyWalletInfo = verifyInfo(mnemonic, walletPwd, confirmPwd, pwdReminder);
+            if (verifyWalletInfo) {
+                showDialog(getString(R.string.loading_wallet_tip));
+                createWalletInteract.loadWalletByMnemonic(ethType, mnemonic, walletPwd).subscribe(this::loadSuccess, this::onError);
+            }
+        });
+
+        llyStandardMenu.setOnClickListener(view -> {
+            LogUtils.i("LoadWallet", "lly_standard_menu");
+            popupWindow.showAsDropDown(etStandard, 0, UUi.dip2px(10));
+        });
+
     }
 
     public void loadSuccess(ETHWallet wallet) {
@@ -138,26 +161,6 @@ public class ImportMnemonicFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.btn_load_wallet, R.id.lly_standard_menu})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_load_wallet:
-                String mnemonic = etMnemonic.getText().toString().trim();
-                String walletPwd = etWalletPwd.getText().toString().trim();
-                String confirmPwd = etWalletPwdAgain.getText().toString().trim();
-                String pwdReminder = etWalletPwdReminderInfo.getText().toString().trim();
-                boolean verifyWalletInfo = verifyInfo(mnemonic, walletPwd, confirmPwd, pwdReminder);
-                if (verifyWalletInfo) {
-                    showDialog(getString(R.string.loading_wallet_tip));
-                    createWalletInteract.loadWalletByMnemonic(ethType, mnemonic, walletPwd).subscribe(this::loadSuccess, this::onError);
-                }
-                break;
-            case R.id.lly_standard_menu:
-                LogUtils.i("LoadWallet", "lly_standard_menu");
-                popupWindow.showAsDropDown(etStandard, 0, UUi.dip2px(10));
-                break;
-        }
-    }
 
     private boolean verifyInfo(String mnemonic, String walletPwd, String confirmPwd, String pwdReminder) {
         if (TextUtils.isEmpty(mnemonic)) {

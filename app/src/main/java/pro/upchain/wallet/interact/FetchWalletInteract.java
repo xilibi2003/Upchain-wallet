@@ -22,17 +22,13 @@ public class FetchWalletInteract {
     public Single<List<ETHWallet>> fetch() {
 
 
-        return Single.fromCallable(() -> {
-            return WalletDaoUtils.loadAll();
-        }).observeOn(AndroidSchedulers.mainThread());
+        return Single.fromCallable(WalletDaoUtils::loadAll).observeOn(AndroidSchedulers.mainThread());
 
     }
 
     public Single<ETHWallet> findDefault() {
 
-        return Single.fromCallable(() -> {
-            return WalletDaoUtils.getCurrent();
-        });
+        return Single.fromCallable(WalletDaoUtils::getCurrent);
 
     }
 }

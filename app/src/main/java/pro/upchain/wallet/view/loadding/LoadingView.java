@@ -427,7 +427,7 @@ public class LoadingView extends View {
             this.color = in.readInt();
         }
 
-        public static final Parcelable.Creator<Ring> CREATOR = new Parcelable.Creator<Ring>() {
+        public static final Creator<Ring> CREATOR = new Creator<Ring>() {
             @Override
             public Ring createFromParcel(Parcel source) {
                 return new Ring(source);
@@ -463,7 +463,7 @@ public class LoadingView extends View {
         }
 
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
             @Override
             public SavedState createFromParcel(Parcel source) {
                 return new SavedState(source);

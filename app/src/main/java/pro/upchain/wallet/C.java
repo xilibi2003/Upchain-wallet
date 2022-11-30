@@ -44,6 +44,29 @@ public abstract class C {
     public static final String EXTRA_GAS_PRICE = "GAS_PRICE";
     public static final String EXTRA_GAS_LIMIT = "GAS_LIMIT";
 
+    public static final String EXTRA_CONTRACT_NAME = "NAME";
+    public static final String TOKEN_TYPE = "TOKEN_TYPE";
+    public static final String MARKET_INSTANCE = "MARKET_INSTANCE";
+    public static final String IMPORT_STRING = "TOKEN_IMPORT";
+    public static final String EXTRA_PRICE = "TOKEN_PRICE";
+    public static final String EXTRA_STATE = "TRANSFER_STATE";
+    public static final String EXTRA_WEB3TRANSACTION = "WEB3_TRANSACTION";
+    public static final String EXTRA_NETWORK_NAME = "NETWORK_NAME";
+    public static final String EXTRA_NETWORK_MAINNET = "NETWORK_MAINNET";
+    public static final String EXTRA_ENS_DETAILS = "ENS_DETAILS";
+    public static final String EXTRA_HAS_DEFINITION = "HAS_TOKEN_DEF";
+    public static final String EXTRA_SUCCESS = "TX_SUCCESS";
+    public static final String EXTRA_HEXDATA = "TX_HEX";
+    public static final String EXTRA_NETWORKID = "NET_ID";
+    public static final String EXTRA_TOKENID_LIST = "TOKENIDLIST";
+
+    public static final String PRUNE_ACTIVITY =
+            "pro.upchain.wallet.PRUNE_ACTIVITY";
+
+
+    public static final String SIGN_DAPP_TRANSACTION =
+            "pro.upchain.wallet.SIGN_TRANSACTION";
+
     public static final String COINBASE_WIDGET_CODE = "88d6141a-ff60-536c-841c-8f830adaacfd";
     public static final String SHAPESHIFT_KEY = "c4097b033e02163da6114fbbc1bf15155e759ddfd8352c88c55e7fef162e901a800e7eaecf836062a0c075b2b881054e0b9aa2324be7bc3694578493faf59af4";
     public static final String CHANGELLY_REF_ID = "968d4f0f0bf9";
@@ -62,6 +85,15 @@ public abstract class C {
     public static final long GAS_PRICE_MIN = 1000000000L;
     public static final long NETWORK_FEE_MAX = 20000000000000000L;
     public static final int ETHER_DECIMALS = 18;
+
+    public static final String DAPP_LASTURL_KEY = "dappURL";
+    public static final String DAPP_BROWSER_HISTORY = "dappBrowserHistory";
+    public static final String DAPP_BROWSER_BOOKMARKS = "dappBrowserBookmarks";
+    public static final String DAPP_DEFAULT_URL = "http://192.168.0.103:8080/";
+//    public static final String DAPP_DEFAULT_URL = "https://www.stateofthedapps.com/";
+
+    public static final String GOOGLE_SEARCH_PREFIX = "http://www.google.com/search?q=";
+    public static final String HTTP_PREFIX = "http://";
 
     public interface ErrorCode {
 

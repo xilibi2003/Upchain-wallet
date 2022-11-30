@@ -1,14 +1,18 @@
 package pro.upchain.wallet.ui.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.google.android.material.textfield.TextInputLayout;
+import com.gyf.barlibrary.ImmersionBar;
+
+import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.entity.Address;
@@ -16,11 +20,6 @@ import pro.upchain.wallet.entity.ErrorEnvelope;
 import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.viewmodel.AddTokenViewModel;
 import pro.upchain.wallet.viewmodel.AddTokenViewModelFactory;
-import com.gyf.barlibrary.ImmersionBar;
-
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny熊
@@ -34,37 +33,41 @@ public class AddCustomTokenActivity extends BaseActivity {
     protected AddTokenViewModelFactory addTokenViewModelFactory;
     private AddTokenViewModel viewModel;
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
 
-    @BindView(R.id.address)
     TextView address;
 
-    @BindView(R.id.symbol)
     TextView symbol;
 
-    @BindView(R.id.decimals)
     TextView decimals;
 
-    @BindView(R.id.common_toolbar)
     Toolbar commonToolbar;
 
-    @BindView(R.id.save)
     TextView save;
 
-    @BindView(R.id.address_input_layout)
     TextInputLayout addressLayout;
 
-    @BindView(R.id.symbol_input_layout)
     TextInputLayout symbolLayout;
 
-    @BindView(R.id.decimal_input_layout)
     TextInputLayout decimalsLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initView() {
+        tvTitle = findViewById(R.id.tv_title);
+        address = findViewById(R.id.address);
+        symbol = findViewById(R.id.symbol);
+        decimals = findViewById(R.id.decimals);
+        save = findViewById(R.id.save);
+        commonToolbar = findViewById(R.id.common_toolbar);
+        addressLayout = findViewById(R.id.address_input_layout);
+        symbolLayout = findViewById(R.id.symbol_input_layout);
+        decimalsLayout = findViewById(R.id.decimal_input_layout);
     }
 
 
@@ -169,5 +172,6 @@ public class AddCustomTokenActivity extends BaseActivity {
                 break;
         }
     }
+
 
 }
