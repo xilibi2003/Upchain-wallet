@@ -10,8 +10,6 @@ import android.widget.TextView;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -19,8 +17,7 @@ import butterknife.OnClick;
  */
 
 
-public class SystemSettingActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
+public class SystemSettingActivity extends BaseActivity implements View.OnClickListener {
     TextView tvTitle;
 
     @Override
@@ -46,10 +43,13 @@ public class SystemSettingActivity extends BaseActivity {
 
     @Override
     public void configViews() {
+        findViewById(R.id.rl_language).setOnClickListener(this);
+        findViewById(R.id.rl_currency).setOnClickListener(this);
+        findViewById(R.id.rl_net).setOnClickListener(this);
+        findViewById(R.id.rl_gesture).setOnClickListener(this);
 
     }
 
-    @OnClick({R.id.rl_language, R.id.rl_currency, R.id.rl_net, R.id.rl_gesture})
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {

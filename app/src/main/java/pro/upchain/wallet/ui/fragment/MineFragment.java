@@ -2,6 +2,7 @@ package pro.upchain.wallet.ui.fragment;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseFragment;
@@ -12,10 +13,19 @@ import pro.upchain.wallet.ui.activity.SystemSettingActivity;
 import pro.upchain.wallet.ui.activity.TransactionsActivity;
 import pro.upchain.wallet.ui.activity.WalletMangerActivity;
 
-import butterknife.OnClick;
+
+public class MineFragment extends BaseFragment implements View.OnClickListener {
 
 
-public class MineFragment extends BaseFragment {
+
+//    private LinearLayout llyWalletManage;
+//    private LinearLayout llyContacts;
+//    private LinearLayout llyMsgCenter;
+//    private LinearLayout llyAskHelp;
+//    private LinearLayout llySystemSetting;
+//    private LinearLayout llyTradeRecode;
+
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_mine;
@@ -23,7 +33,6 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initView() {
-
     }
 
     @Override
@@ -38,13 +47,19 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void configViews() {
+        parentView.findViewById(R.id.lly_wallet_manage).setOnClickListener(this);
+
+        parentView.findViewById(R.id.lly_contacts).setOnClickListener(this);
+        parentView.findViewById(R.id.lly_msg_center).setOnClickListener(this);
+        parentView.findViewById(R.id.ask_help).setOnClickListener(this);
+        parentView.findViewById(R.id.lly_system_setting).setOnClickListener(this);
+        parentView.findViewById(R.id.lly_trade_recode).setOnClickListener(this);
     }
 
-    @OnClick({R.id.lly_wallet_manage, R.id.lly_contacts, R.id.lly_msg_center, R.id.ask_help
-            , R.id.lly_system_setting, R.id.lly_trade_recode})
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
+
             case R.id.lly_contacts:
                 intent = new Intent(getActivity(), ContactsActivity.class);
                 startActivity(intent);

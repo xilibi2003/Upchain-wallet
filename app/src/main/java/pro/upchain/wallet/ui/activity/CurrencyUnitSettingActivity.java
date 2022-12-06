@@ -18,7 +18,7 @@ import pro.upchain.wallet.repository.SharedPreferenceRepository;
  * WeiXin: xlbxiong
  */
 
-public class CurrencyUnitSettingActivity extends BaseActivity {
+public class CurrencyUnitSettingActivity extends BaseActivity implements View.OnClickListener  {
     TextView tvTitle;
     TextView tvBtn;
     LinearLayout rlBtn;
@@ -62,7 +62,9 @@ public class CurrencyUnitSettingActivity extends BaseActivity {
 
     @Override
     public void configViews() {
-
+        ivCNY.setOnClickListener(this);
+        ivUSD.setOnClickListener(this);
+        rlBtn.setOnClickListener(this);
     }
 
     @OnClick({R.id.rl_cny, R.id.rl_usd, R.id.rl_btn})

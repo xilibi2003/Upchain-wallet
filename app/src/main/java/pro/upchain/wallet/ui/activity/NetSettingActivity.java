@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 import pro.upchain.wallet.R;
 import pro.upchain.wallet.UpChainWalletApp;
@@ -31,53 +30,29 @@ import pro.upchain.wallet.repository.EthereumNetworkRepository;
 
 public class NetSettingActivity extends BaseActivity implements View.OnClickListener {
 
-
     EthereumNetworkRepository ethereumNetworkRepository;
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_btn)
     TextView tvBtn;
-    @BindView(R.id.rl_btn)
     LinearLayout rlBtn;
 
-    @BindView(R.id.iv_mainnet)
     ImageView ivMainnet;
-
-    @BindView(R.id.iv_kovan)
     ImageView ivKovan;
-
-    @BindView(R.id.iv_ropsten)
     ImageView ivRopsten;
-
-
-    @BindView(R.id.iv_local_dev)
     ImageView ivLocalDev;
 
     private String networkName;
-    private LinearLayout llyBack;
-    private TextView ivBtn;
-    private Toolbar commonToolbar;
     private RelativeLayout rlMainnet;
     private RelativeLayout rlKovan;
     private RelativeLayout rlRopsten;
     private RelativeLayout rlLocalDev;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    @Override
     public void initView() {
 
-        tvTitle = findViewById(R.id.tv_title);
-        llyBack = findViewById(R.id.lly_back);
-        ivBtn = findViewById(R.id.iv_btn);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvBtn = findViewById(R.id.iv_btn);
         rlBtn = findViewById(R.id.rl_btn);
-        commonToolbar = findViewById(R.id.common_toolbar);
         ivMainnet = findViewById(R.id.iv_mainnet);
         rlMainnet = findViewById(R.id.rl_mainnet);
         ivKovan = findViewById(R.id.iv_kovan);
@@ -139,7 +114,6 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
         rlBtn.setOnClickListener(this);
     }
 
-    @OnClick({R.id.rl_mainnet, R.id.rl_kovan, R.id.rl_ropsten, R.id.rl_local_dev, R.id.rl_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mainnet:
@@ -149,6 +123,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivRopsten.setVisibility(View.GONE);
                 ivLocalDev.setVisibility(View.GONE);
                 break;
+
             case R.id.rl_kovan:
                 networkName = KOVAN_NETWORK_NAME;
                 ivMainnet.setVisibility(View.GONE);
@@ -156,6 +131,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivRopsten.setVisibility(View.GONE);
                 ivLocalDev.setVisibility(View.GONE);
                 break;
+
             case R.id.rl_ropsten:
                 networkName = ROPSTEN_NETWORK_NAME;
                 ivMainnet.setVisibility(View.GONE);
