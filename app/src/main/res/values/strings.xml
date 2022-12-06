@@ -243,6 +243,62 @@
 
     <string name="empty" />
 
+
+    <!-- Dapp -->
+    <string name="homepage_tab_text_dapp">DApp</string>
+    <string name="toolbar_header_browser">DApp 浏览器</string>
+    <string name="message_to_sign">Message</string>
+    <string name="signer_address">Address</string>
+    <string name="requester_url">请求地址</string>
+
+    <string name="action_view_bookmarks">查看书签</string>
+    <string name="action_added">已加入书签</string>
+    <string name="action_add_bookmark">添加书签</string>
+    <string name="bookmarks">书签夹</string>
+    <string name="visit">访问</string>
+    <string name="action_reload">Reload</string>
+    <string name="action_share">分享</string>
+    <string name="action_scan_dapp">扫描二维码</string>
+
+    <string name="dialog_title_sign_message">Sign Message</string>
+    <string name="dialog_reject">Reject</string>
+    <string name="dialog_approve">Approve</string>
+    <string name="transaction_value">Transaction Value</string>
+    <string name="dialog_title_sign_transaction">Sign Transaction</string>
+
+    <string name="title_dialog_error">Error</string>
+    <string name="ssl_cert_invalid">Invalid SSL Certificate. This site may be unsafe. Proceed?</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="transfer">Transfer %s</string>
+
+    <string name="invalid_transaction">无效交易</string>
+    <string name="contains_no_data">DApp transaction contains no data</string>
+
+
+    <string name="select_network">Select Network:</string>
+
+    <string name="action_confirm">Confirm</string>
+    <string name="toast_invalid_code">Invalid Scan Result</string>
+
+    <string name="confirm_transfer_details">Confirm Transfer Details</string>
+    <string name="dummy_transaction_value">&#45;&#45;</string>
+
+    <string name="confirm_dapp_transaction">确认 DApp 交易</string>
+    <string name="ticket_contract_constructor">Constructor</string>
+
+    <!-- Labels -->
+    <string name="label_from">From</string>
+    <string name="label_to">To</string>
+    <string name="label_network_fee">矿工费</string>
+    <string name="label_contract">contract</string>
+    <string name="action_send">Send</string>
+
+    <string name="advanced_settings">自定义Gas</string>
+    <string name="info_gas_price">更高的价格，交易更快打包处理，费用也更好。</string>
+    <string name="info_gas_limit">设置运行的gas数量，越简单的合约所需的数量越少，复杂的合约消耗更多。</string>
+
+
     <!-- Intro resources-->
     <string name="intro_title_first_page"><![CDATA[Private & Secure]]></string>
     <string name="intro_title_second_page">Fully Transparent</string>
