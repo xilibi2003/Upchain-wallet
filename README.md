@@ -52,6 +52,22 @@
 
 安装包下载[地址](https://img.learnblockchain.cn/apk/upchain_wallet.apk)。
 
+
+## 运行配置
+
+项目使用Android Studio 开发。
+
+创建 local.properties 配置：
+```
+sdk.dir= Android SDK 目录
+gpr.user=
+gpr.key=
+```
+
+gpr 的配置参考： https://developer.trustwallet.com/wallet-core/integration-guide/android-guide
+
+
+
 ## 参考的开源项目
 
 本钱包在开发是站在巨人的肩膀上完成，特别感谢以下项目：

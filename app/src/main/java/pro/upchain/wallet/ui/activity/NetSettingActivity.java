@@ -1,6 +1,7 @@
 package pro.upchain.wallet.ui.activity;
 
 import static pro.upchain.wallet.C.ETHEREUM_MAIN_NETWORK_NAME;
+import static pro.upchain.wallet.C.GOERLI_NETWORK_NAME;
 import static pro.upchain.wallet.C.KOVAN_NETWORK_NAME;
 import static pro.upchain.wallet.C.LOCAL_DEV_NETWORK_NAME;
 import static pro.upchain.wallet.C.ROPSTEN_NETWORK_NAME;
@@ -37,12 +38,14 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
     LinearLayout rlBtn;
 
     ImageView ivMainnet;
+    ImageView ivGoerli;
     ImageView ivKovan;
     ImageView ivRopsten;
     ImageView ivLocalDev;
 
     private String networkName;
     private RelativeLayout rlMainnet;
+    private RelativeLayout rlGoerli;
     private RelativeLayout rlKovan;
     private RelativeLayout rlRopsten;
     private RelativeLayout rlLocalDev;
@@ -55,6 +58,10 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
         rlBtn = findViewById(R.id.rl_btn);
         ivMainnet = findViewById(R.id.iv_mainnet);
         rlMainnet = findViewById(R.id.rl_mainnet);
+
+        ivGoerli = findViewById(R.id.iv_goerli);
+        rlGoerli = findViewById(R.id.rl_goerli);
+
         ivKovan = findViewById(R.id.iv_kovan);
         rlKovan = findViewById(R.id.rl_kovan);
         ivRopsten = findViewById(R.id.iv_ropsten);
@@ -86,21 +93,32 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
             ivKovan.setVisibility(View.GONE);
             ivRopsten.setVisibility(View.GONE);
             ivLocalDev.setVisibility(View.GONE);
-        } else if (KOVAN_NETWORK_NAME.equals(networkName)) {
+            ivGoerli.setVisibility(View.GONE);
+        }  else if (GOERLI_NETWORK_NAME.equals(networkName)) {
+            ivMainnet.setVisibility(View.GONE);
+            ivGoerli.setVisibility(View.VISIBLE);
+            ivRopsten.setVisibility(View.GONE);
+            ivLocalDev.setVisibility(View.GONE);
+            ivKovan.setVisibility(View.GONE);
+        }
+        else if (KOVAN_NETWORK_NAME.equals(networkName)) {
             ivMainnet.setVisibility(View.GONE);
             ivKovan.setVisibility(View.VISIBLE);
             ivRopsten.setVisibility(View.GONE);
             ivLocalDev.setVisibility(View.GONE);
+            ivGoerli.setVisibility(View.GONE);
         } else if (ROPSTEN_NETWORK_NAME.equals(networkName)) {
             ivMainnet.setVisibility(View.GONE);
             ivKovan.setVisibility(View.GONE);
             ivRopsten.setVisibility(View.VISIBLE);
             ivLocalDev.setVisibility(View.GONE);
+            ivGoerli.setVisibility(View.GONE);
         } else if (LOCAL_DEV_NETWORK_NAME.equals(networkName)) {
             ivMainnet.setVisibility(View.GONE);
             ivKovan.setVisibility(View.GONE);
             ivRopsten.setVisibility(View.GONE);
             ivLocalDev.setVisibility(View.VISIBLE);
+            ivGoerli.setVisibility(View.GONE);
         }
     }
 
@@ -108,6 +126,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
     public void configViews() {
         rlBtn.setOnClickListener(this);
         rlMainnet.setOnClickListener(this);
+        rlGoerli.setOnClickListener(this);
         rlKovan.setOnClickListener(this);
         rlRopsten.setOnClickListener(this);
         rlLocalDev.setOnClickListener(this);
@@ -122,6 +141,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivKovan.setVisibility(View.GONE);
                 ivRopsten.setVisibility(View.GONE);
                 ivLocalDev.setVisibility(View.GONE);
+                ivGoerli.setVisibility(View.GONE);
                 break;
 
             case R.id.rl_kovan:
@@ -130,6 +150,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivKovan.setVisibility(View.VISIBLE);
                 ivRopsten.setVisibility(View.GONE);
                 ivLocalDev.setVisibility(View.GONE);
+                ivGoerli.setVisibility(View.GONE);
                 break;
 
             case R.id.rl_ropsten:
@@ -138,6 +159,7 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivKovan.setVisibility(View.GONE);
                 ivRopsten.setVisibility(View.VISIBLE);
                 ivLocalDev.setVisibility(View.GONE);
+                ivGoerli.setVisibility(View.GONE);
 
                 break;
             case R.id.rl_local_dev:
@@ -146,8 +168,18 @@ public class NetSettingActivity extends BaseActivity implements View.OnClickList
                 ivKovan.setVisibility(View.GONE);
                 ivRopsten.setVisibility(View.GONE);
                 ivLocalDev.setVisibility(View.VISIBLE);
+                ivGoerli.setVisibility(View.GONE);
 
                 break;
+            case R.id.rl_goerli:
+                networkName = GOERLI_NETWORK_NAME;
+                ivMainnet.setVisibility(View.GONE);
+                ivKovan.setVisibility(View.GONE);
+                ivRopsten.setVisibility(View.GONE);
+                ivLocalDev.setVisibility(View.GONE);
+                ivGoerli.setVisibility(View.VISIBLE);
+
+
             case R.id.rl_btn:// 设置语言并保存
 //                SharedPreferencesUtil.getInstance().putString("pref_rpcServer",networkName );
 

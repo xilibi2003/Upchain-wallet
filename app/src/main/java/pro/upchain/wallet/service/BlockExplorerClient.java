@@ -14,6 +14,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import pro.upchain.wallet.utils.LogUtils;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -53,6 +54,7 @@ public class BlockExplorerClient implements BlockExplorerClientType {
 
 	@Override
 	public Observable<Transaction[]> fetchTransactions(String address, String tokenAddr) {
+		LogUtils.d("fetchTransactions", address);
 	    if (TextUtils.isEmpty(tokenAddr)) {
             return transactionsApiClient
                     .fetchTransactions(address, true)

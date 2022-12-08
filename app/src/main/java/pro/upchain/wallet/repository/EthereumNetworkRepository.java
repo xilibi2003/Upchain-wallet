@@ -26,6 +26,7 @@ import static pro.upchain.wallet.C.LOCAL_DEV_NETWORK_NAME;
 import static pro.upchain.wallet.C.POA_NETWORK_NAME;
 import static pro.upchain.wallet.C.POA_SYMBOL;
 import static pro.upchain.wallet.C.ROPSTEN_NETWORK_NAME;
+import static pro.upchain.wallet.C.GOERLI_NETWORK_NAME;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -38,20 +39,26 @@ public class EthereumNetworkRepository {
 
     private final NetworkInfo[] NETWORKS = new NetworkInfo[]{
 
-            new NetworkInfo("Binance test Chain testnet", "Binance test Chain",
-                    "https://data-seed-prebsc-2-s1.binance.org:8545",
-                    "https://api.bscscan.com/",
+            new NetworkInfo("Binance Smart Chain testnet", "Binance test Chain",
+                    "https://bsc-testnet.public.blastapi.io",
+                    "https://api-testnet.bscscan.com/",
                     "https://testnet.bscscan.com", 0x61, true),
 
-            new NetworkInfo("Binance Smart Chain ", "Binance Smart Chain",
+            new NetworkInfo("Binance Smart Chain", "Binance Smart Chain",
                     "https://bsc-dataseed1.binance.org/",
                     "https://api.bscscan.com/",
-                    "https://bscscan.com", 0x61, true),
+                    "https://bscscan.com", 0x38, true),
 
             new NetworkInfo(ETHEREUM_MAIN_NETWORK_NAME, ETH_SYMBOL,
-                    "https://mainnet.infura.io/llyrtzQ3YhkdESt2Fzrk",
+                    "https://mainnet.infura.io/v3/",
                     "https://api.trustwalletapp.com/",
                     "https://etherscan.io/", 1, true),
+
+            new NetworkInfo(GOERLI_NETWORK_NAME, ETH_SYMBOL,
+                    "https://goerli.infura.io/v3/",
+                    "https://api.trustwalletapp.com/",
+                    "https://goerli.etherscan.io/", 5, true),
+
             new NetworkInfo(CLASSIC_NETWORK_NAME, ETC_SYMBOL,
                     "https://mewapi.epool.io/",
                     "https://classic.trustwalletapp.com",

@@ -82,6 +82,7 @@
     <string name="language_setting_save">保存</string>
 
     <string name="net_setting_main">Mainnet（主网）</string>
+    <string name="net_setting_goerli">Goerli 测试网络</string>
     <string name="net_setting_kovan">Kovan 测试网络</string>
     <string name="net_setting_ropsten">Ropsten 测试网络</string>
     <string name="net_setting_local_dev"> 本地测试网络</string>

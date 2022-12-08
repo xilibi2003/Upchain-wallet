@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.entity.NetworkInfo;
@@ -72,13 +74,17 @@ public class TransactionsViewModel extends BaseViewModel {
     }
 
     public void fetchTransactions() {
-//        progress.postValue(true);
-//        transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.MINUTES)
-//            .doOnNext(l ->
-//                disposable = fetchTransactionsInteract
-//                        .fetch(defaultWallet.getValue().address,  this.tokenAddr )
-//                        .subscribe(this::onTransactions, this::onError))
-//            .subscribe();
+        LogUtils.d("fetchTransactions");
+        progress.postValue(true);
+        transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.MINUTES)
+            .doOnNext(l -> {
+                        LogUtils.d("fetchTransactionsInteract");
+                        disposable = fetchTransactionsInteract
+                                .fetch(defaultWallet.getValue().address,  this.tokenAddr )
+                                .subscribe(this::onTransactions, this::onError);
+                    }
+                )
+            .subscribe();
     }
 
     public void getBalance() {
