@@ -62,10 +62,11 @@
 sdk.dir= Android SDK 目录
 gpr.user=
 gpr.key=
+infura.key=
 ```
 
 gpr 的配置参考： https://developer.trustwallet.com/wallet-core/integration-guide/android-guide
-
+infura key 用于与节点通信，在 https://www.infura.io/ 申请
 
 
 ## 参考的开源项目
@@ -78,13 +79,11 @@ gpr 的配置参考： https://developer.trustwallet.com/wallet-core/integration
 * [ETHWallet](https://github.com/DwyaneQ/ETHWallet)
 * [BGAQRCode](https://github.com/bingoogolapple/BGAQRCode-Android)
 
-
-
 ## 关于我
 
 本钱包由登链社区牵头开发，[登链社区](https://learnblockchain.cn)是高质量的中文区块链技术社区，希望我们输出的文章、课程、代码 能推动区块链技术在国内的发展。
 
-感谢[254497767](https://github.com/254497767) 提交 PR ，让登链钱包继续更新。
+感谢[254497767](https://github.com/254497767) 提交 PR ，更新钱包依赖的相关代码库。
 
 
 加登链社区技术群， 可扫微信二维码：

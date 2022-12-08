@@ -57,15 +57,15 @@ public class BlockExplorerClient implements BlockExplorerClientType {
 		LogUtils.d("fetchTransactions", address);
 	    if (TextUtils.isEmpty(tokenAddr)) {
             return transactionsApiClient
-                    .fetchTransactions(address, true)
+                    .fetchTransactions(address, "account",  "txlist", "desc")
                     .lift(apiError(gson))
-                    .map(r -> r.docs)
+                    .map(r -> r.result)
                     .subscribeOn(Schedulers.io());
         } else {
             return transactionsApiClient
-                    .fetchTransactions(address, tokenAddr)
+                    .fetchTransactions(address, tokenAddr, "account", "tokentx", "desc"  )
                     .lift(apiError(gson))
-                    .map(r -> r.docs)
+                    .map(r -> r.result)
                     .subscribeOn(Schedulers.io());
         }
 
@@ -81,19 +81,27 @@ public class BlockExplorerClient implements BlockExplorerClientType {
 	}
 
 
-//	http://localhost:8000/transactions?address=0x856e604698f79cef417aab0c6d6e1967191dba43
+// api.etherscan.io
+	// TODO: need add apiKey
 	private interface TransactionsApiClient {
-		@GET("/transactions?limit=50")
+		@GET("/api")
         Observable<Response<EtherScanResponse>> fetchTransactions(
-                @Query("address") String address, @Query("filterContractInteraction") boolean filter);
+                @Query("address") String address,
+				@Query("module") String module,
+				@Query("action") String action,
+				@Query("sort") String sort);
 
-    @GET("/transactions?limit=50")
+    @GET("/api")
     Observable<Response<EtherScanResponse>> fetchTransactions(
-            @Query("address") String address, @Query("contract") String contract);
+            @Query("address") String address,
+			@Query("contractaddress") String contract,
+			@Query("module") String module,
+			@Query("action") String action,
+			@Query("sort") String sort);
 	}
 
 	private final static class EtherScanResponse {
-		Transaction[] docs;
+		Transaction[] result;
 	}
 
 	private final static class ApiErrorOperator <T> implements ObservableOperator<T, Response<T>> {

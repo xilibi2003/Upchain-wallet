@@ -25,20 +25,20 @@ public class Transaction implements Parcelable {
     public final String error;
 
     public Transaction(
-            String hash,
+            String hash,  //
             String error,
-            String blockNumber,
-            long timeStamp,
+            String blockNumber,  //
+            long timeStamp,  //
             int nonce,
-            String from,
-            String to,
-            String value,
-            String gas,
-            String gasPrice,
-            String input,
-            String gasUsed,
+            String from,  //
+            String to,  //
+            String value, //
+            String gas, //
+            String gasPrice, //
+            String input, //
+            String gasUsed,  //
             TransactionOperation[] operations,
-            String contract) {
+            String contractAddress) {
         this.hash = hash;
         this.error = error;
         this.blockNumber = blockNumber;
@@ -52,7 +52,7 @@ public class Transaction implements Parcelable {
         this.input = input;
         this.gasUsed = gasUsed;
         this.operations = operations;
-        this.contract = contract;
+        this.contract = contractAddress;
     }
 
     protected Transaction(Parcel in) {

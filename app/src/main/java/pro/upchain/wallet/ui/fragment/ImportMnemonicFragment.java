@@ -88,7 +88,7 @@ public class ImportMnemonicFragment extends BaseFragment {
                     String confirmPwd = etWalletPwdAgain.getText().toString().trim();
                     String pwdReminder = etWalletPwdReminderInfo.getText().toString().trim();
                     boolean verifyWalletInfo = verifyInfo(mnemonic, walletPwd, confirmPwd, pwdReminder);
-
+                    LogUtils.i(verifyWalletInfo);
                     if (verifyWalletInfo) {
                         btnLoadWallet.setEnabled(true);
                     }

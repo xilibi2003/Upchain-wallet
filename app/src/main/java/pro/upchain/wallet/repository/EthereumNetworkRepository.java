@@ -27,6 +27,7 @@ import static pro.upchain.wallet.C.POA_NETWORK_NAME;
 import static pro.upchain.wallet.C.POA_SYMBOL;
 import static pro.upchain.wallet.C.ROPSTEN_NETWORK_NAME;
 import static pro.upchain.wallet.C.GOERLI_NETWORK_NAME;
+import static pro.upchain.wallet.BuildConfig.InfuraKey;
 
 /**
  * Created by Tiny 熊 @ Upchain.pro
@@ -42,7 +43,7 @@ public class EthereumNetworkRepository {
             new NetworkInfo("Binance Smart Chain testnet", "Binance test Chain",
                     "https://bsc-testnet.public.blastapi.io",
                     "https://api-testnet.bscscan.com/",
-                    "https://testnet.bscscan.com", 0x61, true),
+                    "https://testnet.bscscan.com", 0x61,  false),
 
             new NetworkInfo("Binance Smart Chain", "Binance Smart Chain",
                     "https://bsc-dataseed1.binance.org/",
@@ -50,14 +51,14 @@ public class EthereumNetworkRepository {
                     "https://bscscan.com", 0x38, true),
 
             new NetworkInfo(ETHEREUM_MAIN_NETWORK_NAME, ETH_SYMBOL,
-                    "https://mainnet.infura.io/v3/",
-                    "https://api.trustwalletapp.com/",
+                    "https://mainnet.infura.io/v3/" + InfuraKey,
+                    "https://api.etherscan.io/",
                     "https://etherscan.io/", 1, true),
 
             new NetworkInfo(GOERLI_NETWORK_NAME, ETH_SYMBOL,
-                    "https://goerli.infura.io/v3/",
-                    "https://api.trustwalletapp.com/",
-                    "https://goerli.etherscan.io/", 5, true),
+                    "https://goerli.infura.io/v3/" + InfuraKey,
+                    "https://api-goerli.etherscan.io/",
+                    "https://goerli.etherscan.io/", 5, false),
 
             new NetworkInfo(CLASSIC_NETWORK_NAME, ETC_SYMBOL,
                     "https://mewapi.epool.io/",
@@ -77,9 +78,9 @@ public class EthereumNetworkRepository {
                     "https://ropsten.etherscan.io", 3, false),
 
             new NetworkInfo(LOCAL_DEV_NETWORK_NAME, ETH_SYMBOL,
-                    "http://192.168.8.100:8545",
-                    "http://192.168.8.100:8000/",
-                    "", 1337, false),
+                    "http://192.168.1.10:8545",
+                    "http://192.168.1.10:8000/",
+                    "", 31337, false),
     };
 
     private final SharedPreferenceRepository preferences;

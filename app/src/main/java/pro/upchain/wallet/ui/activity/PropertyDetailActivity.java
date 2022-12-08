@@ -117,6 +117,7 @@ public class PropertyDetailActivity extends BaseActivity implements View.OnClick
         viewModel.transactions().observe(this, this::onTransactions);
         viewModel.progress().observe(this, this::onProgress);
 
+
     }
 
     @Override
@@ -169,6 +170,8 @@ public class PropertyDetailActivity extends BaseActivity implements View.OnClick
         llyBack.setOnClickListener(this);
         llyTransfer.setOnClickListener(this);
         llyGathering.setOnClickListener(this);
+
+
     }
 
 

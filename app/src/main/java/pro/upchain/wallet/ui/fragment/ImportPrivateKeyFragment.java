@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * WeiXin: xlbxiong
  */
 
-public class ImportPrivateKeyFragment extends BaseFragment {
+public class ImportPrivateKeyFragment extends BaseFragment implements View.OnClickListener  {
     EditText etPrivateKey;
     EditText etWalletPwd;
     EditText etWalletPwdAgain;
@@ -69,6 +69,7 @@ public class ImportPrivateKeyFragment extends BaseFragment {
 
     @Override
     public void configViews() {
+        btnLoadWallet.setOnClickListener(this);
 
         cbAgreement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -90,7 +91,6 @@ public class ImportPrivateKeyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.btn_load_wallet})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_load_wallet:

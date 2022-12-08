@@ -1,8 +1,12 @@
 package pro.upchain.wallet.viewmodel;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -106,25 +110,25 @@ public class TransactionsViewModel extends BaseViewModel {
         LogUtils.d("onDefaultWallet");
         defaultWallet.setValue(wallet);
 //        getBalance();
-//        fetchTransactions();
+        fetchTransactions();
     }
 
     private void onTransactions(Transaction[] transactions) {
-//        progress.postValue(false);
-//
-//        // ETH transfer ingore the contract call
-//        if (TextUtils.isEmpty(tokenAddr)) {
-//            ArrayList<Transaction> transactionList = new ArrayList<>();
-//            LogUtils.d("size:" + transactionList.size());
-//            for (Transaction t: transactions) {
-//                if (t.operations == null || t.operations.length == 0) {
-//                    transactionList.add(t);
-//                }
-//            }
-//            this.transactions.postValue(transactionList);
-//        } else {
-//            this.transactions.postValue(Arrays.asList(transactions));
-//        }
+        progress.postValue(false);
+
+        // ETH transfer ingore the contract call
+        if (TextUtils.isEmpty(tokenAddr)) {
+            ArrayList<Transaction> transactionList = new ArrayList<>();
+            LogUtils.d("size:" + transactionList.size());
+            for (Transaction t: transactions) {
+                if (t.operations == null || t.operations.length == 0) {
+                    transactionList.add(t);
+                }
+            }
+            this.transactions.postValue(transactionList);
+        } else {
+            this.transactions.postValue(Arrays.asList(transactions));
+        }
 
 
     }
