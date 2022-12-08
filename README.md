@@ -31,7 +31,7 @@
 - [x] 支持用法币（美元和人民币）实时显示币价。
 - [x] 历史交易列表显示
 - [x] 二维码扫描，兼容imToken 格式
-- [x] 支持 DApp Browser  浏览器  (需付费购买，[购买链接](https://learnblockchain.cn/goods/3) ）
+- [x] 支持 DApp Browser  浏览器
 - [ ] 地址本（联系人）功能 待完善
 - [ ] 比特币及EOS 支持
 
@@ -42,7 +42,7 @@
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/wallet.gif" width="450">
 </p>
 
-**DApp 浏览器** 功能， 目前暂未开源，有需要请联系作者购买。
+**DApp 浏览器** 功能：
 
 <p align="center">
   <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/dapp.gif" width="450">
@@ -66,24 +66,24 @@
 
 ## 关于我
 
-本钱包由登链学院出品，[登链学院](https://upchain.ke.qq.com)是国内领先的区块链技术培训机构， [登链学院](https://upchain.ke.qq.com)作为一家培训学院， 我们不光输出课程，我们也为行业做一点点力所能及的贡献。
-[登链学院](https://upchain.ke.qq.com) 已经推出了很多课程，其中包括[网页钱包开发课程](https://ke.qq.com/course/356068?tuin=bd898bbf).
+本钱包由登链社区牵头开发，[登链社区](https://learnblockchain.cn)是高质量的中文区块链技术社区，希望我们输出的文章、课程、代码 能推动区块链技术在国内的发展。
 
-我的微信：xlbxiong，我拉你进钱包开发交流群， 微信二维码：
+感谢[254497767](https://github.com/254497767) 提交 PR ，让登链钱包继续更新。
+
+
+加登链社区技术群， 可扫微信二维码：
 <p align="center">
-  <img src="https://github.com/xilibi2003/Upchain-wallet/blob/master/img/tiny_qrcode.jpeg" width="300">
+  <img src="https://img.learnblockchain.cn/qrcode/xiaona-2.jpg" width="300">
 </p>
 
-不要在微信里私聊问我问题，提问请到[登链社区 - 问答区](https://learnblockchain.cn/questions)，请理解。
-
-我的邮箱(Email): xlb@upchain.pro
 
 
-钱包没再更新了， 现在时间放在DEFI, NFT 及社区上。
+如果有技术问题，可到[登链社区 - 问答区](https://learnblockchain.cn/questions)提问， 或进入 [Discord](https://discord.gg/hRZrM92hfw) 讨论。
+
+技术合作，可联系我的邮箱(Email): xlb@upchain.pro
 
 
-
-您的支持将鼓励我继续提供更好的作品给大家:octocat:
+你的支持将鼓励我继续提供更好的作品给大家:octocat:
 
 <p align="center">
   <img src="https://learnblockchain.cn/images/qr_pay.jpg" width="300">
