@@ -195,7 +195,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
                 if (token.balance == null) {
                     token.value = "0";
                 } else {
-                    token.value = BalanceUtils.ethToUsd(ticker.price, token.balance);
+                    token.value = BalanceUtils.ethToUsd(ticker.price_usd, token.balance);
                 }
             }
             if (!TextUtils.isEmpty(token.value)) {

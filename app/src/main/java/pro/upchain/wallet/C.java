@@ -8,7 +8,7 @@ package pro.upchain.wallet;
 public abstract class C {
 
     // 获取实时价格（行情 Ticker ） URL
-    public static final String TICKER_API_URL = "http://47.93.151.65:8000";
+    public static final String TICKER_API_URL = "https://api.coingecko.com/";
 
 
     public static final int IMPORT_REQUEST_CODE = 1001;

@@ -58,7 +58,7 @@ public class EthereumNetworkRepository {
             new NetworkInfo(GOERLI_NETWORK_NAME, ETH_SYMBOL,
                     "https://goerli.infura.io/v3/" + InfuraKey,
                     "https://api-goerli.etherscan.io/",
-                    "https://goerli.etherscan.io/", 5, false),
+                    "https://goerli.etherscan.io/", 5, true),
 
             new NetworkInfo(CLASSIC_NETWORK_NAME, ETC_SYMBOL,
                     "https://mewapi.epool.io/",
