@@ -65,6 +65,10 @@ public class CurrencyUnitSettingActivity extends BaseActivity implements View.On
         ivCNY.setOnClickListener(this);
         ivUSD.setOnClickListener(this);
         rlBtn.setOnClickListener(this);
+
+        findViewById(R.id.rl_cny).setOnClickListener(this);
+        findViewById(R.id.rl_usd).setOnClickListener(this);
+        findViewById(R.id.rl_btn).setOnClickListener(this);
     }
 
     @OnClick({R.id.rl_cny, R.id.rl_usd, R.id.rl_btn})
