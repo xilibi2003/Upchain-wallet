@@ -140,7 +140,7 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
     }
 
     private boolean verifyPassword(String oldPwd, String newPwd, String newPwdAgain) {
-        if (!TextUtils.equals(Md5Utils.md5(oldPwd), walletPwd)) {
+        if (!TextUtils.equals(oldPwd, walletPwd)) {
             ToastUtils.showToast(R.string.modify_password_alert4);
             return false;
         } else if (!TextUtils.equals(newPwd, newPwdAgain)) {

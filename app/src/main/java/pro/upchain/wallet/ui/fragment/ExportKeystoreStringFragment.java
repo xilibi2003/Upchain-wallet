@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import pro.upchain.wallet.R;
@@ -19,9 +20,7 @@ import butterknife.OnClick;
  */
 
 public class ExportKeystoreStringFragment extends BaseFragment {
-    @BindView(R.id.tv_keystore)
     TextView tvKeystore;
-    @BindView(R.id.btn_copy)
     TextView btnCopy;
 
     @Override
@@ -31,7 +30,8 @@ public class ExportKeystoreStringFragment extends BaseFragment {
 
     @Override
     public void initView() {
-
+        tvKeystore = parentView.findViewById(R.id.tv_keystore);
+        btnCopy = parentView.findViewById(R.id.btn_copy);
     }
 
     @Override
@@ -48,10 +48,14 @@ public class ExportKeystoreStringFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-
+        btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyText();
+            }
+        });
     }
 
-    @OnClick(R.id.btn_copy)
     public void copyText() {
         ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         // 将文本内容放到系统剪贴板里。

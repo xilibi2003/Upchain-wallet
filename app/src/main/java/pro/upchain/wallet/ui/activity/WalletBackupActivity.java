@@ -96,7 +96,8 @@ public class WalletBackupActivity extends BaseActivity implements View.OnClickLi
                             ToastUtils.showToast(R.string.input_pwd_dialog_tip);
                             return;
                         }
-                        if (TextUtils.equals(Md5Utils.md5(pwd), walletPwd)) {
+
+                        if (TextUtils.equals(pwd, walletPwd)) {
 
                             if (firstAccount) {
                                 Intent intent = new Intent(WalletBackupActivity.this, MainActivity.class);

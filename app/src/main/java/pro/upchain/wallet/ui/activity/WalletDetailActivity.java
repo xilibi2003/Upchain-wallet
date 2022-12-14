@@ -18,6 +18,7 @@ import pro.upchain.wallet.R;
 import pro.upchain.wallet.base.BaseActivity;
 import pro.upchain.wallet.domain.ETHWallet;
 import pro.upchain.wallet.interact.ModifyWalletInteract;
+import pro.upchain.wallet.utils.LogUtils;
 import pro.upchain.wallet.utils.Md5Utils;
 import pro.upchain.wallet.utils.TKeybord;
 import pro.upchain.wallet.utils.ToastUtils;
@@ -226,7 +227,7 @@ public class WalletDetailActivity extends BaseActivity implements View.OnClickLi
                     @Override
                     public void onConfirm(String pwd) {
                         inputPwdDialog.dismiss();
-                        if (TextUtils.equals(walletPwd, Md5Utils.md5(pwd))) {
+                        if (TextUtils.equals(walletPwd, pwd)) {
                             showDialog(getString(R.string.deriving_wallet_tip));
                             modifyWalletInteract.deriveWalletPrivateKey(walletId, pwd).subscribe(WalletDetailActivity.this::showDerivePrivateKeyDialog);
 
@@ -248,7 +249,7 @@ public class WalletDetailActivity extends BaseActivity implements View.OnClickLi
                     @Override
                     public void onConfirm(String pwd) {
                         inputPwdDialog.dismiss();
-                        if (TextUtils.equals(walletPwd, Md5Utils.md5(pwd))) {
+                        if (TextUtils.equals(walletPwd, pwd)) {
                             showDialog(getString(R.string.deriving_wallet_tip));
                             modifyWalletInteract.deriveWalletKeystore(walletId, pwd).subscribe(WalletDetailActivity.this::showDeriveKeystore);
                         } else {
@@ -268,7 +269,7 @@ public class WalletDetailActivity extends BaseActivity implements View.OnClickLi
 
                     @Override
                     public void onConfirm(String pwd) {
-                        if (TextUtils.equals(walletPwd, Md5Utils.md5(pwd))) {
+                        if (TextUtils.equals(walletPwd, pwd)) {
                             Intent intent = new Intent(WalletDetailActivity.this, MnemonicBackupActivity.class);
                             intent.putExtra("walletId", walletId);
                             intent.putExtra("walletMnemonic", walletMnemonic);
@@ -292,7 +293,7 @@ public class WalletDetailActivity extends BaseActivity implements View.OnClickLi
 
                     @Override
                     public void onConfirm(String pwd) {
-                        if (TextUtils.equals(walletPwd, Md5Utils.md5(pwd))) {
+                        if (TextUtils.equals(walletPwd, pwd)) {
                             showDialog(getString(R.string.deleting_wallet_tip));
                             modifyWalletInteract.deleteWallet(walletId).subscribe(WalletDetailActivity.this::deleteSuccess);
                         } else {
